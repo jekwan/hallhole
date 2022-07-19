@@ -161,3 +161,4 @@
 ### 와이어 프레임
 
 ### ERD
+![ERD](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/50427412-63e4-437e-8e7b-54823b310744/%ED%99%80%ED%99%80.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220719%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220719T073708Z&X-Amz-Expires=86400&X-Amz-Signature=01a3bebcb43de67c62a6fe2a3198f202447977a60e572a4bae675bf5327a2f0b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25ED%2599%2580%25ED%2599%2580.png%22&x-id=GetObject)
