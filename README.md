@@ -161,3 +161,4 @@
 ### 와이어 프레임
 
 ### ERD
+![ERD](https://www.notion.so/7f73dcd38296492786deaeeecaba2321#daa43c6cb2a84eaf98a7132848f463dd)
