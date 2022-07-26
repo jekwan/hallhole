@@ -20,8 +20,8 @@ const CustomButton = styled(ButtonUnstyled)`
   cursor: pointer;
   border: none;
 
-  height: 60px;
-  width: 380px;
+  height: 45px;
+  width: 150px;
 
   &:hover {
     background-color: ${PointColor2[2]};

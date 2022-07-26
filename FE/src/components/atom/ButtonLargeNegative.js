@@ -2,16 +2,16 @@ import * as React from 'react';
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
 
-const PointColor2 = {
-  1: '#e37373',
-  2: '#e06262',
+const Negative = {
+  1: '#808080',
+  2: '#A9A9A9',
 };
 
 const CustomButton = styled(ButtonUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 22px;
-  background-color: ${PointColor2[1]};
+  background-color: ${Negative[1]};
   padding: 12px 24px;
 
   border-radius: 10px;
@@ -24,11 +24,11 @@ const CustomButton = styled(ButtonUnstyled)`
   width: 380px;
 
   &:hover {
-    background-color: ${PointColor2[2]};
+    background-color: ${Negative[2]};
   }
 
   &.${buttonUnstyledClasses.active} {
-    background-color: ${PointColor2[1]};
+    background-color: ${Negative[1]};
   }
 
   &.${buttonUnstyledClasses.focusVisible} {
