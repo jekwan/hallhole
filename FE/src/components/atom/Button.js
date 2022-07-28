@@ -1,6 +1,11 @@
 import React from "react";
 import Button from "@mui/material/Button";
 
+//  버튼은 크게 large, medium, small 사이즈로 구분되며
+// 색상은 primary, negative를 선택하게 된다.
+// 버튼에 sx를 적용하기 위해선 크기와 색상을 전부 지정해줘야하며
+// small 사이즈는 variant를 따로 지정하지 않았다.
+
 export default function ButtonStyle({ children, size, variant }) {
   if (size === "large" && variant === "primary") {
     return (
