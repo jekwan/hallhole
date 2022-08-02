@@ -2,14 +2,25 @@ import React from "react";
 
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import Intro from "./page/Intro";
+
 const theme = createTheme({
   palette: {
     type: "light",
     primary: {
-      main: "#e85d65",
+      week: "#E38F8F",
+      main: "#E37373",
+      strong: "#A34545",
     },
     secondary: {
       main: "#f50057",
+    },
+    base: {
+      white: "#FFFFFF",
+      gray: "gray",
+      grey: "gray",
+      black: "#000000",
+      blackDim: "#000000B0",
     },
   },
 });
@@ -17,10 +28,7 @@ const theme = createTheme({
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        <h1>Hello 홀홀!</h1>
-        <h2>리액트로 만드는 홀홀</h2>
-      </div>
+      <Intro></Intro>
     </ThemeProvider>
   );
 }

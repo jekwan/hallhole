@@ -5,7 +5,8 @@ const CustomText = styled("span")(
   ({ size, variant }) => `
   color: ${getColor(variant)};
   font-size: ${getSize(size)};
-  margin: 3px;
+  margin: 0;
+  padding: 0;
   font-weight: bold;
   `,
 );
