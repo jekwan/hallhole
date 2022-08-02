@@ -6,7 +6,7 @@ const Image = styled("img")(
   width: ${getSizeBywidth(size)};
   height: ${getSizeByheight(size)};
   border: ${getBorder(type)};
-  blurRadius : ${getBlur(type)};
+  filter : ${getBlur(type)};
 `,
 );
 
@@ -47,13 +47,11 @@ function getSizeByheight(size) {
 function getBlur(type) {
   switch (type) {
     case "blur":
-      return "3px";
+      return "blur(3px)";
     default:
       return "0";
   }
 }
-
-<PosterImage size="large" type="outlined"></PosterImage>;
 
 export default function PosterImage(props) {
   /**
