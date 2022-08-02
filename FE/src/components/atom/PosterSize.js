@@ -1,32 +1,64 @@
-export const posterLarge = {
-  width: 300,
-  height: 400,
-  //maxWidth: 300,
-  //maxHeight: 400,
-};
+import React from "react";
+import { styled } from "@mui/system";
 
-export const posterLargeOutlined = {
-  width: 300,
-  height: 400,
-  //maxWidth: 300,
-  //maxHeight: 400,
-  border: 1,
+
+const Image = styled("img")(
+  ({ size, type }) => `
+  width: ${getSizeBywidth(size)};
+  height: ${getSizeByheight(size)};
+  border: ${getBorder(type)};
+  blurRadius : ${getBlur(type)};
+`,
+);
+
+function getBorder(type) {
+  switch (type) {
+    case "outlined":
+      return "1";
+    default:
+      return "0";
+  }
 }
 
-export const posterMedium = {
-  width: 180,
-  height: 240,
-  //maxWidth: 180,
-  //maxHeight: 240,
+function getSizeBywidth(size) {
+  switch (size) {
+    case "large":
+      return "300px";
+    case "medium":
+      return "180px";
+    case "small":
+      return "100px";
+  }
+}
+function getSizeByheight(size) {
+  switch (size) {
+    case "large":
+      return "400px";
+    case "medium":
+      return "240px";
+    case "small":
+      return "134px";
+  }
+}
+//blurRadius
+function getBlur(type) {
+  switch (type) {
+    case "blur":
+      return "3px";
+    default:
+      return "0";
+  }
 }
 
-export const posterSmall = {
-  width: 100,
-  height: 134,
-  //maxWidth: 100,
-  //maxHeight: 134,
-}
+<PosterImage size="large" type="outlined"></PosterImage>
 
-export const posterBlur = {
-  backdropFilter: 'blur(3px)'
+export default function PosterImage(props) {
+  /**
+   * props
+   *  - size : large/medium/small 존재
+   *  - type: outlined = 외곽선 blur = 3px의 블러처리
+   *  - src : 이미지 url
+   *  - onClick : 클릭 시 이벤트
+   */
+  return <Image size={props.size} type={props.type} src={props.src} onClick={props.onClick}></Image>;
 }

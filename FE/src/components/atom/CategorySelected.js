@@ -24,6 +24,11 @@ const negative = {
   
 
 export default function categorySelected(props) {
+    /* type = {option}
+  <option>
+  primary  핑크색 굵은 선택선
+  negative 회색 굵은 선택선
+  dark 검은색 굵은 선택선 */
     if (props.type === "primary") {
       return <Divider sx={primary}></Divider>
     }else if(props.type === "negative") {
