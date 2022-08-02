@@ -18,10 +18,7 @@ const ButtonCheck = styled(Button)(
   background-color: ${getBackgroundColor(variant)};
   &: hover{
     background-color: ${getHoverColor(variant)};
-    color: "white";
-  }
-  fontWeight: "bold",
-  color: "white",
+  };
   text-align: center;
   `,
 );

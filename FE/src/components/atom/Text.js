@@ -1,22 +1,44 @@
 import React from "react";
 import { styled } from "@mui/system";
 
-const CustomText = styled('span')({
-  color: "black",
-  display: "inline-block",
-  fontFamily: "Helvetica Neue",
-  margin: 3,
-});
+const CustomText = styled("span")(
+  ({ size, variant }) => `
+  color: ${getColor(variant)};
+  font-size: ${getSize(size)};
+  margin: 3px;
+  font-weight: bold;
+  `,
+);
 
-export default function TextStyle({ children, variant }) {
-  // 색상은 primary, white, black 이며
-  // primary, white는 variant 값을 적용해야 하며
-  // 없으면 black으로 색상이 지정된다.
-  if (variant === "primary") {
-    return <CustomText sx={{ color: "primary.main" }}>{children}</CustomText>;
-  } else if (variant === "white") {
-    return <CustomText sx={{ color: "white" }}>{children}</CustomText>;
-  } else {
-    return <CustomText sx={{ color: "black" }}>{children}</CustomText>;
+function getSize(size) {
+  switch (size) {
+    case "large":
+      return "30px";
+    case "medium":
+      return "22px";
+    case "small":
+      return "16px";
   }
+}
+
+function getColor(variant) {
+  switch (variant) {
+    case "primary":
+      return "#e37373";
+    case "black":
+      return "black";
+    case "white":
+      return "white";
+  }
+}
+
+export default function TextStyle({ variant, children, size }) {
+  return (
+    //  텍스트는 크게 large, medium, small 사이즈로 구분되며
+    // 색상은 primary, black, white 로 구분됩니다.
+    // 두가지 모두 적용시켜주셔야 합니다.
+    <CustomText variant={variant} size={size}>
+      {children}
+    </CustomText>
+  );
 }

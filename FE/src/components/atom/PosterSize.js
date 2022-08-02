@@ -1,7 +1,6 @@
 import React from "react";
 import { styled } from "@mui/system";
 
-
 const Image = styled("img")(
   ({ size, type }) => `
   width: ${getSizeBywidth(size)};
@@ -22,6 +21,8 @@ function getBorder(type) {
 
 function getSizeBywidth(size) {
   switch (size) {
+    case "full":
+      return "412px";
     case "large":
       return "300px";
     case "medium":
@@ -32,6 +33,8 @@ function getSizeBywidth(size) {
 }
 function getSizeByheight(size) {
   switch (size) {
+    case "full":
+      return "548px";
     case "large":
       return "400px";
     case "medium":
@@ -50,12 +53,12 @@ function getBlur(type) {
   }
 }
 
-<PosterImage size="large" type="outlined"></PosterImage>
+<PosterImage size="large" type="outlined"></PosterImage>;
 
 export default function PosterImage(props) {
   /**
    * props
-   *  - size : large/medium/small 존재
+   *  - size : full/large/medium/small 존재
    *  - type: outlined = 외곽선 blur = 3px의 블러처리
    *  - src : 이미지 url
    *  - onClick : 클릭 시 이벤트
