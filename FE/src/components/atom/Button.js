@@ -59,11 +59,11 @@ function getSizeHeight(size) {
   }
 }
 
-export default function ButtonStyle({ children, size, variant }) {
+export default function ButtonStyle({ children, size, variant, onClick }) {
   return (
     //  버튼은 크게 large, medium, small 사이즈로 구분되며
     // 색상은 현재 primary 를 선택하게 된다.(추후 색상 추가할 수 있다.)
-    <ButtonCheck sx={style} size={size} variant={variant}>
+    <ButtonCheck sx={style} size={size} variant={variant} onClick={onClick}>
       {children}
     </ButtonCheck>
   );

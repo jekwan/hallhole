@@ -63,6 +63,10 @@ const IntroLogo = styled(Logo)`
 `;
 
 export default function Intro() {
+  const goToSignIn = e => {
+    console.log(e, "move to sign in/sign up page");
+  };
+
   return (
     <Box sx={contentStyle}>
       <Box sx={posterListStyle}>
@@ -86,7 +90,7 @@ export default function Intro() {
           </Text>
         </Box>
         <Box sx={startButtonBoxStyle}>
-          <Button size="large" variant="primary">
+          <Button size="large" variant="primary" onClick={goToSignIn}>
             <Text size="medium" variant="white">
               시작하기
             </Text>
