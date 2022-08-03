@@ -2,21 +2,21 @@ import * as React from 'react';
 import Divider from '@mui/material/Divider';
 
 const primary = {
-  width: '25%',
+  width: '100%',
   height: 5,
   maxWidth: 360,
   bgcolor: '#e37373',
 };
 
 const negative = {
-    width: '25%',
+    width: '100%',
     height: 5,
     maxWidth: 360,
     bgcolor: '#E1E1E1',
   };
   
   const dark = {
-    width: '25%',
+    width: '100%',
     height: 5,
     maxWidth: 360,
     bgcolor: '#000000',

@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 const primary = {
   width: '100%',
   height: 3,
-  maxWidth: 360,
+  maxWidth: 380,
   bgcolor: '#e37373',
 };
 

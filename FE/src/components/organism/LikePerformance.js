@@ -16,7 +16,7 @@ const flexContainer = {
 
 export default function LikePerformances(props) {
   return (
-    <Box sx={{ width: 1, marginY: 2, marginLeft: 1 }}>
+    <Box sx={{ width: 1, marginY: 2, marginLeft: 2 }}>
       <TextStyle size="medium" variant="primary">
         좋아요 누른 공연
       </TextStyle>
