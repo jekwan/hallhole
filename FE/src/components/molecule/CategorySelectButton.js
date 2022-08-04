@@ -11,22 +11,24 @@ const CategoryButton = styled(Button)(
   width: 100%;
   font-size: 1rem;
   font-weight: bold;
-  `
-)
+  `,
+);
 
 function setThemeBySelected(selected) {
-  return (selected ? 'primary' : 'negative')
+  return selected ? "primary" : "negative";
 }
 
 function setColorBySelected(selected) {
-    return (selected ? '#e37373' : 'grey')
+  return selected ? "#e37373" : "grey";
 }
 
 export default function CategorySelectButton(props) {
   return (
-    <Box sx={{ width: 1}}>
-      <CategoryButton type={`${setThemeBySelected(props.selected)}`} selected={props.selected} onClick={props.onClick}>{props.category}</CategoryButton>
-      <CategorySelected type={`${setThemeBySelected(props.selected)}`} sx={{ width : 1 }}></CategorySelected>
+    <Box sx={{ width: 1 }}>
+      <CategoryButton type={`${setThemeBySelected(props.selected)}`} selected={props.selected} onClick={props.onClick}>
+        {props.category}
+      </CategoryButton>
+      <CategorySelected type={`${setThemeBySelected(props.selected)}`} sx={{ width: 1 }}></CategorySelected>
     </Box>
-  )
-};
+  );
+}
