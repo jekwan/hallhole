@@ -8,11 +8,10 @@ const style = {
   borderRadius: 2,
   boxShadow: 1,
   fontWeight: "bold",
-  color: "white",
 };
 
 const ButtonCheck = styled(Button)(
-  ({ size, variant }) => `
+  ({ size, variant, color }) => `
   width: ${getSizeWidth(size)};
   height: ${getSizeHeight(size)};
   background-color: ${getBackgroundColor(variant)};
@@ -20,8 +19,20 @@ const ButtonCheck = styled(Button)(
     background-color: ${getHoverColor(variant)};
   };
   text-align: center;
+  color: ${getColor(color)};
   `,
 );
+
+function getColor(color) {
+  switch (color) {
+    case "white":
+      return "white";
+    case "black":
+      return "black";
+    default:
+      return "white";
+  }
+}
 
 function getBackgroundColor(variant) {
   switch (variant) {
@@ -59,11 +70,11 @@ function getSizeHeight(size) {
   }
 }
 
-export default function ButtonStyle({ children, size, variant, onClick }) {
+export default function ButtonStyle({ children, size, variant, onClick, color }) {
   return (
     //  버튼은 크게 large, medium, small 사이즈로 구분되며
     // 색상은 현재 primary 를 선택하게 된다.(추후 색상 추가할 수 있다.)
-    <ButtonCheck sx={style} size={size} variant={variant} onClick={onClick}>
+    <ButtonCheck sx={style} size={size} variant={variant} onClick={onClick} color={color}>
       {children}
     </ButtonCheck>
   );
