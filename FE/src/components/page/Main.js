@@ -167,7 +167,7 @@ export default function Main() {
         </Box>
         <Box sx={inputPosition}>
           <Box sx={inputPositionDetail}>
-            <Input size="large"></Input>
+            <Input size="large" label="Search"></Input>
           </Box>
         </Box>
         <Box sx={{ marginY: 10 }}>
