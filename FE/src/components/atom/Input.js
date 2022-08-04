@@ -16,6 +16,16 @@ export default function Input(props) {
     return (
       <TextField sx={{ m: 0.75, width: "50%" }} variant="outlined" color="primary" onKeyPress={props.onKeyPress} />
     );
+  } else if (props.size === "sign") {
+    return (
+      <TextField
+        sx={{ m: 0.75, width: "380px", backgroundColor: "white" }}
+        label={" Enter Email "}
+        variant="standard"
+        color="primary"
+        onKeyPress={props.onKeyPress}
+      />
+    );
   } else {
     return (
       <TextField sx={{ m: 0.75, width: "25%" }} variant="outlined" color="primary" onKeyPress={props.onKeyPress} />
