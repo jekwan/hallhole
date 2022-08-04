@@ -24,6 +24,9 @@ module.exports = {
     }),
   ],
   devServer: {
+    historyApiFallback: {
+      index: "/index.html",
+    },
     static: {
       directory: path.join(__dirname, "static"),
     },

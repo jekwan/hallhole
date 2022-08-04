@@ -3,6 +3,8 @@ import React from "react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
+import { Link } from "react-router-dom";
+
 import Logo from "../atom/Logo";
 import Text from "../atom/Text";
 import Button from "../atom/Button";
@@ -87,11 +89,13 @@ export default function Intro() {
           </Text>
         </Box>
         <Box sx={startButtonBoxStyle}>
-          <Button size="large" variant="primary">
-            <Text size="medium" variant="white">
-              시작하기
-            </Text>
-          </Button>
+          <Link to="/signin">
+            <Button size="large" variant="primary">
+              <Text size="medium" variant="white">
+                시작하기
+              </Text>
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Box>
