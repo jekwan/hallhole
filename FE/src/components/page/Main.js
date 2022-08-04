@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import PosterSize from "../atom/PosterSize";
 import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
-import LikePerformance from "../molecule/LikePerformance";
+import LikePerformance from "../organism/LikePerformance";
 import Button from "../atom/Button";
 
 import ProfileImage from "../atom/ProfileImage";
