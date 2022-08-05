@@ -29,7 +29,7 @@ const thinDark = {
   bgcolor: '#000000',
 }
 
-export default function categoryDivider(props) {
+export default function CategoryDivider(props) {
   /* type = {option}
   <option>
   primary  핑크색 굵은 구분선

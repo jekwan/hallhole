@@ -23,7 +23,7 @@ const negative = {
   };
   
 
-export default function categorySelected(props) {
+export default function CategorySelected(props) {
     /* type = {option}
   <option>
   primary  핑크색 굵은 선택선
