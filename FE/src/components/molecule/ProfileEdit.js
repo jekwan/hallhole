@@ -24,48 +24,43 @@ export default function ProfileEdit(props) {
   
   return (
     // 프로필 설정에서 변경할 수 있는 모든 폼들이 모여있습니다.
-    <Box sx={{ml:3, mt:2}}>
+    // 마진 관련 재설정 필요(px외 단위로), 위치 설정
+    <Box sx={{ ml:4, mt:2, display: 'flex',
+    alignItems: 'flex-start',
+    flexDirection: 'column',}}>
+      <TextStyle size="medium">닉네임</TextStyle>
+      <Input size="large"></Input>
+      <TextStyle size="medium">자기소개</TextStyle>
+      <Input size="large"></Input>
+      <TextStyle size="medium">이메일</TextStyle>
+      <Input size="large"></Input>
+      <Box sx={{ display: 'flex' }}>
         <Box>
-          <TextStyle size="medium">닉네임</TextStyle>
-          <br></br>
-          <Input size="large"></Input>
-          <br></br>
-          <TextStyle size="medium">자기소개</TextStyle>
-          <br></br>
-          <Input size="large"></Input>
-          <br></br>
-          <TextStyle size="medium">이메일</TextStyle>
-          <br></br>
-          <Input size="large"></Input>
-          <br></br>
+          <TextStyle size="medium">성별</TextStyle>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel id="gender">성별</InputLabel>
+              <Select
+                labelId="gender"
+                id="gender-selector"
+                open={open}
+                onClose={handleClose}
+                onOpen={handleOpen}
+                value={gender}
+                label="setGender"
+                onChange={handleChange}
+              >
+                <MenuItem value="N">비공개</MenuItem>
+                <MenuItem value="M">남자</MenuItem>
+                <MenuItem value="F">여자</MenuItem>
+              </Select>
+          </FormControl>
         </Box>
-        <Box sx={{ display: 'flex' }}>
-          <Box>
-            <TextStyle size="medium">성별</TextStyle>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="gender">성별</InputLabel>
-                <Select
-                  labelId="gender"
-                  id="gender-selector"
-                  open={open}
-                  onClose={handleClose}
-                  onOpen={handleOpen}
-                  value={gender}
-                  label="setGender"
-                  onChange={handleChange}
-                >
-                  <MenuItem value="N">비공개</MenuItem>
-                  <MenuItem value="M">남자</MenuItem>
-                  <MenuItem value="F">여자</MenuItem>
-                </Select>
-            </FormControl>
-          </Box>
-          <Box>
-            <TextStyle size="medium">생년월일</TextStyle>
-            <br></br>
-              <BirthPicker></BirthPicker>
-          </Box>
+        <Box>
+          <TextStyle size="medium">생년월일</TextStyle>
+          <br></br>
+            <BirthPicker></BirthPicker>
         </Box>
+      </Box>
     </Box>
   );
 }
