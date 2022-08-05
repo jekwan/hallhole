@@ -38,6 +38,8 @@ function getBackgroundColor(variant) {
   switch (variant) {
     case "primary":
       return "#e37373";
+    case "grey":
+      return "#808080";
   }
 }
 
@@ -45,6 +47,8 @@ function getHoverColor(variant) {
   switch (variant) {
     case "primary":
       return "#e38f8f";
+    case "grey":
+      return "#979797";
   }
 }
 

@@ -30,6 +30,8 @@ function getColor(variant) {
       return "black";
     case "white":
       return "white";
+    case "red":
+      return "red";
   }
 }
 
