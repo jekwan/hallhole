@@ -40,9 +40,9 @@ export default function MyActivity(props) {
         ))}
       </Box>
       <List>
-        {categoryList.map(item => (
+        {categoryList.map((item, i) => (
           <ProfileReviewItem
-            key={item.id}
+            key={i}
             title={item.title}
             date={item.date}
             star_eval={item.star_eval}
