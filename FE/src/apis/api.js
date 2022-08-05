@@ -2,7 +2,7 @@ import axios from "axios";
 
 const ApiInstance = () => {
   return axios.create({
-    baseURL: "https://random-data-api.com/api/",
+    baseURL: "https://i7a401.p.ssafy.io:8081/",
     timeout: 1000,
     headers: {
       "Content-Type": "application/json",
