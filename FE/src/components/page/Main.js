@@ -8,7 +8,6 @@ import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
 import LikePerformance from "../organism/LikePerformance";
 import Button from "../atom/Button";
-
 import ProfileImage from "../atom/ProfileImage";
 
 const likePerformanceList = [
@@ -61,19 +60,19 @@ const userCheckText = {
 };
 
 const userCheck = {
-  marginLeft: "3rem",
   marginTop: "15px",
+  marginLeft: "3rem",
 };
 
 const userCheckOpacity = {
   backgroundColor: "#e37373",
   opacity: 0.6,
-  width: "412px",
+  width: "100vw",
   height: "100px",
 };
 
 const backGroundPoster = {
-  width: "100%",
+  width: "100vw",
   height: "548px",
   backgroundImage: `url("https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg")`,
   backgroundAttachment: "fixed",
@@ -113,7 +112,7 @@ const inputPositionDetail = {
 };
 
 const TwitterBoxBackground = {
-  marginTop: 15,
+  marginTop: 7,
   paddingTop: 10,
   paddingBottom: 2,
   backgroundColor: "rgba(255, 0, 0, 0.2)",
@@ -131,6 +130,7 @@ export default function Main() {
     <Box
       sx={{
         width: "100vw",
+        height: "200vh",
       }}
     >
       <Box sx={userCheckBox}>
@@ -187,6 +187,14 @@ export default function Main() {
             </Box>
             <Button variant="white" size="large" color="black">
               @username | 공연 꿀 잼 ..
+            </Button>
+          </Box>
+          <Box>
+            <Box sx={userAlarm}>
+              <ProfileImage size="small"></ProfileImage>
+            </Box>
+            <Button variant="white" size="large" color="black">
+              @username | 공연 또 보러 가자!
             </Button>
           </Box>
           <Box>

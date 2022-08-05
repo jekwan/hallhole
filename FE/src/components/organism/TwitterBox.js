@@ -1,6 +1,8 @@
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Box from "@mui/material/Box";
 import * as React from "react";
+import Text from "../atom/Text";
+import TwitterApi from "../../apis/twitterapi";
 
 export default function TwitterBox() {
   return (
@@ -41,6 +43,9 @@ export default function TwitterBox() {
       >
         <TwitterIcon style={{ color: "white" }} fontSize="large" />
       </Box>
+      <TwitterApi></TwitterApi>
     </Box>
   );
 }
+
+// ("http://i7a401.p.ssafy.io:8081/twitter");
