@@ -9,6 +9,7 @@ import Logo from "../atom/Logo";
 import Text from "../atom/Text";
 import Button from "../atom/Button";
 import PosterMarquee from "../organism/PosterMarquee";
+import Login from "./Login";
 
 const contentStyle = {
   width: "100vw",
@@ -66,6 +67,16 @@ const IntroLogo = styled(Logo)`
 `;
 
 export default function Intro() {
+  const [toggle, setToggle] = React.useState("off");
+
+  const onOpen = e => {
+    setToggle("on");
+  };
+
+  const onClose = e => {
+    setToggle("off");
+  };
+
   return (
     <Box sx={contentStyle}>
       <Box sx={posterListStyle}>
@@ -89,15 +100,17 @@ export default function Intro() {
           </Text>
         </Box>
         <Box sx={startButtonBoxStyle}>
-          <Link to="/signin">
-            <Button size="large" variant="primary">
-              <Text size="medium" variant="white">
-                시작하기
-              </Text>
-            </Button>
-          </Link>
+          {/* <Link to="/signin"> */}
+          <Button size="large" variant="primary" onClick={onOpen}>
+            <Text size="medium" variant="white">
+              시작하기
+            </Text>
+          </Button>
+          {/* </Link> */}
         </Box>
       </Box>
+
+      <Login toggle={toggle} onClose={onClose} />
     </Box>
   );
 }
