@@ -23,4 +23,12 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
+  devServer: {
+    historyApiFallback: {
+      index: "/index.html",
+    },
+    static: {
+      directory: path.join(__dirname, "static"),
+    },
+  },
 };
