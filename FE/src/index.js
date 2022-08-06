@@ -17,8 +17,8 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
-        <RouterConfiguration />
         <Provider store={Store}>
+          <RouterConfiguration />
           <App />
         </Provider>
       </BrowserRouter>

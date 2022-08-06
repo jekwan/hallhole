@@ -1,9 +1,18 @@
-import { ApiInstance } from "./api";
+import api from "./api";
 
-const api = ApiInstance();
-
-function login(success, fail) {
-  // api.get("twitter").then(success).catch(fail);
+function requestJoin(email, name, pw, success, fail) {
+  api
+    .post("member/join", {
+      email: email,
+      name: name,
+      pw: pw,
+    })
+    .then(success)
+    .catch(fail);
 }
 
-// export { fetchTweet };
+function requestLogin(email, pw, success, fail) {
+  api.post("member/login", { email: email, pw: pw }).then(success).catch(fail);
+}
+
+export { requestJoin, requestLogin };

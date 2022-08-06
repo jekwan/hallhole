@@ -1,5 +1,10 @@
 import React from "react";
 
+import { useDispatch } from "react-redux";
+import { setToken } from "../../stores/user";
+
+import { useNavigate } from "react-router-dom";
+
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 import CloseIcon from "@mui/icons-material/Close";
@@ -10,6 +15,7 @@ import Input from "../atom/Input";
 import Button from "../atom/Button";
 import Modal from "../organism/Modal";
 import ToggleButton from "../molecule/ToggleButton";
+import { requestJoin, requestLogin } from "../../apis/user";
 
 const LoginModal = styled(Modal)``;
 
@@ -36,14 +42,31 @@ const ToggleBox = styled(Box)`
 `;
 
 export default function Login(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [isLogin, setIsLogin] = React.useState(true);
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [confirm, setConfirm] = React.useState("");
+
+  function loginSuccess(res) {
+    console.log(res);
+    const token = res.data.token;
+    dispatch(setToken(token));
+    navigate("/main");
+  }
+
+  function loginFail(res) {}
+
+  function joinSuccess(res) {}
+
+  function joinFail(res) {}
 
   function onClickButton() {
-    if (isLogin) {
-      console.log("로그인 버튼 클릭");
-    } else {
-      console.log("회원가입 버튼 클릭");
-    }
+    if (isLogin) requestLogin(email, password, loginSuccess, loginFail);
+    else requestJoin(email, name, password, joinSuccess, joinFail);
   }
 
   return (
@@ -65,10 +88,10 @@ export default function Login(props) {
           />
         </ToggleBox>
         <Box>
-          <Input size="sign" />
-          {!isLogin && <Input size="sign" />}
-          <Input size="sign" />
-          {!isLogin && <Input size="sign" />}
+          <Input size="sign" onKeyUp={e => setEmail(e.target.value)} />
+          {!isLogin && <Input size="sign" onKeyUp={e => setName(e.target.value)} />}
+          <Input size="sign" onKeyUp={e => setPassword(e.target.value)} />
+          {!isLogin && <Input size="sign" onKeyUp={e => setConfirm(e.target.value)} />}
           <Button size="large" variant="primary" onClick={onClickButton}>
             <Text size="medium" variant="white">
               {isLogin ? "로그인" : "회원가입"}

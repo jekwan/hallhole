@@ -1,5 +1,8 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+
+import store from "./store";
+
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Intro from "../components/page/Intro-pinterest";
 import NoMatch from "../components/page/NoMatch";
@@ -11,19 +14,84 @@ import FollowList from "../components/page/FollowList";
 import EditCharacter from "../components/page/EditCharacter";
 import EditProfile from "../components/page/EditProfile";
 
+function checkAuth() {
+  return !!store.getState().user.token;
+}
+
+function CheckAuth({ children }) {
+  if (checkAuth()) return children;
+  return <Navigate to="/" />;
+}
+
 export default function RouterConfiguration() {
   return (
     <Routes>
       <Route path="*" element={<NoMatch />} />
       <Route path="/" element={<Intro />} />
-      <Route path="/signin" element={<Profile />} />
-      <Route path="/main" element={<Main />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/followlist" element={<FollowList />} />
-      <Route path="/forgot" element={<ForgotPassword />} />
-      <Route path="/transmit" element={<ForgotPasswordTransmit />} />
-      <Route path="/editprofile" element={<EditProfile />} />
-      <Route path="/editholy" element={<EditCharacter />} />
+      <Route
+        path="/signin"
+        element={
+          <CheckAuth>
+            <Profile />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/main"
+        element={
+          <CheckAuth>
+            <Main />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <CheckAuth>
+            <Profile />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/followlist"
+        element={
+          <CheckAuth>
+            <FollowList />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/forgot"
+        element={
+          <CheckAuth>
+            <ForgotPassword />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/transmit"
+        element={
+          <CheckAuth>
+            <ForgotPasswordTransmit />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/editprofile"
+        element={
+          <CheckAuth>
+            <EditProfile />
+          </CheckAuth>
+        }
+      />
+      <Route
+        path="/editholy"
+        element={
+          <CheckAuth>
+            <EditCharacter />
+          </CheckAuth>
+        }
+      />
     </Routes>
   );
 }

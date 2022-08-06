@@ -1,6 +1,4 @@
-import { ApiInstance } from "./api";
-
-const api = ApiInstance();
+import api from "./api";
 
 function fetchFacilityList(params, success, fail) {
   api.get("facility", { params: params }).then(success).catch(fail);

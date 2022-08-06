@@ -1,6 +1,4 @@
-import { ApiInstance } from "./api";
-
-const api = ApiInstance();
+import api from "./api";
 
 function fetchChatList(success, fail) {
   api.get("chat/rooms").then(success).catch(fail);

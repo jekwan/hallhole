@@ -6,7 +6,7 @@ export default function Input(props) {
   /**
    * props
    *  - size : "large" 또는 "medium" 또는 "small"
-   *  - onClick : 클릭 시 이벤트
+   *  - onKeyUp : 입력 시 실행되는 함수
    *  - label : 추가 input 컴포넌트 안에 "label"을 이용하여 텍스트를 넣을 수 있다.
    */
   if (props.size === "large") {
@@ -15,7 +15,7 @@ export default function Input(props) {
         sx={{ m: 0.75, width: "75%" }}
         variant="outlined"
         color="primary"
-        onKeyPress={props.onKeyPress}
+        onKeyUp={props.onKeyUp}
         label={props.label}
       />
     );
@@ -25,7 +25,7 @@ export default function Input(props) {
         sx={{ m: 0.75, width: "50%" }}
         variant="outlined"
         color="primary"
-        onKeyPress={props.onKeyPress}
+        onKeyUp={props.onKeyUp}
         label={props.label}
       />
     );
@@ -36,7 +36,7 @@ export default function Input(props) {
         label={props.label}
         variant="standard"
         color="primary"
-        onKeyPress={props.onKeyPress}
+        onKeyUp={props.onKeyUp}
       />
     );
   } else {
@@ -45,7 +45,7 @@ export default function Input(props) {
         sx={{ m: 0.75, width: "25%" }}
         variant="outlined"
         color="primary"
-        onKeyPress={props.onKeyPress}
+        onKeyUp={props.onKeyUp}
         label={props.label}
       />
     );
