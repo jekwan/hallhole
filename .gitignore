@@ -1,8 +1,2 @@
 FE/node_modules
 FE/dist
-BE/hallhole/.idea
-BE/hallhole/.gradle
-BE/hallhole/src/main/resources/application.properties
-.DS_Store
-*.properties
-*.p12
