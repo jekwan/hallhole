@@ -8,6 +8,8 @@ import Main from "../components/page/Main";
 import ForgotPassword from "../components/page/Forgot-password";
 import ForgotPasswordTransmit from "../components/page/Forgot-password-transmit";
 import FollowList from "../components/page/FollowList";
+import EditCharacter from "../components/page/EditCharacter";
+import EditProfile from "../components/page/EditProfile";
 
 export default function RouterConfiguration() {
   return (
@@ -20,6 +22,8 @@ export default function RouterConfiguration() {
       <Route path="/followlist" element={<FollowList />} />
       <Route path="/forgot" element={<ForgotPassword />} />
       <Route path="/transmit" element={<ForgotPasswordTransmit />} />
+      <Route path="/editprofile" element={<EditProfile />} />
+      <Route path="/editholy" element={<EditCharacter />} />
     </Routes>
   );
 }
