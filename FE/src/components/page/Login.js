@@ -41,6 +41,11 @@ const ToggleBox = styled(Box)`
   text-align: center;
 `;
 
+const InputBox = styled(Box)`
+  margin-top: 5%;
+  text-align: center;
+`;
+
 export default function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -87,17 +92,27 @@ export default function Login(props) {
             onClickRight={() => setIsLogin(false)}
           />
         </ToggleBox>
-        <Box>
-          <Input size="sign" onKeyUp={e => setEmail(e.target.value)} />
-          {!isLogin && <Input size="sign" onKeyUp={e => setName(e.target.value)} />}
-          <Input size="sign" onKeyUp={e => setPassword(e.target.value)} />
-          {!isLogin && <Input size="sign" onKeyUp={e => setConfirm(e.target.value)} />}
+        <InputBox>
+          <Input size="large" variant="filled" label="Email" onChange={e => setEmail(e.target.value)} />
+
+          {!isLogin && <Input size="large" variant="filled" label="Name" onChange={e => setName(e.target.value)} />}
+          <Input
+            size="large"
+            variant="filled"
+            label="Password"
+            type="password"
+            onChange={e => setPassword(e.target.value)}
+          />
+          {!isLogin && (
+            <Input size="large" variant="filled" label="Confirm Password" onChange={e => setEmail(e.target.value)} />
+          )}
+
           <Button size="large" variant="primary" onClick={onClickButton}>
             <Text size="medium" variant="white">
               {isLogin ? "로그인" : "회원가입"}
             </Text>
           </Button>
-        </Box>
+        </InputBox>
       </LoginModalContent>
     </LoginModal>
   );

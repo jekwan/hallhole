@@ -35,7 +35,7 @@ export default function ForgotPassword() {
       </Box>
       <Box sx={passwordBox}>
         <Box sx={{ color: "white" }}>
-          <Input size="sign" label="Enter email"></Input>
+          <Input size="large" label="Enter email"></Input>
         </Box>
         <Box sx={{ marginTop: 6 }}>
           <Button variant="primary" size="large" color="black">
