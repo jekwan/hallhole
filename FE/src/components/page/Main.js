@@ -64,7 +64,7 @@ export default function Main() {
             <Input size="large" label="Search"></Input>
           </Box>
         </Box>
-        <Box sx={{ marginY: 10, marginX: "auto" }}>
+        <Box>
           <LikePerformance likePerformances={likePerformanceList} />
         </Box>
         <Box>
@@ -176,7 +176,7 @@ const backGroundPoster = {
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
   backgroundPositionY: -200,
-  filter: "blur(8px)",
+  filter: "blur(16px)",
 };
 
 const posterPosition = {
@@ -192,6 +192,7 @@ const posterCard = {
   maxHeight: 400,
   boxShadow: 6,
   marginTop: 5,
+  borderRadius: 10,
 };
 
 const textQuestionDesign = {
