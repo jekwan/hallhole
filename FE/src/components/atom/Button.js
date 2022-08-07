@@ -59,26 +59,26 @@ function getHoverColor(variant) {
 function getSizeWidth(size) {
   switch (size) {
     case "large":
-      return "380px";
+      return "90vw";
     case "medium":
-      return "150px";
+      return "75vw";
     case "small":
-      return "96px";
+      return "50vw";
     default:
-      return "150px";
+      return "75vw";
   }
 }
 
 function getSizeHeight(size) {
   switch (size) {
     case "large":
-      return "60px";
+      return "6vh";
     case "medium":
-      return "50px";
+      return "5vh";
     case "small":
-      return "45px";
+      return "4vh";
     default:
-      return "50px";
+      return "5vh";
   }
 }
 

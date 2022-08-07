@@ -6,7 +6,6 @@ import { ThemeProvider } from "@mui/material/styles";
 
 import App from "./components/App";
 
-import RouterConfiguration from "./configs/router";
 import Theme from "./configs/theme";
 import Store from "./configs/store";
 
@@ -18,7 +17,6 @@ ReactDOM.createRoot(rootElement).render(
     <ThemeProvider theme={Theme}>
       <BrowserRouter>
         <Provider store={Store}>
-          <RouterConfiguration />
           <App />
         </Provider>
       </BrowserRouter>

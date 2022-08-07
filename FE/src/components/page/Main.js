@@ -147,7 +147,7 @@ const likePerformanceList = [
 const userCheckBox = {
   position: "absolute",
   zIndex: 1,
-  top: "60px",
+  top: "120px",
 };
 
 const userCheckText = {
