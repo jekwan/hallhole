@@ -40,6 +40,8 @@ function getBackgroundColor(variant) {
       return "#e37373";
     case "grey":
       return "#808080";
+    default:
+      return "#e37373";
   }
 }
 
@@ -49,6 +51,8 @@ function getHoverColor(variant) {
       return "#e38f8f";
     case "grey":
       return "#979797";
+    default:
+      return "#e38f8f";
   }
 }
 
@@ -60,6 +64,8 @@ function getSizeWidth(size) {
       return "150px";
     case "small":
       return "96px";
+    default:
+      return "150px";
   }
 }
 
@@ -68,8 +74,10 @@ function getSizeHeight(size) {
     case "large":
       return "60px";
     case "medium":
-      return "45px";
+      return "50px";
     case "small":
+      return "45px";
+    default:
       return "50px";
   }
 }

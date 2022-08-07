@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
-import { Link } from "react-router-dom";
-
+import storage from "../../helper/storage";
 import Logo from "../atom/Logo";
 import Text from "../atom/Text";
 import Button from "../atom/Button";
@@ -67,7 +68,13 @@ const IntroLogo = styled(Logo)`
 `;
 
 export default function Intro() {
+  const navigate = useNavigate();
+  const token = storage.get("token");
   const [toggle, setToggle] = React.useState("off");
+
+  useEffect(() => {
+    if (token) navigate("/main");
+  }, []);
 
   const onOpen = e => {
     setToggle("on");

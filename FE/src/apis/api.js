@@ -1,16 +1,6 @@
 import axios from "axios";
 
-import store from "../configs/store";
-store.subscribe(listener);
-
-function select(state) {
-  return state.user.token;
-}
-
-function listener() {
-  let token = select(store.getState());
-  if (token) axios.defaults.headers.common["token"] = token;
-}
+import storage from "../helper/storage";
 
 // configuration
 const api = axios.create({
@@ -19,5 +9,18 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
 });
+
+api.interceptors.request.use(
+  config => {
+    const token = storage.get("token");
+    if (token) {
+      config.headers["token"] = token;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  },
+);
 
 export default api;
