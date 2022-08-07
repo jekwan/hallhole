@@ -36,7 +36,7 @@ export default function TwitterBox() {
       sx={{
         width: 330,
         height: 330,
-        marginX: 4,
+        marginX: "auto",
         border: 2,
         borderColor: "SteelBlue",
         borderRadius: 3,

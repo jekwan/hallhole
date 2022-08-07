@@ -60,15 +60,15 @@ export default function Main() {
           </Text>
         </Box>
         <Box sx={inputPosition}>
-          <Box sx={inputPositionDetail}>
+          <Box>
             <Input size="large" label="Search"></Input>
           </Box>
         </Box>
-        <Box sx={{ marginY: 10 }}>
+        <Box sx={{ marginY: 10, marginX: "auto" }}>
           <LikePerformance likePerformances={likePerformanceList} />
         </Box>
         <Box>
-          <Box sx={{ marginY: 10, marginLeft: 5 }}>
+          <Box sx={{ marginY: 10 }}>
             <Text variant="black" size="medium">
               내가 팔로우한 <br />
               <Text variant="primary">유저 네임</Text>
@@ -76,25 +76,19 @@ export default function Main() {
             </Text>
           </Box>
           <Box>
-            <Box sx={userAlarm}>
+            {/* <Box sx={userAlarm}>
               <ProfileImage size="small"></ProfileImage>
-            </Box>
+            </Box> */}
             <Button variant="white" size="large" color="black">
               @username | 공연 꿀 잼 ..
             </Button>
           </Box>
           <Box>
-            <Box sx={userAlarm}>
-              <ProfileImage size="small"></ProfileImage>
-            </Box>
             <Button variant="white" size="large" color="black">
               @username | 공연 또 보러 가자!
             </Button>
           </Box>
           <Box>
-            <Box sx={userAlarm}>
-              <ProfileImage size="small"></ProfileImage>
-            </Box>
             <Button variant="white" size="large" color="black">
               @username | 공연 또 보러 가자!
             </Button>
@@ -103,7 +97,7 @@ export default function Main() {
 
         <Box sx={TwitterBoxBackground}>
           <TwitterBox></TwitterBox>
-          <Box sx={{ marginLeft: 12, marginTop: 20, marginBottom: 5 }}>
+          <Box sx={{ marginTop: 20, marginBottom: 5 }}>
             <Text>@2022 footer position</Text>
           </Box>
         </Box>
@@ -159,11 +153,12 @@ const userCheckBox = {
 const userCheckText = {
   position: "absolute",
   zIndex: 1,
+  width: "100vw",
 };
 
 const userCheck = {
   marginTop: "15px",
-  marginLeft: "3rem",
+  marginLeft: "15%",
 };
 
 const userCheckOpacity = {
@@ -175,41 +170,37 @@ const userCheckOpacity = {
 
 const backGroundPoster = {
   width: "100vw",
-  height: "548px",
+  height: "58vh",
   backgroundImage: `url("https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg")`,
   backgroundAttachment: "fixed",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
-  backgroundPositionX: -100,
-  backgroundPositionY: -100,
+  backgroundPositionY: -200,
   filter: "blur(8px)",
 };
 
 const posterPosition = {
   position: "relative",
   top: "-400px",
+  textAlign: "center",
 };
 
 const posterCard = {
   maxWidth: 300,
+  width: "100vw",
+  marginX: "auto",
   maxHeight: 400,
   boxShadow: 6,
   marginTop: 5,
-  marginLeft: 6.8,
 };
 
 const textQuestionDesign = {
-  marginLeft: 8,
   marginTop: 8,
   marginBottom: 5,
 };
 
 const inputPosition = {
-  marginTop: 5,
-};
-
-const inputPositionDetail = {
-  textAlign: "center",
+  marginY: 2,
 };
 
 const TwitterBoxBackground = {
@@ -219,9 +210,9 @@ const TwitterBoxBackground = {
   backgroundColor: "rgba(255, 0, 0, 0.2)",
 };
 
-const userAlarm = {
-  position: "absolute",
-  zIndex: 1,
-  marginTop: 0.5,
-  marginLeft: 0.5,
-};
+// const userAlarm = {
+//   position: "absolute",
+//   zIndex: 1,
+//   marginTop: 0.5,
+//   marginLeft: 0.5,
+// };
