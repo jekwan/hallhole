@@ -6,8 +6,9 @@ import Box from "@mui/material/Box";
 import PosterSize from "../atom/PosterSize";
 import Input from "../atom/Input";
 import Button from "../atom/Button";
+// import Search from "../molecule/Search";
 
-export default function Search() {
+export default function Check() {
   return (
     <Box
       sx={{
@@ -16,6 +17,7 @@ export default function Search() {
       }}
     >
       <Box>test</Box>
+      {/* <Search></Search> */}
     </Box>
   );
 }

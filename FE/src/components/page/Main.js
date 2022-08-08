@@ -114,33 +114,33 @@ const likePerformanceList = [
   },
   {
     id: 2,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "데스노트",
+    img: "http://ticketimage.interpark.com/TCMS3.0/MProd/ProdBridge/2205/220525111552_22006226.gif",
   },
   {
     id: 3,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "아이다",
+    img: "http://ticketimage.interpark.com/Play/image/large/22/22001534_p.gif",
   },
   {
     id: 4,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "킹키 부츠",
+    img: "http://ticketimage.interpark.com/TicketImage/notice_poster/20/2022051909103327.jpg",
   },
   {
     id: 5,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "사랑의 불시착",
+    img: "http://ticketimage.interpark.com/Play/image/large/22/22009050_p.gif",
   },
   {
     id: 6,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "엘리자벳",
+    img: "http://ticketimage.interpark.com/TCMS3.0/MProd/ProdBridge/2207/220713041957_22008801.gif",
   },
   {
     id: 7,
-    title: "웃는 남자",
-    img: "https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg",
+    title: "v 에버 애프터",
+    img: "http://tkfile.yes24.com/upload2/PerfBlog/202108/20210812/20210812-39879.jpg",
   },
 ];
 
