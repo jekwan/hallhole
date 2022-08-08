@@ -33,6 +33,9 @@ export default function NoMatch() {
       <Link to="/editholy">
         <button>캐릭터 꾸미기 페이지</button>
       </Link>
+      <Link to="/performance">
+        <button>채팅방 공연 리스트 페이지</button>
+      </Link>
     </div>
   );
 }
