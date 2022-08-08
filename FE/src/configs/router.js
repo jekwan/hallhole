@@ -32,14 +32,6 @@ export default function RouterConfiguration() {
       <Route path="*" element={<NoMatch />} />
       <Route path="/" element={<Intro />} />
       <Route
-        path="/signin"
-        element={
-          <CheckAuth>
-            <Profile />
-          </CheckAuth>
-        }
-      />
-      <Route
         path="/main"
         element={
           <CheckAuth>
