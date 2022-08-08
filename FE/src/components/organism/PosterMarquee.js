@@ -8,10 +8,11 @@ const MarqueeAnimation = keyframes`
     transform: translate(0%, 0%);
   }
   to {
-    transform: translate(0%, -500%);
+    transform: translate(0%, -50%);
   }
 `;
-const ScrollChild = styled(Grid)(
+
+const ScrollParent = styled(Grid)(
   ({}) => css`
     animation: ${MarqueeAnimation} 60s linear infinite;
   `,
@@ -27,18 +28,18 @@ function createChildren(items, cols) {
   children.push(
     items.map(item => {
       return (
-        <ScrollChild item xs={12 / cols} key={item.img + "1"}>
+        <Grid item xs={12 / cols} key={item.img + "1"}>
           <Poster src={item.img} alt={item.title} loading="lazy" />
-        </ScrollChild>
+        </Grid>
       );
     }),
   );
   children.push(
     items.map(item => {
       return (
-        <ScrollChild item xs={12 / cols} key={item.img + "2"}>
+        <Grid item xs={12 / cols} key={item.img + "2"}>
           <Poster src={item.img} alt={item.title} loading="lazy" />
-        </ScrollChild>
+        </Grid>
       );
     }),
   );
@@ -47,8 +48,8 @@ function createChildren(items, cols) {
 
 export default function PosterMarquee(props) {
   return (
-    <Grid container rowSpacing={1} columnSpacing={1}>
+    <ScrollParent container rowSpacing={1} columnSpacing={1}>
       {createChildren(props.items, props.cols)}
-    </Grid>
+    </ScrollParent>
   );
 }
