@@ -8,7 +8,7 @@ import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
 import LikePerformance from "../organism/LikePerformance";
 import Button from "../atom/Button";
-import ProfileImage from "../atom/ProfileImage";
+// import ProfileImage from "../atom/ProfileImage";
 
 import { useStore } from "react-redux";
 
@@ -24,7 +24,7 @@ export default function Main() {
     <Box
       sx={{
         width: "100vw",
-        height: "200vh",
+        height: "240vh",
       }}
     >
       <Box sx={userCheckBox}>
@@ -64,7 +64,7 @@ export default function Main() {
             <Input size="large" label="Search"></Input>
           </Box>
         </Box>
-        <Box>
+        <Box sx={likePeroformanceList}>
           <LikePerformance likePerformances={likePerformanceList} />
         </Box>
         <Box>
@@ -181,7 +181,7 @@ const backGroundPoster = {
 
 const posterPosition = {
   position: "relative",
-  top: "-400px",
+  top: "-40vh",
   textAlign: "center",
 };
 
@@ -202,6 +202,10 @@ const textQuestionDesign = {
 
 const inputPosition = {
   marginY: 2,
+};
+
+const likePeroformanceList = {
+  marginY: 7,
 };
 
 const TwitterBoxBackground = {
