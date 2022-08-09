@@ -4,7 +4,9 @@ import { Box } from "@mui/system";
 
 import PosterImage from "../atom/PosterSize";
 import TextStyle from "../atom/Text";
-import ButtonStyle from "../atom/Button";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import CurtainsIcon from "@mui/icons-material/Curtains";
 
 const posterBackgroundStyle = {
   position: "absolute",
@@ -22,7 +24,7 @@ const smallPosterStyle = {
   marginX: 2,
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "end",
+  alignItems: "center",
 };
 
 const performanceDetailStyle = {
@@ -32,46 +34,66 @@ const performanceDetailStyle = {
   height: "40vh",
 };
 
-export default function PerformanceInformation() {
+export default function PerformanceInformation({ performanceInfo, performanceMoreInfo }) {
   const [performanceLike, setPerformanceLike] = useState(false);
+
+  //스트링.slice(0, 10) => 2022-09-28
+
+  function enterPerformanceChat(e) {
+    e.preventDefault();
+    // chat 연결 코드 추가 예정
+    // Link to 해야함
+    console.log("들어가는중");
+  }
 
   function changePerformanceLike(e) {
     e.preventDefault();
     setPerformanceLike(!performanceLike);
   }
 
+  function changeStrToDate(str) {
+    if (str) {
+      return str.slice(0, 10);
+    }
+  }
+
   return (
     <Box>
       <Box sx={posterBackgroundStyle}>
-        <PosterImage type="blur" size="full" src="poster_1.gif"></PosterImage>
+        <PosterImage type="blur" size="full" src={performanceInfo.poster}></PosterImage>
       </Box>
       <Box sx={smallPosterStyle}>
-        <PosterImage size="small" src="poster_1.gif"></PosterImage>
-        <ButtonStyle size="small" variant={performanceLike ? "grey" : "primary"} onClick={changePerformanceLike}>
-          {performanceLike ? "좋아요취소" : "좋아요"}
-        </ButtonStyle>
+        <PosterImage size="small" src={performanceInfo.poster}></PosterImage>
+        <Box sx={{ mt: 6 }}>
+          <CurtainsIcon sx={{ mr: 1.5 }} color="action" fontSize="large" onClick={enterPerformanceChat} />
+          {performanceLike ? (
+            <FavoriteBorderIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
+          ) : (
+            <FavoriteIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
+          )}
+        </Box>
       </Box>
       <Box bgcolor="white" sx={performanceDetailStyle}>
         <Box height={80}></Box>
-        <Box marginLeft={2}>
+        <Box sx={{ mx: 2, mb: 1 }}>
           <TextStyle size="large" variant="black">
-            {"뮤지컬 <아이다>"}
+            {performanceInfo.name}
           </TextStyle>
           <br></br>
           <TextStyle size="small" variant="black">
-            뮤지컬 · 120분(인터미션 20분)
+            {performanceInfo.genre} · {performanceMoreInfo.runtime}
           </TextStyle>
           <br></br>
           <TextStyle size="small" variant="black">
-            📍 공연장공연장
+            📍 {performanceInfo.facility_name}
           </TextStyle>
           <br></br>
           <TextStyle size="small" variant="black">
-            🗓 2022. 06. 15 - 10. 12
+            🗓 {changeStrToDate(performanceInfo.startDate)} - {changeStrToDate(performanceInfo.endDate)}
           </TextStyle>
           <br></br>
           <TextStyle size="small" variant="black">
-            👫 출연진 :{" "}
+            👫 출연진 :{performanceMoreInfo.actor}
           </TextStyle>
         </Box>
       </Box>
