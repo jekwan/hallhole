@@ -66,9 +66,7 @@ export default function TwitterBox() {
           marginTop: -2.5,
           transform: "rotate(45deg)",
         }}
-      >
-        <TwitterIcon style={{ color: "white" }} fontSize="large" />
-      </Box>
+      ></Box>
       <TwitterItemBox>{getTweetList(tweet)}</TwitterItemBox>
     </Box>
   );

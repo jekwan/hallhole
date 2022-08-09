@@ -6,7 +6,7 @@ import RoomItem from "../molecule/RoomItem";
 
 import { fetchChatList } from "../../apis/chat";
 
-export default function ChatBox() {
+export default function ChatListBox() {
   const [room, setRoom] = React.useState([]);
 
   function fetchChatListSuccess(res) {
@@ -29,7 +29,7 @@ function getRoomsList(rooms) {
   return rooms.map(room => {
     return (
       <RoomItem
-        key={room.id}
+        key={room.performance.id}
         name={room.name}
         openTime={room.openTime}
         closeTime={room.closeTime}
