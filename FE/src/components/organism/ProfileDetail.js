@@ -23,7 +23,7 @@ export default function ProfileDetail(props) {
         sx={{ padding: 0.75 }}
         avatar={<ProfileImage type="large" src=""></ProfileImage>}
         title={
-          <ButtonStyle size={"medium"} variant={"primary"}>
+          <ButtonStyle size={"small"} variant={"primary"}>
             테스트 중
           </ButtonStyle>
         }
