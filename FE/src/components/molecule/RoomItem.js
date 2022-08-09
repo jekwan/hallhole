@@ -30,11 +30,11 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
         <Box sx={{ float: "left", marginX: "1px", marginY: "1px", width: "25vw" }}>
           <PosterSize src={poster} size="small"></PosterSize>
         </Box>
-        <Box sx={{ float: "left", width: "40vw" }}>
+        <Box sx={{ float: "left", width: "40vw", marginTop: 2 }}>
           <Text size="small" variant="black">
             {name}
           </Text>
-          <Box sx={{ marginTop: 1, marginTop: 8 }}>
+          <Box sx={{ marginTop: 6 }}>
             <Text variant="primary" size="smaller">
               Open period
             </Text>
@@ -50,6 +50,17 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
             </Text>
           </Box>
         </Box>
+        <Box
+          sx={{
+            float: "left",
+            position: "relative",
+            width: "2px",
+            height: 110,
+            backgroundColor: "primary.main",
+            marginTop: 2,
+            marginLeft: 1,
+          }}
+        ></Box>
         <Box sx={{ float: "right", width: "20vw" }}>
           <Box sx={{ marginTop: 1 }}>
             <Button size="smaller">ENTER</Button>
