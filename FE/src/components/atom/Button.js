@@ -64,6 +64,8 @@ function getSizeWidth(size) {
       return "75vw";
     case "small":
       return "50vw";
+    case "smaller":
+      return "5vw";
     default:
       return "75vw";
   }
@@ -77,6 +79,8 @@ function getSizeHeight(size) {
       return "5vh";
     case "small":
       return "4vh";
+    case "smaller":
+      return "5vh";
     default:
       return "5vh";
   }

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import Box from "@mui/material/Box";
-import { styled } from "@mui/system";
 
 import RoomItem from "../molecule/RoomItem";
 
@@ -27,9 +26,16 @@ export default function ChatBox() {
 
 function getRoomsList(rooms) {
   console.log(rooms);
-  return rooms
-    .map(room => {
-      return <RoomItem key={room.id} name={room.name} genre={room.genre} />;
-    })
-    .reverse();
+  return rooms.map(room => {
+    return (
+      <RoomItem
+        key={room.id}
+        name={room.name}
+        openTime={room.openTime}
+        closeTime={room.closeTime}
+        memberCnt={room.memberCnt}
+        poster={room.performance.poster}
+      />
+    );
+  });
 }
