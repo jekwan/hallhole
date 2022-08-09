@@ -20,7 +20,7 @@ const NavBox = styled(Box)`
   left: 0;
   background-color: black;
   width: 100vw;
-  height: 8vh;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,7 +52,7 @@ export default function NavBar() {
     <NavBox sx={{ zIndex: 1000 }}>
       {/* 홈 화면으로 돌아가는 링크 추가 */}
       <Link to="/main">
-        <Logo sx={{ padding: "8px" }} src="logo.png" />
+        <Logo sx={{ padding: "10px" }} src="logo.png" />
       </Link>
       {/* 메뉴서랍? 오픈하기! */}
       {/* <Link to={`profile/${user?.idTag}`}>

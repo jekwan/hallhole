@@ -38,7 +38,7 @@ export default function App() {
     <Box>
       {location.pathname !== "/" && (
         <Box>
-          <Box sx={{ width: "100vw", height: "8vh" }}></Box>
+          <Box sx={{ width: "100vw", height: "10vh" }}></Box>
           <NavBar />
         </Box>
       )}
