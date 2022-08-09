@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Box } from "@mui/system";
 
@@ -7,6 +7,9 @@ import TextStyle from "../atom/Text";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import CurtainsIcon from "@mui/icons-material/Curtains";
+
+import { checkLikeStatus, likePerformance, unlikePerformance } from "../../apis/performanceLike";
+import { useSelector } from "react-redux";
 
 const posterBackgroundStyle = {
   position: "absolute",
@@ -34,11 +37,11 @@ const performanceDetailStyle = {
   height: "40vh",
 };
 
-export default function PerformanceInformation({ performanceInfo, performanceMoreInfo }) {
-  const [performanceLike, setPerformanceLike] = useState(false);
-
-  //스트링.slice(0, 10) => 2022-09-28
-
+export default function PerformanceInformation({ performanceInfo, performanceMoreInfo, id }) {
+  const [performanceLike, setPerformanceLike] = useState("");
+  const user = useSelector(state => state.user.info);
+  const [userTag, setUserTag] = useState();
+  
   function enterPerformanceChat(e) {
     e.preventDefault();
     // chat 연결 코드 추가 예정
@@ -46,14 +49,55 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
     console.log("들어가는중");
   }
 
-  function changePerformanceLike(e) {
-    e.preventDefault();
-    setPerformanceLike(!performanceLike);
-  }
-
   function changeStrToDate(str) {
     if (str) {
       return str.slice(0, 10);
+    }
+  }
+
+  useEffect(() => {
+    if (user && performanceLike === "") {
+      setUserTag(user?.idTag);
+      checkLikeStatus(id, userTag, requestLikeStatusSuccess, requestLikeStatusFail);
+      console.log(performanceLike)
+    }
+  }, [user]);
+
+  function requestLikeStatusSuccess(res) {
+    setPerformanceLike(res.data);
+    console.log(res.data);
+  }
+
+  function requestLikeStatusFail(err) {
+    //console.log("좋아요 여부 요청 실패", err);
+  }
+
+  function unlikeSuccess(res) {
+    setPerformanceLike(!performanceLike);
+    console.log(performanceLike)
+  }
+
+  function unlikeFail(err) {
+    console.log("좋아요 해제 실패", err);
+  }
+
+  function likeSuccess(res) {
+    setPerformanceLike(!performanceLike);
+    console.log(res)
+    console.log(performanceLike)
+  }
+
+  function likeFail(err) {
+    console.log("좋아요 실패", err);
+  }
+
+  function changePerformanceLike(e) {
+    e.preventDefault();
+    //console.log("좋아요 버튼 ");
+    if (performanceLike === true) {
+      unlikePerformance(userTag, id, unlikeSuccess, unlikeFail);
+    } else {
+      likePerformance(userTag, id, likeSuccess, likeFail);
     }
   }
 
@@ -66,10 +110,10 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
         <PosterImage size="small" src={performanceInfo.poster}></PosterImage>
         <Box sx={{ mt: 6 }}>
           <CurtainsIcon sx={{ mr: 1.5 }} color="action" fontSize="large" onClick={enterPerformanceChat} />
-          {performanceLike ? (
-            <FavoriteBorderIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
-          ) : (
+          {performanceLike === false ? (
             <FavoriteIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
+          ) : (
+            <FavoriteBorderIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
           )}
         </Box>
       </Box>

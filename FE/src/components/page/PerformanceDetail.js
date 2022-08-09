@@ -9,7 +9,6 @@ import ButtonStyle from "../atom/Button";
 
 import { fetchPerformance } from "../../apis/performance";
 
-
 const contentStyle = {
   width: "100vw",
   height: "100vh",
@@ -31,11 +30,16 @@ const reviewButtonStyle = {
   textAlign: "center",
 };
 
-function RightPerformance({ performanceInfo, performanceMoreInfo }) {
+function RightPerformance({ performanceInfo, performanceMoreInfo, id, onClick, performanceLike }) {
   return (
     <Box sx={contentStyle}>
-      <PerformanceInformation performanceInfo={performanceInfo} performanceMoreInfo={performanceMoreInfo}>
-      </PerformanceInformation>
+      <PerformanceInformation
+        performanceInfo={performanceInfo}
+        performanceMoreInfo={performanceMoreInfo}
+        id={id}
+        onClick={onClick}
+        performanceLike={performanceLike}
+      ></PerformanceInformation>
       <CategoryDivider type="negative" />
       {/* <Box sx={reviewListStyle}>
         <ReviewList></ReviewList>
@@ -46,38 +50,44 @@ function RightPerformance({ performanceInfo, performanceMoreInfo }) {
         </ButtonStyle>
       </Box> */}
     </Box>
-  )
+  );
 }
 
 function LoadingPerformance() {
   return <h1>로딩 중</h1>;
 }
-
 export default function PerformanceDetail({ id }) {
-  const [performanceInfo, setPerformanceInfo] = useState([])
-  const [performanceMoreInfo, setPerformanceMoreInfo] = useState([])
+  const [performanceInfo, setPerformanceInfo] = useState([]);
+  const [performanceMoreInfo, setPerformanceMoreInfo] = useState([]);
 
+  //공연 정보 설정
+  useEffect(() => {
+    fetchPerformance(id, requestPerformanceInfoSuccess, requestPerformanceInfoFail);
+  })
+  
   function requestPerformanceInfoSuccess(res) {
-    setPerformanceInfo(res.data.performance)
-    setPerformanceMoreInfo(res.data)
+    setPerformanceInfo(res.data.performance);
+    setPerformanceMoreInfo(res.data);
   }
 
   function requestPerformanceInfoFail(err) {
-    console.log("공연 요청 실패", err)
+    console.log("공연 요청 실패", err);
   }
-
-  useEffect(() => {
-    fetchPerformance(id, requestPerformanceInfoSuccess, requestPerformanceInfoFail);
-  }, [])
 
   // 조건부 렌더링
   if (validatePerformanceInfo(performanceInfo)) {
     return <LoadingPerformance />;
   } else {
-    return <RightPerformance performanceInfo={performanceInfo} performanceMoreInfo={performanceMoreInfo}/>;
+    return (
+      <RightPerformance
+        performanceInfo={performanceInfo}
+        performanceMoreInfo={performanceMoreInfo}
+        id={id}
+      />
+    );
   }
 }
 
 function validatePerformanceInfo(info) {
-  return info === [];
+  return (info === []);
 }
