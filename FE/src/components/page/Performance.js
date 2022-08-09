@@ -5,10 +5,12 @@ import Text from "../atom/Text";
 import Box from "@mui/material/Box";
 // import PosterSize from "../atom/PosterSize";
 import Input from "../atom/Input";
-// import Button from "../atom/Button";
+import Button from "../atom/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryDivider from "../atom/CategoryDivider";
 import Dropdown from "../atom//Dropdown";
+
+import ChatListBox from "../organism/ChatListBox";
 
 export default function Performance() {
   return (
@@ -40,6 +42,7 @@ export default function Performance() {
           <CategoryDivider type="primary" />
         </Box>
       </Box>
+      <ChatListBox></ChatListBox>
     </Box>
   );
 }
