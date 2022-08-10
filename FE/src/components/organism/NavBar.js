@@ -109,7 +109,7 @@ export default function NavBar() {
               캐릭터 꾸미기 페이지
             </Button>
           </Link>
-          <Link to="/performance" style={{ textDecoration: "none" }}>
+          <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
             <Button variant="grey" size="medium" onClick={handleClose}>
               채팅방 공연 리스트 페이지
             </Button>

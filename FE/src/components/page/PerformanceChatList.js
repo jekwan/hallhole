@@ -8,7 +8,7 @@ import Input from "../atom/Input";
 import Button from "../atom/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryDivider from "../atom/CategoryDivider";
-import Dropdown from "../atom//Dropdown";
+import Dropdown from "../atom/Dropdown";
 
 import ChatListBox from "../organism/ChatListBox";
 
