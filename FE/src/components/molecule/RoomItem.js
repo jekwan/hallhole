@@ -6,9 +6,12 @@ import { styled } from "@mui/system";
 import Text from "../atom/Text";
 import PosterSize from "../atom/PosterSize";
 import Button from "../atom/Button";
+import { Link } from "react-router-dom";
+import storage from "../../helper/storage";
+import { useSelector } from "react-redux";
 
 const RoomItemBox = styled(Box)`
-  margin: 2%;
+  margin: 2px;
   background-color: white;
   border-radius: 3px;
 `;
@@ -24,12 +27,23 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
     name = name.substr(0, len) + lastTxt;
   }
 
+  const user = useSelector(state => state.user.info);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  function logout() {
+    storage.remove("token");
+  }
+
   return (
     <RoomItemBox key={id}>
-      <Box sx={{ boxShadow: 5, width: "90vw", height: "15vh", textAlign: "center", marginX: "auto", marginY: 3 }}>
-        <Box sx={{ float: "left", marginX: "1px", marginY: "1px", width: "25vw" }}>
-          <PosterSize src={poster} size="small"></PosterSize>
-        </Box>
+      <Box sx={{ boxShadow: 5, width: "90vw", height: "140px", textAlign: "center", marginX: "auto", marginY: 3 }}>
+        {/* 공연 상세페이지로 이동하기 */}
+        <Link to={`/performancedetail/performance.${id}`} style={{ textDecoration: "none" }}>
+          <Box sx={{ float: "left", marginX: "1px", marginY: "3px", width: "25vw" }}>
+            <PosterSize src={poster} size="small"></PosterSize>
+          </Box>
+        </Link>
         <Box sx={{ float: "left", width: "40vw", marginTop: 2 }}>
           <Text size="small" variant="black">
             {name}
@@ -63,7 +77,12 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
         ></Box>
         <Box sx={{ float: "right", width: "20vw" }}>
           <Box sx={{ marginTop: 1 }}>
-            <Button size="smaller">ENTER</Button>
+            {/* 공연 채팅방으로 이동하기 */}
+            <Link to={`/chat/room/${user.id}`} style={{ textDecoration: "none" }}>
+              <Button size="smaller" onClick={handleClose}>
+                enter
+              </Button>
+            </Link>
           </Box>
           <Box sx={{ marginTop: 2 }}>
             <Text variant="black">
