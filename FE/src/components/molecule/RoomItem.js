@@ -39,7 +39,7 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
     <RoomItemBox key={id}>
       <Box sx={{ boxShadow: 5, width: "90vw", height: "140px", textAlign: "center", marginX: "auto", marginY: 3 }}>
         {/* 공연 상세페이지로 이동하기 */}
-        <Link to={`/performancedetail/performance.${id}`} style={{ textDecoration: "none" }}>
+        <Link to={`/performancedetail/${id}`} style={{ textDecoration: "none" }}>
           <Box sx={{ float: "left", marginX: "1px", marginY: "3px", width: "25vw" }}>
             <PosterSize src={poster} size="small"></PosterSize>
           </Box>

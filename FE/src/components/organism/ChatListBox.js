@@ -30,6 +30,7 @@ function getRoomsList(rooms) {
     return (
       <RoomItem
         key={roomBox.performance.id}
+        id={roomBox.performance.id}
         name={roomBox.name}
         openTime={roomBox.openTime}
         closeTime={roomBox.closeTime}
