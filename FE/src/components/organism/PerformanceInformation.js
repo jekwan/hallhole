@@ -40,7 +40,6 @@ const performanceDetailStyle = {
 export default function PerformanceInformation({ performanceInfo, performanceMoreInfo, id }) {
   const [performanceLike, setPerformanceLike] = useState("");
   const user = useSelector(state => state.user.info);
-  const [userTag, setUserTag] = useState();
   
   function enterPerformanceChat(e) {
     e.preventDefault();
@@ -56,48 +55,51 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
   }
 
   useEffect(() => {
-    if (user && performanceLike === "") {
-      setUserTag(user?.idTag);
-      checkLikeStatus(id, userTag, requestLikeStatusSuccess, requestLikeStatusFail);
+      checkLikeStatus(id, user?.idTag, requestLikeStatusSuccess, requestLikeStatusFail);
       console.log(performanceLike)
-    }
   }, [user]);
+
 
   function requestLikeStatusSuccess(res) {
     setPerformanceLike(res.data);
-    console.log(res.data);
+    console.log('performance like >>> ', res.data);
   }
 
   function requestLikeStatusFail(err) {
-    //console.log("좋아요 여부 요청 실패", err);
+    console.log("좋아요 여부 요청 실패", err);
   }
 
+  // 좋아요 상태확인
+  function showStatus() {
+    checkLikeStatus(id, user?.idTag, requestLikeStatusSuccess, requestLikeStatusFail);
+  }
+
+  // 공연 좋아요 해제 성공
   function unlikeSuccess(res) {
-    setPerformanceLike(!performanceLike);
-    console.log(performanceLike)
+    setPerformanceLike(false);
   }
 
+  // 좋아요 해제 실패
   function unlikeFail(err) {
     console.log("좋아요 해제 실패", err);
   }
 
+  // 공연 좋아요 성공
   function likeSuccess(res) {
-    setPerformanceLike(!performanceLike);
-    console.log(res)
-    console.log(performanceLike)
+    setPerformanceLike(true);
   }
 
+  // 좋아요 누르기 자체 실패
   function likeFail(err) {
     console.log("좋아요 실패", err);
   }
 
   function changePerformanceLike(e) {
     e.preventDefault();
-    //console.log("좋아요 버튼 ");
     if (performanceLike === true) {
-      unlikePerformance(userTag, id, unlikeSuccess, unlikeFail);
+      unlikePerformance(user?.idTag, id, unlikeSuccess, unlikeFail);
     } else {
-      likePerformance(userTag, id, likeSuccess, likeFail);
+      likePerformance(user?.idTag, id, likeSuccess, likeFail);
     }
   }
 
@@ -111,9 +113,9 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
         <Box sx={{ mt: 6 }}>
           <CurtainsIcon sx={{ mr: 1.5 }} color="action" fontSize="large" onClick={enterPerformanceChat} />
           {performanceLike === false ? (
-            <FavoriteIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
-          ) : (
             <FavoriteBorderIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
+            ) : (
+            <FavoriteIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
           )}
         </Box>
       </Box>

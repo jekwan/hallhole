@@ -2,12 +2,12 @@ import api from "./api";
 
 // 공연 좋아요
 function likePerformance(memberTag, performanceId, success, fail) {
-  api.post("plike/add", { memberTag: memberTag, performanceId: performanceId }).then(success).catch(fail);
+  api.post(`plike/add/`,{memberTag:memberTag, performanceId:performanceId}).then(success).catch(fail);
 }
 
-// 공연 좋아요 해제
+// // 공연 좋아요 해제
 function unlikePerformance(memberTag, performanceId, success, fail) {
-  api.post("plike/sub", { memberTag: memberTag, performanceId: performanceId }).then(success).catch(fail);
+  api.delete(`plike/sub`,{ data: {memberTag:memberTag, performanceId:performanceId},}).then(success).catch(fail);
 }
 
 // 공연별 좋아요 수

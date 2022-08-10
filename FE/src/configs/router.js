@@ -16,6 +16,7 @@ import EditProfile from "../components/page/EditProfile";
 import PerformanceChatList from "../components/page/PerformanceChatList";
 
 import storage from "../helper/storage";
+import PerformanceDetail from "../components/page/PerformanceDetail";
 
 function checkAuth() {
   return !!storage.get("token");
@@ -95,6 +96,14 @@ export default function RouterConfiguration() {
           </CheckAuth>
         }
       />
+      <Route
+        path="/:id"
+        element={
+          <CheckAuth>
+            <PerformanceDetail />
+          </CheckAuth>
+        }
+      ></Route>
     </Routes>
   );
 }
