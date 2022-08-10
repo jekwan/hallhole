@@ -97,7 +97,8 @@ export default function RouterConfiguration() {
         }
       />
       <Route
-        path="/:id"
+        path="/performancedetail/:id"
+        component={PerformanceDetail}
         element={
           <CheckAuth>
             <PerformanceDetail />
