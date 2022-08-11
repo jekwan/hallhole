@@ -9,7 +9,6 @@ const Image = styled(Avatar)(
   width: ${getSizeByType(type)};
   height: ${getSizeByType(type)};
   border-radius: ${getBorderRadiusByType(type)};
-  margin: 10px;
 `,
 );
 

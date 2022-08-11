@@ -1,5 +1,9 @@
 import React from "react";
 
+import { useDispatch } from "react-redux";
+
+import { setChatId, setChatToggle } from "../../stores/chat";
+
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
@@ -16,7 +20,9 @@ const RoomItemBox = styled(Box)`
   border-radius: 3px;
 `;
 
-export default function RoomItem({ id, name, openTime, closeTime, memberCnt, poster, len, lastTxt }) {
+export default function RoomItem({ id, name, openTime, closeTime, memberCnt, poster, len, lastTxt, onOpen, onClose }) {
+  const dispatch = useDispatch();
+
   if (len == "" || len == null) {
     len = 10;
   }
@@ -25,6 +31,11 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
   }
   if (name.length > len) {
     name = name.substr(0, len) + lastTxt;
+  }
+
+  function onClickEnter() {
+    dispatch(setChatId(id));
+    dispatch(setChatToggle("on"));
   }
 
   const user = useSelector(state => state.user.info);
@@ -49,17 +60,17 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
             {name}
           </Text>
           <Box sx={{ marginTop: 6 }}>
-            <Text variant="primary" size="smaller">
+            <Text variant="primary" size="smallest">
               Open period
             </Text>
             <br />
-            <Text variant="black" size="smaller">
+            <Text variant="black" size="smallest">
               {openTime.slice(0, -9)}
             </Text>
-            <Text variant="black" size="smaller">
+            <Text variant="black" size="smallest">
               ~
             </Text>
-            <Text variant="black" size="smaller">
+            <Text variant="black" size="smallest">
               {closeTime.slice(5, -9)}
             </Text>
           </Box>
@@ -77,18 +88,15 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
         ></Box>
         <Box sx={{ float: "right", width: "20vw" }}>
           <Box sx={{ marginTop: 1 }}>
-            {/* 공연 채팅방으로 이동하기 */}
-            <Link to={`/chat/room/${user.id}`} style={{ textDecoration: "none" }}>
-              <Button size="smaller" onClick={handleClose}>
-                enter
-              </Button>
-            </Link>
+            <Button size="smallest" onClick={onClickEnter}>
+              ENTER
+            </Button>
           </Box>
           <Box sx={{ marginTop: 2 }}>
             <Text variant="black">
               {memberCnt} 명
               <br />
-              <Text size="smaller" variant="primary">
+              <Text size="smallest" variant="primary">
                 참여 중
               </Text>
             </Text>

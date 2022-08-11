@@ -10,15 +10,15 @@ const posterStyle = {
   display: "flex",
   filter: "blur(3px)",
   position: "absolute",
-}
+};
 
 const imageStyle = {
   position: "absolute",
   width: "100vw",
   height: "20vh",
   overflow: "hidden",
-  objectFit: "cover"
-}
+  objectFit: "cover",
+};
 
 const coverStyle = {
   position: "absolute",
@@ -27,7 +27,7 @@ const coverStyle = {
   backgroundColor: "#808080",
   opacity: 0.25,
   zIndex: 2,
-}
+};
 
 const posterTextStyle = {
   color: "white",
@@ -35,7 +35,7 @@ const posterTextStyle = {
   bottom: "2.5vh",
   left: "5vw",
   zIndex: 3,
-}
+};
 
 export default function PerformanceMiniPoster(props) {
   // props로 넘어오는 것 : img url , 공연 title, 공연 기간
@@ -52,5 +52,5 @@ export default function PerformanceMiniPoster(props) {
         <TextStyle size="small">{props.date}</TextStyle>
       </Box>
     </Box>
-  )
+  );
 }

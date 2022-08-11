@@ -22,6 +22,7 @@ const StyledTextField = styled(TextField)(
 export default function Input(props) {
   /**
    * props
+   *  - value : input에 바인딩 되는 값
    *  - size : { "large", "medium", "small" }
    *  - type : { "password", "email", "text", "number", ... }
    *  - color : { "primary", "secondary", "error", "disabled", "inherit", ... }
@@ -32,6 +33,7 @@ export default function Input(props) {
   return (
     <Box>
       <StyledTextField
+        value={props.value}
         size={props.size}
         type={props.type}
         color={props.color}
@@ -57,12 +59,12 @@ function getVariant(variant) {
 function getWidth(size) {
   switch (size) {
     case "large":
-      return "75%";
+      return "75vw";
     case "medium":
-      return "50%";
+      return "50vw";
     case "small":
-      return "25%";
+      return "25vw";
     default:
-      return "50%";
+      return "50vw";
   }
 }

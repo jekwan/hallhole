@@ -29,7 +29,7 @@ const LoginModalHeader = styled(Box)`
   padding: 5%;
 `;
 
-const LoginModalContent = styled(Box)`
+const LoginModalBody = styled(Box)`
   text-align: center;
 `;
 
@@ -93,7 +93,7 @@ export default function Login(props) {
         <CloseIcon sx={closeIconStyle} onClick={props.onClose} />
       </LoginModalHeader>
 
-      <LoginModalContent>
+      <LoginModalBody>
         <LogoBox>
           <Logo size="large" src="logo.png" />
         </LogoBox>
@@ -106,10 +106,13 @@ export default function Login(props) {
           />
         </ToggleBox>
         <InputBox>
-          <Input size="large" variant="filled" label="Email" onChange={e => setEmail(e.target.value)} />
+          <Input value={email} size="large" variant="filled" label="Email" onChange={e => setEmail(e.target.value)} />
 
-          {!isLogin && <Input size="large" variant="filled" label="Name" onChange={e => setName(e.target.value)} />}
+          {!isLogin && (
+            <Input value={name} size="large" variant="filled" label="Name" onChange={e => setName(e.target.value)} />
+          )}
           <Input
+            value={password}
             size="large"
             variant="filled"
             label="Password"
@@ -118,6 +121,7 @@ export default function Login(props) {
           />
           {!isLogin && (
             <Input
+              value={confirm}
               size="large"
               variant="filled"
               label="Confirm Password"
@@ -132,7 +136,7 @@ export default function Login(props) {
             </Text>
           </Button>
         </InputBox>
-      </LoginModalContent>
+      </LoginModalBody>
     </LoginModal>
   );
 }

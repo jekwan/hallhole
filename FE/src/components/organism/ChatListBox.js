@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import Box from "@mui/material/Box";
 
 import RoomItem from "../molecule/RoomItem";
+import ChatRoom from "../page/ChatRoom";
 
 import { fetchChatList } from "../../apis/chat";
 import Input from "../atom/Input";
@@ -11,10 +12,10 @@ import CategoryDivider from "../atom/CategoryDivider";
 import Dropdown from "../atom/Dropdown";
 
 export default function ChatListBox() {
-  const [roomBox, setRoom] = React.useState([]);
+  const [rooms, setRooms] = React.useState([]);
 
   function fetchChatListSuccess(res) {
-    setRoom(res.data);
+    setRooms(res.data);
     console.log("룸 요청 성공", res);
   }
 
@@ -25,7 +26,12 @@ export default function ChatListBox() {
   useEffect(() => {
     fetchChatList(fetchChatListSuccess, fetchChatListFail);
   }, []);
-  return <Box>{getRoomsList(roomBox)}</Box>;
+  return (
+    <Box>
+      {getRoomsList(rooms)}
+      <ChatRoom />
+    </Box>
+  );
 }
 
 const inputPosition = {
