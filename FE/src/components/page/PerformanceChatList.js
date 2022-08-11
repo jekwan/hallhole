@@ -4,11 +4,6 @@ import React from "react";
 import Text from "../atom/Text";
 import Box from "@mui/material/Box";
 // import PosterSize from "../atom/PosterSize";
-import Input from "../atom/Input";
-import Button from "../atom/Button";
-import SearchIcon from "@mui/icons-material/Search";
-import CategoryDivider from "../atom/CategoryDivider";
-import Dropdown from "../atom/Dropdown";
 
 import ChatListBox from "../organism/ChatListBox";
 
@@ -26,21 +21,6 @@ export default function Performance() {
             Performance
           </Text>
         </Box>
-        <Box sx={inputPosition}>
-          <Box sx={{ float: "left", marginLeft: "4%", marginRight: 0, marginTop: "0.5vh" }}>
-            <SearchIcon sx={{ fontSize: 45, color: "#e37373" }} />
-          </Box>
-          <Box>
-            <Input size="large" label="Search"></Input>
-          </Box>
-        </Box>
-
-        <Box sx={{ marginLeft: "70vw", marginTop: "5vh" }}>
-          <Dropdown />
-        </Box>
-        <Box sx={{ width: "90vw", marginX: "auto" }}>
-          <CategoryDivider type="primary" />
-        </Box>
       </Box>
       <ChatListBox></ChatListBox>
     </Box>
@@ -54,10 +34,6 @@ const allPosition = {
 
 const textQuestionDesign = {
   marginTop: 3,
-  marginBottom: 5,
+  marginBottom: 2,
   marginLeft: "-40%",
-};
-
-const inputPosition = {
-  marginY: 2,
 };
