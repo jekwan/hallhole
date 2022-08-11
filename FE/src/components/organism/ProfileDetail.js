@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 import { checkFollowStatus, followUser, unfollowUser } from "../../apis/follow";
 import { requestUserInfo } from "../../apis/user";
+import { Link } from "react-router-dom";
 
 export default function ProfileDetail({ id }) {
   const [followStatus, setFollowStatus] = useState("");
@@ -111,17 +112,19 @@ export default function ProfileDetail({ id }) {
       {validateProfileUser ? (
         <Box>
           <CardHeader
-            sx={{ padding: 0.5 }}
+            sx={{ padding: 0.5, width: "90vw", mx: "auto", my: 2 }}
             avatar={<ProfileImage type="large" src=""></ProfileImage>}
             title={ProfileButton}
           ></CardHeader>
-          <Box sx={{ ml: 3 }}>
+          <Box sx={{ ml: 2 }}>
             <TextStyle size="large">{profileUser.name} </TextStyle>
             <TextStyle size="medium">{profileUser.idTag}</TextStyle>
             <br></br>
-            <TextStyle size="medium">
-              팔로워 : {profileUser.followingCnt} | 팔로잉 : {profileUser.followerCnt}
-            </TextStyle>
+            {/* <Link> */}
+              <TextStyle size="medium">
+                팔로워 : {profileUser.followerCnt} | 팔로잉 : {profileUser.followingCnt}
+              </TextStyle>
+            {/* </Link> */}
             <br></br>
             <TextStyle size="small">{profileUser.profile}</TextStyle>
           </Box>

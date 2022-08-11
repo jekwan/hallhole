@@ -11,16 +11,16 @@ function unfollowUser(followerTag, followingTag, success, fail) {
     .catch(fail);
 }
 
-function checkFollowStatus(followerTag, followingTag, success, fail) {
+function checkFollowStatus(followingTag, followerTag, success, fail) {
   api.post("follow/chk-follow", { followerTag: followerTag, followingTag: followingTag }).then(success).catch(fail);
 }
 
-function requestfollowerList(idTag, success, fail) {
-  api.post("follow/follower", { idTag: idTag }).then(success).catch(fail)
+function requestfollowerList(idTag, size, start, success, fail) {
+  api.post("follow/follower", { idTag: idTag, size: size, start: start }).then(success).catch(fail);
 }
 
-function requestfollowingList(idTag, success, fail) {
-  api.post("follow/following", { idTag: idTag }).then(success).catch(fail)
+function requestfollowingList(idTag, size, start, success, fail) {
+  api.post("follow/following", { idTag: idTag, size: size, start: start }).then(success).catch(fail);
 }
 
 export { followUser, unfollowUser, checkFollowStatus, requestfollowerList, requestfollowingList };

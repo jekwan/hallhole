@@ -1,66 +1,94 @@
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import TextStyle from "../atom/Text";
 import ProfileItem from "../molecule/ProfileItem";
 import CategorySelectButton from "../molecule/CategorySelectButton";
+import { useSelector } from "react-redux";
+import { requestUserInfo } from "../../apis/user";
+import { requestfollowerList, requestfollowingList } from "../../apis/follow";
 
 // 팔로워 팔로잉
 const target = ["팔로워", "팔로잉"];
 
-const followList = [
-  { username: "경원" },
-  { username: "경원" },
-  { username: "경원" },
-  { username: "경원" },
-  { username: "경원" },
-];
-const followerList = [
-  { username: "효정" },
-  { username: "승리" },
-  { username: "재웅" },
-  { username: "제관" },
-  { username: "상빈" },
-];
-
-export default function FollowList(props) {
+export default function FollowList({ id }) {
   const [selectedTarget, setSelectedTarget] = useState(target[0]);
-  const [selectedTargetList, setSelectedTargetList] = useState(followerList);
+  const [followingList, setFollowingList] = useState([]);
+  const [followerList, setFollowerList] = useState([]);
+  const user = useSelector(state => state.user.info);
+  const [profileUser, setProfileUser] = useState([]);
+  
+  useEffect(() => {
+    requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
+    requestfollowerList(id, 10, 0, getFollowerListSuccess, getFollowerListFail);
+    requestfollowingList(id, 10, 0, getFollowingListSuccess, getFollowingListFail);
+  }, [id]);
 
-  function selectFollowList(e) {
+  function getProfileUserSuccess(res) {
+    setProfileUser(res.data);
+    console.log("프로필 유저 정보 조회 성공", res);
+  }
+
+  function getProfileUserFail(err) {
+    console.log("프로필 유저 정보 조회 실패", err);
+  }
+  function getFollowerListSuccess(res) {
+    setFollowerList(res.data);
+    console.log("팔로워리스트 조회", res)
+  }
+  function getFollowerListFail(err) {
+    console.log("팔로워 리스트 조회 실패", err);
+  }
+
+  function getFollowingListSuccess(res) {
+    setFollowingList(res.data);
+    console.log("팔로잉 리스트 조회", res);
+  }
+  function getFollowingListFail(err) {
+    console.log("팔로잉 리스트 조회 실패", err);
+  }
+  // 유저 정보 불러왔는지 확인
+  function validateProfileUser(profileUser) {
+    return profileUser !== [];
+  }
+
+  function selectList(e) {
     e.preventDefault();
-    // 선택한 버튼 active 처리
     setSelectedTarget(e.target.innerText);
-    // 선택한 버튼에 따라 팔로워, 팔로잉 목록 변경(추후, user의 follow 목록 넣으면 됨!)
-    if (e.target.innerText === target[0]) {
-      setSelectedTargetList(followerList);
-    } else {
-      setSelectedTargetList(followList);
-    }
   }
 
   return (
-    <Box sx={{ width: "95%", marginLeft: 1 }}>
-      <TextStyle size="large" variant="black">
-        {props.username}
-      </TextStyle>
-      {/* CATEGORY SELECTOR */}
-      <Box sx={{ display: "flex", marginY: 2 }}>
-        {target.map((item, i) => (
-          <CategorySelectButton
-            key={i}
-            category={item}
-            selected={selectedTarget === item}
-            onClick={selectFollowList}
-          ></CategorySelectButton>
-        ))}
-      </Box>
-      {/* profileitem map해서 보여주기 */}
-      <Box sx={{ marginTop: 1 }}>
-        {selectedTargetList.map((profile, i) => (
-          <ProfileItem key={i} username={profile.username}></ProfileItem>
-        ))}
-      </Box>
+    <Box sx={{mt : 2}}>
+      {validateProfileUser ? (
+        <Box sx={{ width: "95%", margin: "auto"}}>
+          <TextStyle size="large" variant="black">
+            {profileUser.name}
+          </TextStyle>
+
+          <Box sx={{ display: "flex", margin:"auto", width: "97%" }}>
+            {target.map((item, i) => (
+              <CategorySelectButton
+                key={i}
+                category={item}
+                selected={selectedTarget === item}
+                onClick={selectList}
+              ></CategorySelectButton>
+            ))}
+          </Box>
+
+          <Box sx={{ marginTop: 1, margin:"auto"}}>
+            {selectedTarget === target[0]
+              ? followerList.map((profile, i) => (
+                  <ProfileItem key={i} user={user?.idTag} name={profile.name} profileId={profile.idTag}></ProfileItem>
+                ))
+              : followingList.map((profile, i) => (
+                  <ProfileItem key={i} user={user?.idTag} name={profile.name} profileId={profile.idTag}></ProfileItem>
+                ))}
+          </Box>
+        </Box>
+      ) : (
+        <Box>로딩중</Box>
+      )}
     </Box>
   );
 }

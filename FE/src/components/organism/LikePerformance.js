@@ -27,7 +27,7 @@ export default function LikePerformances({ id }) {
   useEffect(() => {
     if (startPoint === []) return;
     pickedPerformance(id, 10, startPoint, getLikePerformanceListSuccess, getLikePerformanceListFail);
-  }, [startPoint]);
+  }, [startPoint, id]);
 
   useEffect(() => {
     requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
