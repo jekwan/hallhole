@@ -19,4 +19,8 @@ function requestMyInfo(success, fail) {
   api.get("member/my-info").then(success).catch(fail);
 }
 
-export { requestJoin, requestLogin, requestMyInfo };
+function requestUserInfo(idTag, success, fail) {
+  api.get(`member/info/${idTag}`).then(success).catch(fail)
+}
+
+export { requestJoin, requestLogin, requestMyInfo, requestUserInfo };

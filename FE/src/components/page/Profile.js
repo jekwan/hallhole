@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LikePerformances from "../organism/LikePerformance";
 import ProfileDetail from "../organism/ProfileDetail";
 import UserActivity from "../organism/UserActivity";
 
 import { Box } from "@mui/system";
 import MyActivity from "../organism/MyActivity";
+
+import { useParams } from "react-router-dom";
 
 const likePerformanceList = [
   {
@@ -73,13 +75,17 @@ const reviews = [
   },
 ];
 
-export default function Profile() {
+export default function Profile({ id }) {
+  //const { id } = useParams();
+
   return (
     <Box>
-      <ProfileDetail username="경원" usertag="#34534" follower="7" following="7" profile="일단 테스트용입니다" />
-      <LikePerformances likePerformances={likePerformanceList} />
-      {/* <UserActivity username="경원" reviews={reviews}></UserActivity> */}
-      <MyActivity reviews={reviews}></MyActivity>
+      <Box>
+        <ProfileDetail id={id}/>
+        {/* <LikePerformances /> */}
+        {/* <UserActivity username="경원" reviews={reviews}></UserActivity> */}
+        {/* <MyActivity reviews={reviews}></MyActivity> */}
+      </Box>
     </Box>
   );
 }
