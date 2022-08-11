@@ -22,7 +22,7 @@ const Content = styled(Box)``;
 export default function LikePerformances({ id }) {
   const [profileUser, setProfileUser] = useState([]);
   const [likePerformanceList, setLikePerformanceList] = useState([]);
-  const [startPoint, setStartPoint] = useState([]);
+  const [startPoint, setStartPoint] = useState(0);
 
   useEffect(() => {
     if (startPoint === []) return;
