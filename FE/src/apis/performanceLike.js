@@ -20,8 +20,12 @@ function checkLikeStatus(id, userTag, success, fail) {
 }
 
 // 유저별 좋아요 페이징
-function pickedPerformance(params, success, fail) {
-  api.get(`plike/list`, { params: params }).then(success).catch(fail);
+function pickedPerformance(id, size, start, success, fail) {
+  api.post(`plike/list`, { memberTag: id, size: size, start: start }).then(success).catch(fail);
+}
+
+function requestLikePerformanceCnt(id, success, fail) {
+  api.get(`plike/cnt/${id}`).then(success).catch(fail)
 }
 
 // 좋아요가 높은 공연
@@ -35,5 +39,6 @@ export {
   howManyLikePerformance,
   checkLikeStatus,
   pickedPerformance,
+  requestLikePerformanceCnt,
   mostLikedPerformance,
 };

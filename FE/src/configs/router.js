@@ -42,13 +42,14 @@ export default function RouterConfiguration() {
         }
       />
       <Route
-        path="/profile"
+        path="/profile/:id"
+        component={Profile}
         element={
           <CheckAuth>
             <Profile />
           </CheckAuth>
         }
-      />
+      ></Route>
       <Route
         path="/followlist"
         element={

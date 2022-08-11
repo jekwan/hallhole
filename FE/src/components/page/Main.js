@@ -60,7 +60,7 @@ export default function Main() {
           </Box>
         </Box>
         <Box sx={likePeroformanceList}>
-          <LikePerformance likePerformances={likePerformanceList} />
+          <LikePerformance id={user?.idTag}/>
         </Box>
         <Box>
           <Box sx={{ marginY: 10 }}>

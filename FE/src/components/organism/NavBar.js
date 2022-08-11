@@ -79,9 +79,9 @@ export default function NavBar() {
               로그아웃
             </Button>
           </Link>
-          <Link to="/profile" style={{ textDecoration: "none" }}>
+          <Link to={`/profile/${user?.idTag}`} style={{ textDecoration: "none" }}>
             <Button variant="grey" size="medium" onClick={handleClose}>
-              프로필 화면 가기
+              마이 프로필 화면 가기
             </Button>
           </Link>
           <Link to="/followlist" style={{ textDecoration: "none" }}>

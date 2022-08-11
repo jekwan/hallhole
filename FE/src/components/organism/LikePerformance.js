@@ -1,9 +1,14 @@
 import { ImageList, ImageListItem, Box } from "@mui/material";
 import { styled } from "@mui/system";
-import React from "react";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import React, { useEffect, useState } from "react";
 
 import Text from "../atom/Text";
 import CategoryDivider from "../atom/CategoryDivider";
+
+import { pickedPerformance, requestLikePerformanceCnt } from "../../apis/performanceLike";
+import { requestUserInfo } from "../../apis/user";
+import { Link } from "react-router-dom";
 
 const flexContainer = {
   display: "flex",
@@ -12,26 +17,72 @@ const flexContainer = {
   whiteSpace: "nowrap",
 };
 
-const Content = styled(Box)`
-  text-align: center;
-`;
+const Content = styled(Box)``;
 
-export default function LikePerformances(props) {
+export default function LikePerformances({ id }) {
+  const [profileUser, setProfileUser] = useState([]);
+  const [likePerformanceList, setLikePerformanceList] = useState([]);
+  const [startPoint, setStartPoint] = useState([]);
+
+  useEffect(() => {
+    if (startPoint === []) return;
+    pickedPerformance(id, 10, startPoint, getLikePerformanceListSuccess, getLikePerformanceListFail);
+  }, [startPoint]);
+
+  useEffect(() => {
+    requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
+    requestLikePerformanceCnt(id, getLikePerformanceCntSuccess, getLikePerformanceCntFail);
+  }, [id]);
+
+  function getProfileUserSuccess(res) {
+    setProfileUser(res.data);
+  }
+
+  function getProfileUserFail(err) {}
+
+  function getLikePerformanceCntSuccess(res) {
+    setStartPoint(res.data - 10);
+  }
+
+  function getLikePerformanceCntFail(err) {}
+
+  function getLikePerformanceListSuccess(res) {
+    setLikePerformanceList(res.data.reverse());
+  }
+
+  function getLikePerformanceListFail(err) {}
+  // 유저 정보 불러왔는지 확인
+  function validateProfileUser(profileUser) {
+    return profileUser !== [];
+  }
+
+  // 공연 리스트 일부만 불러오기
   return (
-    <Content>
-      <Text size="medium" variant="primary">
-        좋아요 누른 공연
-      </Text>
-      <CategoryDivider type="primary" variant="middle" />
-      <Box>
-        <ImageList style={flexContainer}>
-          {props.likePerformances.map(item => (
-            <ImageListItem key={item.id}>
-              <img key={item.id} src={item.img} alt={item.title} style={{ width: 150 }} />
-            </ImageListItem>
-          ))}
-        </ImageList>
-      </Box>
-    </Content>
+    <Box sx={{ mt: 2, mx: 2 }}>
+      {validateProfileUser ? (
+        <Content>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Text size="medium" variant="primary">
+              좋아요 누른 공연
+            </Text>
+            <ArrowForwardIosIcon fontSize="medium" color="primary"/>
+          </Box>
+          <CategoryDivider type="primary" variant="middle" />
+          <Box>
+            <ImageList style={flexContainer}>
+              {likePerformanceList.map(item => (
+                <ImageListItem key={item.id}>
+                  <Link to={`/performancedetail/${item.id}`}>
+                    <img key={item.id} src={item.poster} alt={item.title} style={{ width: 110 }} />
+                  </Link>
+                </ImageListItem>
+              ))}
+            </ImageList>
+          </Box>
+        </Content>
+      ) : (
+        <Box>로딩 중</Box>
+      )}
+    </Box>
   );
 }
