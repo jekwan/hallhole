@@ -120,11 +120,11 @@ export default function ProfileDetail({ id }) {
             <TextStyle size="large">{profileUser.name} </TextStyle>
             <TextStyle size="medium">{profileUser.idTag}</TextStyle>
             <br></br>
-            {/* <Link> */}
+            <Link to={`/followlist/${id}`} style={{ textDecoration: "none" }}>
               <TextStyle size="medium">
                 팔로워 : {profileUser.followerCnt} | 팔로잉 : {profileUser.followingCnt}
               </TextStyle>
-            {/* </Link> */}
+            </Link>
             <br></br>
             <TextStyle size="small">{profileUser.profile}</TextStyle>
           </Box>

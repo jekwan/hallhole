@@ -51,13 +51,14 @@ export default function RouterConfiguration() {
         }
       ></Route>
       <Route
-        path="/followlist"
+        path="/followlist/:id"
+        component={FollowList}
         element={
           <CheckAuth>
             <FollowList />
           </CheckAuth>
         }
-      />
+      ></Route>
       <Route
         path="/forgot"
         element={

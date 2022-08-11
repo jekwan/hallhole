@@ -7,11 +7,13 @@ import CategorySelectButton from "../molecule/CategorySelectButton";
 import { useSelector } from "react-redux";
 import { requestUserInfo } from "../../apis/user";
 import { requestfollowerList, requestfollowingList } from "../../apis/follow";
+import { useParams } from "react-router-dom";
 
 // 팔로워 팔로잉
 const target = ["팔로워", "팔로잉"];
 
-export default function FollowList({ id }) {
+export default function FollowList() {
+  const { id } = useParams();
   const [selectedTarget, setSelectedTarget] = useState(target[0]);
   const [followingList, setFollowingList] = useState([]);
   const [followerList, setFollowerList] = useState([]);
