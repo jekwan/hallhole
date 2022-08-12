@@ -4,7 +4,6 @@ import CharacterProfile from "../molecule/CharacterProfile";
 import ProfileEdit from "../molecule/ProfileEdit"
 import ButtonStyle from "../atom/Button";
 import TextStyle from "../atom/Text";
-import SaveCancel from "../molecule/SaveCancel";
 
 export default function EditProfile(props) {
   // 추후 작업 - 비밀번호 변경, 회원 탈퇴 위치 재지정
@@ -22,7 +21,10 @@ export default function EditProfile(props) {
           <TextStyle size="small" variant="primary">회원 탈퇴</TextStyle>
         </Box>
       </Box>
-      <SaveCancel></SaveCancel>
+      <Box sx={{ display:"flex", justifyContent:"center" }}> 
+        <ButtonStyle size="medium" variant="grey">취소</ButtonStyle>
+        <ButtonStyle size="medium" variant="primary">저장</ButtonStyle>
+      </Box>
       </form>
     </Box>  
   );

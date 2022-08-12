@@ -5,7 +5,7 @@ import { styled } from "@mui/system";
 import ToggleButton from "../molecule/ToggleButton";
 import CategoryDivider from "../atom/CategoryDivider";
 import TextStyle from "../atom/Text";
-import SaveCancel from "../molecule/SaveCancel";
+import ButtonStyle from "../atom/Button";
 import CircleIcon from '@mui/icons-material/Circle';
 import Accessory from "../atom/Accessory";
 import Partition from "../atom/CharacterPart";
@@ -134,10 +134,10 @@ export default function EditCharacter() {
   
 
   // 캐릭터 색상 선택 시 값이 전달됨
-  function pickColor({ char }) {
+  function pickColor(e) {
     return () => {
       setChar(char);
-      console.log(char)
+      console.log(e.target.value)
     }
   }
   // 액세서리 선택 시 값이 전달됨
@@ -184,17 +184,17 @@ export default function EditCharacter() {
               {/* 등 위치 (날개) */}
               {chooseBackAccessory}
               <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", position:"absolute"}}>
-                <Partition sx={{ height:'auto', width:120, zIndex:10 }} src="body_default.png"/>
+                <Partition sx={{ height:'auto', width:120, zIndex:10 }} src="/body_default.png"/>
               </Box>
               {/* 팔, 머리 위치  (악보, 데스노트, 사과, 가발, 부츠) */}
               {chooseHeadAccessory}
               {chooseHandAccessory}
               <Box sx={{ position:"absolute", display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <Partition sx={{ height:'auto', width:50, zIndex:11 }} src="face_default.png"/> 
-                <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src="arm_default.png"/>
+                <Partition sx={{ height:'auto', width:50, zIndex:11 }} src="/face_default.png"/> 
+                <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src="/arm_default.png"/>
               </Box>
               {/* 얼굴 위치 (가면, 웃는남자) */}
-              {/* {chooseFaceAccessory} */}
+              {chooseFaceAccessory}
             </Box>
           </Box>
         </Box>
@@ -212,7 +212,7 @@ export default function EditCharacter() {
         {choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char:'white' }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "white" }} value="white" onClick={{ pickColor }} />
               <CircleIcon sx={{ fontSize: 80, color: "black" }} onClick={ pickColor({ char:'black' }) } />
               <CircleIcon sx={{ fontSize: 80, color: "#aece2d" }} onClick={ pickColor({ char:'green' }) } />
             </Box>
@@ -232,24 +232,25 @@ export default function EditCharacter() {
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={pickAcc({ acc:'nothing'})} />
-              <Accessory src="death_note.png" onClick={ pickAcc({ acc:'note'}) } />
-              <Accessory src="death_wing.png" onClick={ pickAcc({ acc:'wings'}) } />
+              <Accessory src="/death_note.png" onClick={ pickAcc({ acc:'note'}) } />
+              <Accessory src="/death_wing.png" onClick={ pickAcc({ acc:'wings'}) } />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Accessory src="kinky_boots.png" onClick={ pickAcc({ acc:'boots'}) } />
-              <Accessory src="mozart_hair.png" onClick={ pickAcc({ acc:'hair'}) } />
-              <Accessory src="mozart_paper.png" onClick={ pickAcc({ acc:'papers'}) } />
+              <Accessory src="/kinky_boots.png" onClick={ pickAcc({ acc:'boots'}) } />
+              <Accessory src="/mozart_hair.png" onClick={ pickAcc({ acc:'hair'}) } />
+              <Accessory src="/mozart_paper.png" onClick={ pickAcc({ acc:'papers'}) } />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Accessory src="opera_mask.png" onClick={ pickAcc({ b:'mask'}) } />
-              <Accessory src="smileman.png" id="smile" onClick={pickAcc} />
-              <Accessory src="death_apple.png" value="apple"/>
+              <Accessory src="/opera_mask.png" onClick={ pickAcc({ b:'mask'}) } />
+              <Accessory src="/smileman.png" id="smile" onClick={pickAcc} />
+              <Accessory src="/death_apple.png" value="apple"/>
             </Box>
           </Box>
         )}
-      </Box>
-      <Box sx={{ mt: 1 }}>
-        <SaveCancel></SaveCancel>
+        </Box>
+      <Box sx={{ display:"flex", justifyContent:"center" }}> 
+        <ButtonStyle size="medium" variant="grey">취소</ButtonStyle>
+        <ButtonStyle size="medium" variant="primary">저장</ButtonStyle>
       </Box>
     </Box>
   );
