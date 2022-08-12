@@ -8,10 +8,13 @@ import ProfileImage from "../atom/ProfileImage";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import storage from "../../helper/storage";
 import Button from "../atom/Button";
+import CloseIcon from "@mui/icons-material/Close";
+import Text from "../atom/Text";
+
+const NavModal = styled(Modal)``;
 
 // width 수정 필요. 상위 요소 정해
 const NavBox = styled(Box)`
@@ -20,7 +23,7 @@ const NavBox = styled(Box)`
   left: 0;
   background-color: black;
   width: 100vw;
-  height: 10vh;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,12 +34,11 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "80vw",
-  height: "70vh",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
+  width: "100vw",
+  height: "100vh",
+  bgcolor: "primary.week",
   p: 4,
+  textAlign: "center",
 };
 
 export default function NavBar() {
@@ -52,38 +54,45 @@ export default function NavBar() {
     <NavBox sx={{ zIndex: 1000 }}>
       {/* 홈 화면으로 돌아가는 링크 추가 */}
       <Link to="/main">
-        <Logo sx={{ padding: "10px" }} src="logo.png" />
+        <Logo sx={{ padding: 2 }} src="logo.png" size="medium" />
       </Link>
       {/* 메뉴서랍? 오픈하기! */}
       {/* <Link to={`profile/${user?.idTag}`}>
         <ProfileImage type="thumb" src="" />
       </Link> */}
-      <ProfileImage type="thumb" src="" onClick={handleOpen} />
+      <Box sx={{ marginX: 2 }}>
+        <ProfileImage type="thumb" src="" onClick={handleOpen} />
+      </Box>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            임시 navbar 서랍 화면 입니다.
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}></Typography>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium">
-              돌아가기
+          <Box sx={{ textAlign: "end" }}>
+            <Button size="smallest" onClick={handleClose}>
+              <CloseIcon />
             </Button>
+          </Box>
+          <br />
+          <br />
+          <Text>필요 버튼</Text>
+          <br />
+          <Link to={`/profile/${user?.idTag}`} style={{ textDecoration: "none" }}>
+            <Button size="medium" onClick={handleClose}>
+              프로필 가기
+            </Button>
+          </Link>
+          <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
+            <Button size="medium" onClick={handleClose}>
+              채팅방 공연 리스트 페이지
+            </Button>
+          </Link>
+          <Link to="/" style={{ textDecoration: "none" }}>
             <Button variant="primary" size="medium" onClick={logout}>
               로그아웃
             </Button>
           </Link>
-          <Link to={`/profile/${user?.idTag}`} style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              마이 프로필 화면 가기
-            </Button>
-          </Link>
+          <br />
+          <Text>회색은 임시 버튼</Text>
+          <br />
           <Link to="/followlist" style={{ textDecoration: "none" }}>
             <Button variant="grey" size="medium" onClick={handleClose}>
               팔로워리스트 확인
@@ -107,11 +116,6 @@ export default function NavBar() {
           <Link to="/editholy" style={{ textDecoration: "none" }}>
             <Button variant="grey" size="medium" onClick={handleClose}>
               캐릭터 꾸미기 페이지
-            </Button>
-          </Link>
-          <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              채팅방 공연 리스트 페이지
             </Button>
           </Link>
         </Box>
