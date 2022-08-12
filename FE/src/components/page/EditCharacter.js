@@ -42,26 +42,86 @@ const accNum = {
   apple: 8,
 }
 
+
+
 export default function EditCharacter() {
   const user = useSelector(state => state.user.info);
   // togglebutton 용
   const [choose, setChoose] = React.useState(true);
-  // 색상, 악세사리
+  // 색상, 악세사리 - useState 에 user의 악세사리 값 가져오기
   const [char, setChar] = React.useState(0);
   const [acc, setAcc] = React.useState(0);
-
+  
+  function chooseFaceAccessory(acc) {
+    console.log(acc)
+    if (acc === "mask") {
+      return (<Partition sx={{ mr:6, mb:7, position:"absolute", height:"auto", width:55, zIndex:12 }} src="opera_mask.png"/>);}
+    else if (acc === "smile") {
+      console.log("hi")
+        return (<Partition sx={{ mb:3.7, position:"absolute", height:"auto", width:60, zIndex:12 }} src="smileman.png"/> );
+    } else {
+      console.log("acc 선택안됨!!!")
+    }
+  };
+      
+  function chooseHandAccessory() {
+    switch (`accNum.${acc}`) {
+      case 1:
+        return (<Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="death_note.png"/>);
+      case 8:
+        return (console.log(`accNum.${acc}`)) ;
+        // <Partition sx={{ mt:4.5, position:"absolute", height:"auto", width:45, zIndex:12 }} src="death_apple.png"/>);
+      case 5:
+        return (<Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="mozart_paper.png"/>);
+      default:
+        return ;
+    }
+  };
+  
+  function chooseBackAccessory() {
+    switch (`accNum.${acc}`) {
+      case 2:
+        return (<Partition sx={{ mb:4, position:"absolute", height:70, width:250, zIndex:9 }} src="death_wing.png"/>);
+      default:
+        return ;
+    }
+  };
+  
+  function chooseHeadAccessory() {
+    switch (`accNum.${acc}`) {
+      case 0 :
+        return ;
+      case 3:
+        return (<Partition sx={{ mb:24, position:"absolute", height:"auto", width:60, zIndex:12 }} src="kinky_boots.png"/> );
+      case 4:
+        return (<Partition sx={{ mb:13, position:"absolute", height:"auto", width:130, zIndex:12 }} src="mozart_hair.png"/>);
+      default:
+        return ;
+    }
+  };
   // 기존 캐릭터 정보 가져오기
   useEffect(() => {
     customedCharacter(user?.idTag, characterLoadSuccess, characterLoadFail);
   }, [user])
   
+
+  // 악세사리 선택 - comnsole.log
+  useEffect(() => {
+    console.log(acc)
+    console.log(accNum)
+    chooseBackAccessory(acc)
+    chooseFaceAccessory(acc)
+    chooseHandAccessory(acc)
+    chooseHeadAccessory(acc)
+  }, [acc])
+
   // 캐릭터 정보 불러오기 성공 시 - 색상 가져오기, 악세사리 정보 가져오기
   function characterLoadSuccess(res) {
     setChar(res.data.character);
     setAcc(res.data.acc);
     console.log(res)
   }
-
+  
   function characterLoadFail(err) {
     console.log("캐릭터 정보 불러오기 실패", err);
     // 불러오기 실패 후 가장 기본 캐릭터 모습으로 보여주기
@@ -72,6 +132,7 @@ export default function EditCharacter() {
     }
   }
   
+
   // 캐릭터 색상 선택 시 값이 전달됨
   function pickColor({ char }) {
     return () => {
@@ -80,11 +141,15 @@ export default function EditCharacter() {
     }
   }
   // 액세서리 선택 시 값이 전달됨
-  function pickAcc({ acc }) {
-    return () => {
-      setAcc(acc);
-      console.log(acc)
-    }
+  // function pickAcc({ b, setFunction }) {
+  //   return () => {
+  //     setFunction(b);
+  //     console.log(b)
+  //   }
+  // }
+
+  function pickAcc(e) {
+    // setAcc(e.target.id)
   }
 
 
@@ -116,25 +181,20 @@ export default function EditCharacter() {
             {/* 캐릭터 색상 선택 및 소품 선택 시 해당 아래 박스의 png가 변경되어야 함 */}
             <Box sx={{ mt:5, display:"flex", position: "relative", justifyContent: "center", alignItems: "center"}}>
               {/* 해당 부분 코드에서 캐릭터의 값을 받아와 보여지도록 해야한다. */}
-              {/* 등 부분에 들어가는 악세사리 위치 (날개) */}
-                <Partition sx={{ mb:4, position:"absolute", height:70, width:250 }} src="acc/death_wing.png"/>
+              {/* 등 위치 (날개) */}
+              {chooseBackAccessory}
               <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", position:"absolute"}}>
-                <Partition sx={{ height:'auto', width:120 }} src="char/body_default.png"/>
+                <Partition sx={{ height:'auto', width:120, zIndex:10 }} src="body_default.png"/>
               </Box>
-              {/* 머리 부분에 들어가는 악세사리 위치 (가발, 킹키부츠) */}
-                {/* <Partition sx={{ mb:13, position:"absolute", height:"auto", width:130 }} src="acc/mozart_hair.png"/> */}
-                {/* <Partition sx={{ mb:24, position:"absolute", height:"auto", width:60 }} src="acc/kinky_boots.png"/>    */}
-              {/* 팔 부분에 들어가는 악세사리 위치  (악보, 데스노트, 사과) */}
-              {/* <Partition sx={{ position:"absolute", mt:5, height:"auto", width:35 }} src="acc/mozart_paper.png"/>    */}
-              <Partition sx={{ position:"absolute", mt:5, height:"auto", width:35 }} src="acc/death_note.png"/>   
-              {/* <Partition sx={{ position:"absolute", mt:4.5, height:"auto", width:45 }} src="acc/death_apple.png"/>    */}
+              {/* 팔, 머리 위치  (악보, 데스노트, 사과, 가발, 부츠) */}
+              {chooseHeadAccessory}
+              {chooseHandAccessory}
               <Box sx={{ position:"absolute", display:"flex", flexDirection:"column", alignItems:"center"}}>
-                <Partition sx={{ height:'auto', width:50 }} src="char/face_default.png"/> 
-                <Partition sx={{ mt:2, width: 55, height:'', }} src="char/arm_default.png"/>
+                <Partition sx={{ height:'auto', width:50, zIndex:11 }} src="face_default.png"/> 
+                <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src="arm_default.png"/>
               </Box>
-              {/* 얼굴 부분에 들어가는 악세사리 위치 (가면, 웃는남자) */}
-              <Partition sx={{ mr: 6,mb: 7, position:"absolute", height:"auto", width:55 }} src="acc/opera_mask.png"/>   
-              {/* <Partition sx={{ mb: 3.7, position:"absolute", height:"auto", width:60 }} src="acc/smileman.png"/>    */}
+              {/* 얼굴 위치 (가면, 웃는남자) */}
+              {/* {chooseFaceAccessory} */}
             </Box>
           </Box>
         </Box>
@@ -166,22 +226,24 @@ export default function EditCharacter() {
             </Box>
           </Box>
         )}
+        </Box>
+        <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {!choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={pickAcc({ acc:'nothing'})} />
-              <Accessory src="acc/death_note.png" onClick={ pickAcc({ acc:'note'}) } />
-              <Accessory src="acc/death_wing.png" onClick={ pickAcc({ acc:'wings'}) } />
+              <Accessory src="death_note.png" onClick={ pickAcc({ acc:'note'}) } />
+              <Accessory src="death_wing.png" onClick={ pickAcc({ acc:'wings'}) } />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Accessory src="acc/kinky_boots.png" onClick={ pickAcc({ acc:'boots'}) } />
-              <Accessory src="acc/mozart_hair.png" onClick={ pickAcc({ acc:'hair'}) } />
-              <Accessory src="acc/mozart_paper.png" onClick={ pickAcc({ acc:'papers'}) } />
+              <Accessory src="kinky_boots.png" onClick={ pickAcc({ acc:'boots'}) } />
+              <Accessory src="mozart_hair.png" onClick={ pickAcc({ acc:'hair'}) } />
+              <Accessory src="mozart_paper.png" onClick={ pickAcc({ acc:'papers'}) } />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Accessory src="acc/opera_mask.png" onClick={ pickAcc({ acc:'mask'}) } />
-              <Accessory src="acc/smileman.png" onClick={ pickAcc({ acc:'smile'}) } />
-              <Accessory src="acc/death_apple.png" onClick={ pickAcc({ acc:'apple'}) } />
+              <Accessory src="opera_mask.png" onClick={ pickAcc({ b:'mask'}) } />
+              <Accessory src="smileman.png" id="smile" onClick={pickAcc} />
+              <Accessory src="death_apple.png" value="apple"/>
             </Box>
           </Box>
         )}
