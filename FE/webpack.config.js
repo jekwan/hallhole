@@ -16,6 +16,24 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.css$/i,
+        exclude: /\.module\.css$/i, // 모듈 파일 제외 설정
+        use: ["style-loader", "css-loader"],
+      },
+      // CSS Module ([filename].module.css)
+      {
+        test: /\.module\.css$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

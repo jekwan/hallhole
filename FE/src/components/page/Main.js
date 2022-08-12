@@ -8,6 +8,7 @@ import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
 import LikePerformance from "../organism/LikePerformance";
 import Button from "../atom/Button";
+import SlickBox from "../organism/SlickBox";
 // import ProfileImage from "../atom/ProfileImage";
 
 import { useSelector } from "react-redux";
@@ -47,7 +48,7 @@ export default function Main() {
             ></PosterSize>
           </CardActionArea>
         </Card>
-
+        <SlickBox />
         <Box sx={textQuestionDesign}>
           <Text variant="black" size="medium">
             찾고있는
@@ -60,7 +61,7 @@ export default function Main() {
           </Box>
         </Box>
         <Box sx={likePeroformanceList}>
-          <LikePerformance id={user?.idTag}/>
+          <LikePerformance id={user?.idTag} />
         </Box>
         <Box>
           <Box sx={{ marginY: 10 }}>
