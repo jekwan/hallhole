@@ -3,6 +3,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import PosterSize from "../atom/PosterSize";
+import Card from "@mui/material/Card";
+import Box from "@mui/material/Box";
+
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
@@ -11,31 +15,56 @@ export default class SimpleSlider extends Component {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
     };
+    const posterCard = {
+      maxWidth: 300,
+      width: "100vw",
+      marginX: "auto",
+      maxHeight: 400,
+      boxShadow: 3,
+      borderRadius: 10,
+    };
+
     return (
-      <div>
-        <h2> Single Item</h2>
+      <Box>
         <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
+          <Box>
+            <Card sx={posterCard}>
+              <Box>
+                <PosterSize
+                  size="large"
+                  src="https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg"
+                ></PosterSize>
+              </Box>
+            </Card>
+          </Box>
+          <Card sx={posterCard}>
+            <Box>
+              <PosterSize
+                size="large"
+                src="http://ticketimage.interpark.com/Play/image/large/22/22008801_p.gif"
+              ></PosterSize>
+            </Box>
+          </Card>
+          <Card sx={posterCard}>
+            <Box>
+              <PosterSize
+                size="large"
+                src="http://tkfile.yes24.com/upload2/PerfBlog/202201/20220113/20220113-41225.jpg"
+              ></PosterSize>
+            </Box>
+          </Card>
+          <Card sx={posterCard}>
+            <Box>
+              <PosterSize
+                size="large"
+                src="http://tkfile.yes24.com/upload2/PerfBlog/202207/20220701/20220701-42653.jpg"
+              ></PosterSize>
+            </Box>
+          </Card>
         </Slider>
-      </div>
+      </Box>
     );
   }
 }
