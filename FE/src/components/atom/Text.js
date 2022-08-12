@@ -7,7 +7,7 @@ const CustomText = styled("span")(
   font-size: ${getSize(size)};
   margin: 0;
   padding: 0;
-  font-weight: ${getWeight(weight)};
+  font-family: ${getWeight(weight)};
   `,
 );
 
@@ -43,13 +43,13 @@ function getColor(variant) {
 function getWeight(weight) {
   switch (weight) {
     case "bold":
-      return "bold";
+      return "gmarketSansBold";
     case "normal":
-      return "normal";
+      return "gmarketSansMedium";
     case "lighter":
-      return "lighter";
+      return "gmarketSansLight";
     default:
-      return "bold";
+      return "gmarketSansMedium";
   }
 }
 
