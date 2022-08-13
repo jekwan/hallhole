@@ -8,7 +8,7 @@ const posterStyle = {
   width: "100vw",
   height: "20vh",
   display: "flex",
-  filter: "blur(3px)",
+  filter: "blur(2px)",
   position: "absolute",
 };
 
@@ -30,7 +30,6 @@ const coverStyle = {
 };
 
 const posterTextStyle = {
-  color: "white",
   position: "absolute",
   bottom: "2.5vh",
   left: "5vw",
@@ -47,9 +46,9 @@ export default function PerformanceMiniPoster(props) {
       </Box>
       <Box sx={coverStyle} />
       <Box sx={posterTextStyle}>
-        <TextStyle size="medium">{props.title}</TextStyle>
+        <TextStyle size="medium" variant="white">{props.title}</TextStyle>
         <br></br>
-        <TextStyle size="small">{props.date}</TextStyle>
+        <TextStyle size="small" variant="white">{props.date}</TextStyle>
       </Box>
     </Box>
   );

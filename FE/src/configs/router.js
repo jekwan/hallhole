@@ -18,6 +18,7 @@ import PerformanceChatList from "../components/page/PerformanceChatList";
 import storage from "../helper/storage";
 import PerformanceDetail from "../components/page/PerformanceDetail";
 import ChatRoom from "../components/page/ChatRoom";
+import ReviewDetail from "../components/page/ReviewDetail";
 
 function checkAuth() {
   return !!storage.get("token");
@@ -111,6 +112,15 @@ export default function RouterConfiguration() {
       <Route path="chat/:chatId" element={<ChatRoom />}>
         {/* <Route path=":chatId" element={<ChatArea />}></Route> */}
       </Route>
+      <Route
+        path="/review/:reviewId"
+        component={ReviewDetail}
+        element={
+          <CheckAuth>
+            <ReviewDetail />
+          </CheckAuth>
+        }
+      ></Route>
     </Routes>
   );
 }
