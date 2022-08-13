@@ -11,6 +11,8 @@ import { getReviewInfo } from "../../apis/review";
 import { Box } from "@mui/system";
 
 import { useParams } from "react-router-dom";
+import CategoryDivider from "../atom/CategoryDivider";
+import CommentForm from "../molecule/CommentForm";
 
 export default function ReviewDetail() {
   const { reviewId } = useParams();
@@ -46,7 +48,7 @@ export default function ReviewDetail() {
   }
 
   function checkUser() {
-    return user?.idTag === reviewInformation?.writerTag
+    return user?.idTag === reviewInformation?.writerTag;
   }
 
   return (
@@ -57,6 +59,9 @@ export default function ReviewDetail() {
         date={reviewPerfoInfo?.performance?.endDate}
       />
       <ReviewInfo data={reviewInformation} />
+      <Box sx={{ width: "90%", margin: "auto", mt: 2 }}>
+        <CategoryDivider type="negative" />
+      </Box>
       {checkUser() ? (
         <Box sx={{ display: "flex", width: "44%", margin: "auto", my: 3, justifyContent: "space-between" }}>
           <AlertModal title="삭제" alertTitle="삭제하시겠습니까?" reviewId={`${reviewId}`}></AlertModal>
@@ -68,6 +73,9 @@ export default function ReviewDetail() {
       ) : (
         <Box />
       )}
+      {/* 댓글작성 */}
+      <CommentForm reviewId={reviewId}></CommentForm>
+      {/* 댓글박스 */}
     </Box>
   );
 }
