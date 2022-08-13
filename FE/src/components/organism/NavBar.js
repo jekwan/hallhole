@@ -54,7 +54,7 @@ export default function NavBar() {
     <NavBox sx={{ zIndex: 1000 }}>
       {/* 홈 화면으로 돌아가는 링크 추가 */}
       <Link to="/main">
-        <Logo sx={{ padding: 2 }} src="logo.png" size="medium" />
+        <Logo sx={{ padding: 2 }} src="/logo.png" size="medium" />
       </Link>
       {/* 메뉴서랍? 오픈하기! */}
       {/* <Link to={`profile/${user?.idTag}`}>
