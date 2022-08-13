@@ -113,7 +113,7 @@ export default function RouterConfiguration() {
         {/* <Route path=":chatId" element={<ChatArea />}></Route> */}
       </Route>
       <Route
-        path="/review/:reviewId"
+        path="/reviewdetail/:reviewId"
         component={ReviewDetail}
         element={
           <CheckAuth>
