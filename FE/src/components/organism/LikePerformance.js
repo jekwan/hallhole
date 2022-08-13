@@ -1,6 +1,6 @@
 import { ImageList, ImageListItem, Box } from "@mui/material";
 import { styled } from "@mui/system";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import React, { useEffect, useState } from "react";
 
 import Text from "../atom/Text";
@@ -25,9 +25,10 @@ export default function LikePerformances({ id }) {
   const [startPoint, setStartPoint] = useState(0);
 
   useEffect(() => {
+    console.log(startPoint);
     if (startPoint === []) return;
     pickedPerformance(id, 10, startPoint, getLikePerformanceListSuccess, getLikePerformanceListFail);
-  }, [startPoint, id]);
+  }, [startPoint]);
 
   useEffect(() => {
     requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
@@ -41,7 +42,9 @@ export default function LikePerformances({ id }) {
   function getProfileUserFail(err) {}
 
   function getLikePerformanceCntSuccess(res) {
-    setStartPoint(res.data - 10);
+    if (res.data > 10) {
+      setStartPoint(res.data - 10);
+    }
   }
 
   function getLikePerformanceCntFail(err) {}
@@ -65,7 +68,7 @@ export default function LikePerformances({ id }) {
             <Text size="medium" variant="primary">
               좋아요 누른 공연
             </Text>
-            <ArrowForwardIosIcon fontSize="medium" color="primary"/>
+            <ArrowForwardIosIcon fontSize="medium" color="primary" />
           </Box>
           <CategoryDivider type="primary" variant="middle" />
           <Box>
