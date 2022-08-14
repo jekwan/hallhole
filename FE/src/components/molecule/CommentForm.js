@@ -13,6 +13,7 @@ export default function CommentForm({ reviewId }) {
 
   function writeCommentSuccess(res) {
     setCommentContent("");
+    window.location.reload() 
   }
 
   function writeCommentFail(err) {}

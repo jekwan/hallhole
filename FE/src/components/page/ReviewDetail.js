@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Box } from "@mui/system";
 
 import PerformanceMiniPoster from "../molecule/PerformanceMiniPoster";
 import ReviewInfo from "../organism/ReviewInfo";
@@ -8,26 +9,36 @@ import AlertModal from "../molecule/AlertModal";
 
 import { fetchPerformance } from "../../apis/performance";
 import { getReviewInfo } from "../../apis/review";
-import { Box } from "@mui/system";
+import { getReviewCommentCnt } from "../../apis/review";
 
 import { useParams } from "react-router-dom";
 import CategoryDivider from "../atom/CategoryDivider";
 import CommentForm from "../molecule/CommentForm";
+import CommentBox from "../organism/CommentBox";
+import TextStyle from "../atom/Text";
 
 export default function ReviewDetail() {
   const { reviewId } = useParams();
   const user = useSelector(state => state.user.info);
   const [reviewInformation, setReviewInformation] = useState([]);
   const [reviewPerfoInfo, setReviewPerfoInfo] = useState([]);
+  const [commentCnt, setCommentCnt] = useState(0);
 
   useEffect(() => {
     getReviewInfo(reviewId, getReviewInfoSuccess, getReviewInfoFail);
+    getReviewCommentCnt(reviewId, getReviewCommentCntSuccess, getReviewCommentCntFail);
     checkUser();
   }, [reviewId, user]);
 
   useEffect(() => {
     fetchPerformance(reviewInformation?.performanceId, getPerfoInfoSuccess, getPerfoInfoFail);
   }, [reviewInformation]);
+
+  function getReviewCommentCntSuccess(res) {
+    setCommentCnt(res.data);
+  }
+
+  function getReviewCommentCntFail(err) {}
 
   function getReviewInfoSuccess(res) {
     console.log("리뷰 요청 성공");
@@ -73,9 +84,15 @@ export default function ReviewDetail() {
       ) : (
         <Box />
       )}
+      <Box sx={{ width: "90%", margin: "auto", my: 2 }}>
+        <TextStyle size="medium" variant="black" weight="bold">
+          댓글 {commentCnt}
+        </TextStyle>
+      </Box>
       {/* 댓글작성 */}
       <CommentForm reviewId={reviewId}></CommentForm>
       {/* 댓글박스 */}
+      <CommentBox reviewId={reviewId} />
     </Box>
   );
 }

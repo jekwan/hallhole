@@ -32,6 +32,10 @@ function getPerformanceReviewList(performanceId, size, start, success, fail) {
     .catch(fail);
 }
 
+function getReviewCommentCnt(reviewId, success, fail) {
+  api.get(`review/comment-cnt/${reviewId}`).then(success).catch(fail)
+}
+
 function getUserReviewList(size, start, writerTag, success, fail) {
   api
     .post("review/performance-review-list", { size: size, start: start, writerTag: writerTag })
@@ -53,4 +57,4 @@ function writeReview(contents, performanceId, performance_time, star, title, wri
     .catch(fail);
 }
 
-export { getReviewInfo, editReview, deleteReview, getPerformanceReviewList, getUserReviewList, writeReview };
+export { getReviewInfo, editReview, deleteReview, getPerformanceReviewList, getUserReviewList, writeReview, getReviewCommentCnt };
