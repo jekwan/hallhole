@@ -61,10 +61,10 @@ function getRoomsList(rooms) {
           ></Input>
         </Box>
       </Box>
-      <Box sx={{ marginLeft: "80vw", marginTop: "2vh" }}>
+      {/* <Box sx={{ marginLeft: "80vw", marginTop: "2vh" }}>
         <Dropdown />
-      </Box>
-      <Box sx={{ width: "90vw", marginX: "auto" }}>
+      </Box> */}
+      <Box sx={{ width: "90vw", marginX: "auto", marginTop: "4vh" }}>
         <CategoryDivider type="primary" />
       </Box>
       {rooms

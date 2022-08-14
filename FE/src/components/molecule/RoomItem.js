@@ -24,7 +24,7 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
   const dispatch = useDispatch();
 
   if (len == "" || len == null) {
-    len = 10;
+    len = 7;
   }
   if (lastTxt == "" || lastTxt == null) {
     lastTxt = "...";
@@ -54,27 +54,27 @@ export default function RoomItem({ id, name, openTime, closeTime, memberCnt, pos
           <Box sx={{ float: "left", marginX: "1px", marginY: "3px", width: "25vw" }}>
             <PosterSize src={poster} size="small"></PosterSize>
           </Box>
-        </Link>
-        <Box sx={{ float: "left", width: "40vw", marginTop: 2 }}>
-          <Text size="small" variant="black">
-            {name}
-          </Text>
-          <Box sx={{ marginTop: 6 }}>
-            <Text variant="primary" size="smallest">
-              Open period
+          <Box sx={{ float: "left", width: "40vw", marginTop: 2 }}>
+            <Text size="small" variant="black">
+              {name}
             </Text>
-            <br />
-            <Text variant="black" size="smallest">
-              {openTime.slice(0, -9)}
-            </Text>
-            <Text variant="black" size="smallest">
-              ~
-            </Text>
-            <Text variant="black" size="smallest">
-              {closeTime.slice(5, -9)}
-            </Text>
+            <Box sx={{ marginTop: 6 }}>
+              <Text variant="primary" size="smallest">
+                Open period
+              </Text>
+              <br />
+              <Text variant="black" size="smallest">
+                {openTime.slice(0, -9)}
+              </Text>
+              <Text variant="black" size="smallest">
+                ~
+              </Text>
+              <Text variant="black" size="smallest">
+                {closeTime.slice(5, -9)}
+              </Text>
+            </Box>
           </Box>
-        </Box>
+        </Link>
         <Box
           sx={{
             float: "left",

@@ -35,5 +35,6 @@ const allPosition = {
 const textQuestionDesign = {
   marginTop: 3,
   marginBottom: 2,
-  marginLeft: "-40%",
+  textAlign: "left",
+  marginLeft: 2,
 };
