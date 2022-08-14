@@ -39,7 +39,7 @@ export default function App() {
     <Box>
       {location.pathname !== "/" && (
         <Box>
-          <Box sx={{ width: "100vw", height: "10vh" }}></Box>
+          <Box sx={{ width: "100vw", height: "71px" }}></Box>
           <NavBar />
         </Box>
       )}

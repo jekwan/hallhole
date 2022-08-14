@@ -26,7 +26,7 @@ function getSizeByType(type) {
     case "large":
       return "150px";
     case "thumb":
-      return "55px";
+      return "45px";
     case "small":
       return "55px";
   }
