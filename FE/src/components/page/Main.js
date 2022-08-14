@@ -51,7 +51,7 @@ export default function Main() {
             </Button>
           </Link>
         </Box>
-        <Box sx={{ marginY: 10 }}>
+        <Box sx={{ marginTop: 10, marginBottom: 5 }}>
           <LikePerformanceRank />
         </Box>
 
