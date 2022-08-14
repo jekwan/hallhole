@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router";
 
 import ToggleButton from "../molecule/ToggleButton";
 import CategoryDivider from "../atom/CategoryDivider";
@@ -28,9 +29,6 @@ const charNum = {
   5: 'red',
   6: 'primary',
 }
-// 해야할 것 :  캐릭터 색상 버튼에 value 값들 숫자로 변경한 후 숫자에 맞는 value값이 변경값에 들어갈 수 있도록
-// setAcc, setChar 에 들어간 정보 서버로 보내서 DB에 저장시키기 (되는지 확인 후 캐릭터 프로필 열 때 정보 보이는지 확인)
-// 취소, 저장버튼 눌렀을 때 동작 . 취소 -> EditProfile, 현재 정보를 저장하지 않고 나가시겠습니까? 저장 -> 서버로 보내고 alert 정상적으로 저장되었습니다 띄우기
 
 const accNum = {
     0: 'nothing',
@@ -55,18 +53,23 @@ export default function EditCharacter() {
 
   // 기존 캐릭터 정보 가져오기
   useEffect(() => {
-    console.log(user);
     customedCharacter(user?.idTag, characterLoadSuccess, characterLoadFail);
   }, [user])
   
   // 캐릭터 정보 불러오기 성공 시 - 색상 가져오기, 악세사리 정보 가져오기
   function characterLoadSuccess(res) {
-    const nowColor = res.data.character
-    const nowAcc = res.data.acc
-    const userId = res.data.idTag
-    setBodyColor('/body_' + charNum[nowColor] + '.png');
-    setArmColor('/arm_' + charNum[nowColor] + '.png');
-    setAcc('/' + accNum[nowAcc] + '.png');
+    const nowColor = user.nowChar
+    const nowAcc = user.nowAcc
+    const userId = user.idTag
+    const colorName = charNum[nowColor]
+    const accName = accNum[nowAcc]
+    setBodyColor('/body_' + colorName + '.png');
+    setArmColor('/arm_' + colorName + '.png');
+    if (nowAcc === 0) {
+      setAcc(0)
+    } else {
+      setAcc('/' + accName + '.png');
+    }
   } 
   
   function characterLoadFail(err) {
@@ -74,18 +77,17 @@ export default function EditCharacter() {
     // 불러오기 실패 후 가장 기본 캐릭터 모습으로 보여주기
     // 기본 캐릭터 정보 캐릭터 색상 하양, 아무것도 액세서리 착용하지 않음 
     characterLoadFail.defaultProps = {
-      setArmColor: '/arm_default.png',
       setBodyColor: '/body_default.png',
+      setArmColor: '/arm_default.png',
     }
   }
   
-  
-  // 캐릭터 색상 선택 시 값이 전달됨
   function pickColor({char}) {
     return () => {
+      const charColor = charNum[char]
       setChar(char);
-      setArmColor('/arm_'+char+'.png');
-      setBodyColor('/body_'+char+'.png')
+      setArmColor('/arm_'+charColor+'.png');
+      setBodyColor('/body_'+charColor+'.png');
     }
   }
   
@@ -95,9 +97,21 @@ export default function EditCharacter() {
     }
   }
   
-  function changeConfirm(userId, acc, char) {
+  const movePage = useNavigate();
+
+  function changeConfirm() {
+    const userId = user.idTag
+    const pickedAcc = acc
+    const pickedChar = char
+
     changeCharacter(userId, acc, char);
-    console.log(userId, acc, char)
+    console.log(userId, pickedAcc, pickedChar)
+    movePage(`/profile/${userId}`)
+  }
+
+
+  function cancelEdit() {
+    movePage(`/profile/${user.idTag}`)
   }
     
   return (
@@ -113,11 +127,11 @@ export default function EditCharacter() {
         </Box>
         <Box>
           <TextStyle size="small" variant="black">
-            색상/소품 선택 후 저장버튼을 터치하세요
+            색상/소품 선택 후 저장을 누르세요
           </TextStyle>
         </Box>
       </Box>
-      <Box sx={{ mt: 1.5 }}>
+      <Box sx={{ mt: 1 }}>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <TextStyle size="medium" variant="black">
             🔎미리보기
@@ -125,9 +139,7 @@ export default function EditCharacter() {
         </Box>
         <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 1 }}>
           <Box sx={{ display:"flex", alignItems:"center", justifyContent: "center", width: 250, height: 200, p: 2, border: 3, borderColor:'black', borderRadius: 5 }}>
-            {/* 캐릭터 색상 선택 및 소품 선택 시 해당 아래 박스의 png가 변경되어야 함 */}
             <Box sx={{ mt:5, display:"flex", position: "relative", justifyContent: "center", alignItems: "center"}}>
-              {/* 해당 부분 코드에서 캐릭터의 값을 받아와 보여지도록 해야한다. */}
               {/* 등 위치 (날개) */}
               { acc === 2 &&
               <Partition sx={{ mb:4, position:"absolute", height:70, width:250, zIndex:9 }} src="/wings.png"/>}
@@ -136,18 +148,17 @@ export default function EditCharacter() {
               </Box>
               {/* 팔, 머리 위치  (악보, 데스노트, 사과, 가발, 부츠) */}
               { acc === 1 &&
-              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/note.png"/>}
+              <Partition sx={{ mt:3, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/note.png"/>}
               { acc === 3 &&
               <Partition sx={{ mb:24, position:"absolute", height:"auto", width:60, zIndex:12 }} src="/boots.png"/>}
               { acc === 4 &&
               <Partition sx={{ mb:13, position:"absolute", height:"auto", width:130, zIndex:12 }} src="/hair.png"/>}
               { acc === 5 &&
-              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/paper.png"/>}
+              <Partition sx={{ mt:2, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/paper.png"/>}
               { acc === 8 &&
-              <Partition sx={{ mt:4.5, position:"absolute", height:"auto", width:45, zIndex:12 }} src="/apple.png"/>}
+              <Partition sx={{ mt:2, position:"absolute", height:"auto", width:40, zIndex:12 }} src="/apple.png"/>}
               <Box sx={{ position:"absolute", display:"flex", flexDirection:"column", alignItems:"center"}}>
-              { char && 
-                <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src={armColor}/> }
+                <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src={armColor}/>
               </Box>
               {/* 얼굴 위치 (가면, 웃는남자) */}
               { acc === 6 &&
@@ -166,22 +177,22 @@ export default function EditCharacter() {
           onClickRight={() => setChoose(false)}
         />
       </ToggleBox>
-      {/* 캐릭터 색상 선택 창 -> 몸통, 표정, 팔 각각 파편화 되어있으며 합쳐져서 보입니다 */}
+
       <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
         {choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char:'default' }) } />
-              <CircleIcon sx={{ fontSize: 80, color: "black" }} onClick={ pickColor({ char:'black' }) } />
-              <CircleIcon sx={{ fontSize: 80, color: "#aece2d" }} onClick={ pickColor({ char:'green' }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char: 0 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "black" }} onClick={ pickColor({ char: 1 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#aece2d" }} onClick={ pickColor({ char: 2 }) } />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircleIcon sx={{ fontSize: 80, color: "#f8ea67" }} onClick={ pickColor({ char:'yellow' }) } />
-              <CircleIcon sx={{ fontSize: 80, color: "#e0712c" }} onClick={ pickColor({ char:'orange' }) } />
-              <CircleIcon sx={{ fontSize: 80, color: "#a63d36" }} onClick={ pickColor({ char:'red' }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#f8ea67" }} onClick={ pickColor({ char: 3 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#e0712c" }} onClick={ pickColor({ char: 4 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#a63d36" }} onClick={ pickColor({ char: 5 }) } />
             </Box>
             <Box sx={{ ml: 0.5 }}>
-              <CircleIcon sx={{ fontSize: 80, color: "#e37373" }} onClick={ pickColor({ char:'primary' }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#e37373" }} onClick={ pickColor({ char: 6 }) } />
             </Box>
           </Box>
         )}
@@ -207,8 +218,8 @@ export default function EditCharacter() {
           </Box>
         )}
         </Box>
-      <Box sx={{ display:"flex", justifyContent:"center" }}> 
-        <ButtonStyle size="medium" variant="grey">취소</ButtonStyle>
+      <Box sx={{ mt: 2, mx: 5, display:"flex", justifyContent:"space-evenly" }}> 
+        <ButtonStyle size="medium" variant="grey" onClick={ cancelEdit }>취소</ButtonStyle>
         <ButtonStyle size="medium" variant="primary" onClick={ changeConfirm } >저장</ButtonStyle>
       </Box>
     </Box>
