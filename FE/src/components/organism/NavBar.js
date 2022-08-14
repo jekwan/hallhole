@@ -13,6 +13,7 @@ import storage from "../../helper/storage";
 import Button from "../atom/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import Text from "../atom/Text";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const NavModal = styled(Modal)``;
 
@@ -34,8 +35,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "100vw",
-  height: "100vh",
+  width: "50vw",
+  height: "30vh",
   bgcolor: "primary.week",
   p: 4,
   textAlign: "center",
@@ -53,6 +54,8 @@ export default function NavBar() {
   return (
     <NavBox sx={{ zIndex: 1000 }}>
       {/* 홈 화면으로 돌아가는 링크 추가 */}
+      <MenuIcon sx={{ fontSize: 48, color: "white", padding: 2 }} onClick={handleOpen}></MenuIcon>
+
       <Link to="/main">
         <Logo sx={{ padding: 2 }} src="/logo.png" size="medium" />
       </Link>
@@ -60,9 +63,11 @@ export default function NavBar() {
       {/* <Link to={`profile/${user?.idTag}`}>
         <ProfileImage type="thumb" src="" />
       </Link> */}
-      <Box sx={{ marginX: 2 }}>
-        <ProfileImage type="thumb" src="" onClick={handleOpen} />
-      </Box>
+      <Link to={`/profile/${user?.idTag}`} style={{ textDecoration: "none" }}>
+        <Box sx={{ marginX: 2 }}>
+          <ProfileImage type="thumb" />
+        </Box>
+      </Link>
 
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
@@ -71,51 +76,19 @@ export default function NavBar() {
               <CloseIcon />
             </Button>
           </Box>
-          <br />
-          <br />
-          <Text>필요 버튼</Text>
-          <br />
           <Link to={`/profile/${user?.idTag}`} style={{ textDecoration: "none" }}>
-            <Button size="medium" onClick={handleClose}>
-              프로필 가기
+            <Button size="small" onClick={handleClose}>
+              Profile
             </Button>
           </Link>
           <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
-            <Button size="medium" onClick={handleClose}>
-              채팅방 공연 리스트 페이지
+            <Button size="small" onClick={handleClose}>
+              PerformanceList
             </Button>
           </Link>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <Button variant="primary" size="medium" onClick={logout}>
-              로그아웃
-            </Button>
-          </Link>
-          <br />
-          <Text>회색은 임시 버튼</Text>
-          <br />
-          <Link to="/followlist" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              팔로워리스트 확인
-            </Button>
-          </Link>
-          <Link to="/forgot" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              비번 찾기 위한 이메일 페이지
-            </Button>
-          </Link>
-          <Link to="/transmit" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              이메일 전송 확인 페이지
-            </Button>
-          </Link>
-          <Link to="/editprofile" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              개인정보 수정 페이지
-            </Button>
-          </Link>
-          <Link to="/editholy" style={{ textDecoration: "none" }}>
-            <Button variant="grey" size="medium" onClick={handleClose}>
-              캐릭터 꾸미기 페이지
+            <Button variant="primary" size="small" onClick={logout}>
+              Logout
             </Button>
           </Link>
         </Box>

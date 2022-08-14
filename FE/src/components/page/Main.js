@@ -12,6 +12,7 @@ import SlickBox from "../organism/SlickBox";
 // import ProfileImage from "../atom/ProfileImage";
 
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Main() {
   const user = useSelector(state => state.user.info);
@@ -20,7 +21,7 @@ export default function Main() {
     <Box
       sx={{
         width: "100vw",
-        height: "240vh",
+        height: "100vh",
       }}
     >
       <Box sx={userCheckBox}>
@@ -41,7 +42,16 @@ export default function Main() {
       <Box sx={backGroundPoster}></Box>
       <Box sx={posterPosition}>
         <SlickBox />
-        <Box sx={textQuestionDesign}>
+      </Box>
+      <Box>
+        <Box sx={buttonPosition}>
+          <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
+            <Button variant="primary" size="large" color="white">
+              실시간 채팅방 더보기
+            </Button>
+          </Link>
+        </Box>
+        {/* <Box sx={textQuestionDesign}>
           <Text variant="black" size="medium">
             찾고있는
             <Text variant="primary"> 뮤지컬 </Text>이 있나요?
@@ -51,11 +61,11 @@ export default function Main() {
           <Box>
             <Input size="large" label="Search"></Input>
           </Box>
-        </Box>
-        <Box sx={likePeroformanceList}>
+        </Box> */}
+        {/* <Box sx={likePeroformanceList}>
           <LikePerformance id={user?.idTag} />
-        </Box>
-        <Box>
+        </Box> */}
+        {/* <Box>
           <Box sx={{ marginY: 10 }}>
             <Text variant="black" size="medium">
               내가 팔로우한 <br />
@@ -64,9 +74,6 @@ export default function Main() {
             </Text>
           </Box>
           <Box>
-            {/* <Box sx={userAlarm}>
-              <ProfileImage size="small"></ProfileImage>
-            </Box> */}
             <Button variant="white" size="large" color="black">
               @username | 공연 꿀 잼 ..
             </Button>
@@ -81,12 +88,13 @@ export default function Main() {
               @username | 공연 또 보러 가자!
             </Button>
           </Box>
-        </Box>
+        </Box> */}
 
         <Box sx={TwitterBoxBackground}>
           <TwitterBox></TwitterBox>
           <Box sx={{ marginTop: 20, marginBottom: 5 }}>
-            <Text>@2022 footer position</Text>
+            <Text size="smallest">(주)HALLHOLE</Text> <br />
+            <Text size="smallest">서울 강남구 테헤란로 212 멀티캠퍼스 12층</Text> <br />
           </Box>
         </Box>
       </Box>
@@ -112,7 +120,7 @@ const userCheck = {
 };
 
 const userCheckOpacity = {
-  backgroundColor: "#e37373",
+  backgroundColor: "#000000",
   opacity: 0.6,
   width: "100vw",
   height: "100px",
@@ -120,7 +128,7 @@ const userCheckOpacity = {
 
 const backGroundPoster = {
   width: "100vw",
-  height: "58vh",
+  height: "520px",
   backgroundImage: `url("https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg")`,
   backgroundAttachment: "fixed",
   backgroundSize: "cover",
@@ -132,7 +140,13 @@ const backGroundPoster = {
 
 const posterPosition = {
   position: "relative",
-  top: "-40vh",
+  top: "-350px",
+  textAlign: "center",
+};
+
+const buttonPosition = {
+  position: "relative",
+  top: "-260px",
   textAlign: "center",
 };
 
@@ -150,7 +164,7 @@ const likePeroformanceList = {
 };
 
 const TwitterBoxBackground = {
-  marginTop: 7,
+  textAlign: "center",
   paddingTop: 10,
   paddingBottom: 2,
   backgroundColor: "rgba(255, 0, 0, 0.2)",

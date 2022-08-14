@@ -12,7 +12,7 @@ import { setUserInfoToStore } from "../stores/user";
 import { Box } from "@mui/material";
 
 import NavBar from "./organism/NavBar";
-import './App.css'
+import "./App.css";
 
 export default function App() {
   const navigate = useNavigate();
