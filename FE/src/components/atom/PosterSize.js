@@ -22,7 +22,7 @@ function getBorder(type) {
 function getSizeBywidth(size) {
   switch (size) {
     case "full":
-      return "412px";
+      return "100vw";
     case "large":
       return "300px";
     case "medium":
