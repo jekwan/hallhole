@@ -3,21 +3,21 @@ import Divider from "@mui/material/Divider";
 
 const primary = {
   width: "100%",
-  height: 3,
+  height: 2,
   maxWidth: "100vw",
   bgcolor: "#e37373",
 };
 
 const negative = {
   width: "100%",
-  height: 3,
+  height: 2,
   maxWidth: "100vw",
   bgcolor: "#E1E1E1",
 };
 
 const dark = {
   width: "100%",
-  height: 3,
+  height: 2,
   maxWidth: "100vw",
   bgcolor: "#000000",
 };
