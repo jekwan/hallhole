@@ -53,7 +53,12 @@ export default function LikePerformances({ id }) {
             {famousPerformanceList.map(item => (
               <ImageListItem key={item.id}>
                 <Link to={`/performancedetail/${item.id}`}>
-                  <img key={item.id} src={item.poster} alt={item.title} style={{ width: 110 }} />
+                  <img
+                    key={item.id}
+                    src={item.poster}
+                    alt={item.title}
+                    style={{ width: 110, height: 150, borderRadius: 5 }}
+                  />
                 </Link>
               </ImageListItem>
             ))}
