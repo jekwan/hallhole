@@ -11,19 +11,10 @@ import CurtainsIcon from "@mui/icons-material/Curtains";
 import { checkLikeStatus, likePerformance, unlikePerformance } from "../../apis/performanceLike";
 import { useSelector } from "react-redux";
 
-const posterBackgroundStyle = {
-  position: "absolute",
-  padding: 0,
-  margin: 0,
-  top: 0,
-  left: 0,
-  zIndex: -1,
-};
-
 const smallPosterStyle = {
   position: "relative",
-  top: "25vh",
-  zIndex: 1,
+  top: "14vh",
+  zIndex: 2,
   marginX: 2,
   display: "flex",
   justifyContent: "space-between",
@@ -31,16 +22,29 @@ const smallPosterStyle = {
 };
 
 const performanceDetailStyle = {
-  position: "relative",
-  top: "17vh",
   width: 1,
-  height: "40vh",
+};
+
+const posterStyle = {
+  width: "100vw",
+  height: "20vh",
+  display: "flex",
+  filter: "blur(2px)",
+  position: "absolute",
+};
+
+const imageStyle = {
+  position: "absolute",
+  width: "100vw",
+  height: "20vh",
+  overflow: "hidden",
+  objectFit: "cover",
 };
 
 export default function PerformanceInformation({ performanceInfo, performanceMoreInfo, id }) {
   const [performanceLike, setPerformanceLike] = useState("");
   const user = useSelector(state => state.user.info);
-  
+
   function enterPerformanceChat(e) {
     e.preventDefault();
     // chat 연결 코드 추가 예정
@@ -55,14 +59,13 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
   }
 
   useEffect(() => {
-      checkLikeStatus(id, user?.idTag, requestLikeStatusSuccess, requestLikeStatusFail);
-      console.log(performanceLike)
+    checkLikeStatus(id, user?.idTag, requestLikeStatusSuccess, requestLikeStatusFail);
+    console.log(performanceLike);
   }, [user]);
-
 
   function requestLikeStatusSuccess(res) {
     setPerformanceLike(res.data);
-    console.log('performance like >>> ', res.data);
+    console.log("performance like >>> ", res.data);
   }
 
   function requestLikeStatusFail(err) {
@@ -105,8 +108,8 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
 
   return (
     <Box>
-      <Box sx={posterBackgroundStyle}>
-        <PosterImage type="blur" size="full" src={performanceInfo.poster}></PosterImage>
+      <Box sx={posterStyle}>
+        <img src={performanceInfo.poster} style={imageStyle}></img>
       </Box>
       <Box sx={smallPosterStyle}>
         <PosterImage size="small" src={performanceInfo.poster}></PosterImage>
@@ -114,13 +117,13 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
           <CurtainsIcon sx={{ mr: 1.5 }} color="action" fontSize="large" onClick={enterPerformanceChat} />
           {performanceLike === false ? (
             <FavoriteBorderIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
-            ) : (
+          ) : (
             <FavoriteIcon onClick={changePerformanceLike} fontSize="large" color="primary" />
           )}
         </Box>
       </Box>
       <Box bgcolor="white" sx={performanceDetailStyle}>
-        <Box height={80}></Box>
+        <Box sx={{ height: "15vh" }}></Box>
         <Box sx={{ mx: 2, mb: 1 }}>
           <TextStyle size="large" variant="black">
             {performanceInfo.name}

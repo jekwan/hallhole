@@ -27,7 +27,7 @@ function deleteReview(reviewId, writerTag, success, fail) {
 
 function getPerformanceReviewList(performanceId, size, start, success, fail) {
   api
-    .post("review/performance-review-list", { performanceId: performanceId, size: size, start: start })
+    .post("review/performance-review-list", { performance_id: performanceId, size: size, start: start })
     .then(success)
     .catch(fail);
 }
