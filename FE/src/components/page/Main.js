@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import PosterSize from "../atom/PosterSize";
 import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
-import LikePerformance from "../organism/LikePerformance";
+import LikePerformanceRank from "../organism/LikePerformanceRank";
 import Button from "../atom/Button";
 import SlickBox from "../organism/SlickBox";
 // import ProfileImage from "../atom/ProfileImage";
@@ -43,7 +43,7 @@ export default function Main() {
       <Box sx={posterPosition}>
         <SlickBox />
       </Box>
-      <Box>
+      <Box sx={bottomPosition}>
         <Box sx={buttonPosition}>
           <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
             <Button variant="primary" size="large" color="white">
@@ -51,48 +51,21 @@ export default function Main() {
             </Button>
           </Link>
         </Box>
-        {/* <Box sx={textQuestionDesign}>
-          <Text variant="black" size="medium">
-            찾고있는
-            <Text variant="primary"> 뮤지컬 </Text>이 있나요?
-          </Text>
+        <Box sx={{ marginY: 10 }}>
+          <LikePerformanceRank />
         </Box>
-        <Box sx={inputPosition}>
-          <Box>
-            <Input size="large" label="Search"></Input>
-          </Box>
-        </Box> */}
-        {/* <Box sx={likePeroformanceList}>
-          <LikePerformance id={user?.idTag} />
-        </Box> */}
-        {/* <Box>
-          <Box sx={{ marginY: 10 }}>
-            <Text variant="black" size="medium">
-              내가 팔로우한 <br />
-              <Text variant="primary">유저 네임</Text>
-              님이 후기를 남겼어요.
-            </Text>
-          </Box>
-          <Box>
-            <Button variant="white" size="large" color="black">
-              @username | 공연 꿀 잼 ..
-            </Button>
-          </Box>
-          <Box>
-            <Button variant="white" size="large" color="black">
-              @username | 공연 또 보러 가자!
-            </Button>
-          </Box>
-          <Box>
-            <Button variant="white" size="large" color="black">
-              @username | 공연 또 보러 가자!
-            </Button>
-          </Box>
-        </Box> */}
 
         <Box sx={TwitterBoxBackground}>
+          <Box sx={{ marginBottom: 4, paddingTop: 3, textAlign: "left", marginLeft: 4 }}>
+            <Text size="smallest">
+              Real-Time <br />
+              <Text size="medium" weight="bold">
+                Ticket Information
+              </Text>
+            </Text>
+          </Box>
           <TwitterBox></TwitterBox>
-          <Box sx={{ marginTop: 20, marginBottom: 5 }}>
+          <Box sx={{ marginTop: 15, marginBottom: 5 }}>
             <Text size="smallest">(주)HALLHOLE</Text> <br />
             <Text size="smallest">서울 강남구 테헤란로 212 멀티캠퍼스 12층</Text> <br />
           </Box>
@@ -144,9 +117,14 @@ const posterPosition = {
   textAlign: "center",
 };
 
-const buttonPosition = {
+const bottomPosition = {
   position: "relative",
-  top: "-260px",
+  top: "-300px",
+  textAlign: "center",
+};
+
+const buttonPosition = {
+  marginBottom: "50px",
   textAlign: "center",
 };
 
@@ -165,7 +143,6 @@ const likePeroformanceList = {
 
 const TwitterBoxBackground = {
   textAlign: "center",
-  paddingTop: 10,
   paddingBottom: 2,
   backgroundColor: "rgba(255, 0, 0, 0.2)",
 };
