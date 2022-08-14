@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import PosterSize from "../atom/PosterSize";
 import Input from "../atom/Input";
 import TwitterBox from "../organism/TwitterBox";
-import LikePerformanceRank from "../organism/LikePerformanceRank";
+// import LikePerformanceRank from "../organism/LikePerformanceRank";
 import Button from "../atom/Button";
 import SlickBox from "../organism/SlickBox";
 // import ProfileImage from "../atom/ProfileImage";
@@ -51,9 +51,7 @@ export default function Main() {
             </Button>
           </Link>
         </Box>
-        <Box sx={{ marginTop: 10, marginBottom: 5 }}>
-          <LikePerformanceRank />
-        </Box>
+        <Box sx={{ marginTop: 10, marginBottom: 5 }}>{/* <LikePerformanceRank /> */}</Box>
 
         <Box sx={TwitterBoxBackground}>
           <Box sx={{ marginBottom: 4, paddingTop: 3, textAlign: "left", marginLeft: 4 }}>
