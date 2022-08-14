@@ -64,9 +64,9 @@ export default function EditCharacter() {
     const nowColor = res.data.character
     const nowAcc = res.data.acc
     const userId = res.data.idTag
-    setBodyColor('body_' + charNum[nowColor] + '.png');
-    setArmColor('arm_' + charNum[nowColor] + '.png');
-    setAcc(accNum[nowAcc] + '.png');
+    setBodyColor('/body_' + charNum[nowColor] + '.png');
+    setArmColor('/arm_' + charNum[nowColor] + '.png');
+    setAcc('/' + accNum[nowAcc] + '.png');
   } 
   
   function characterLoadFail(err) {
@@ -74,8 +74,8 @@ export default function EditCharacter() {
     // 불러오기 실패 후 가장 기본 캐릭터 모습으로 보여주기
     // 기본 캐릭터 정보 캐릭터 색상 하양, 아무것도 액세서리 착용하지 않음 
     characterLoadFail.defaultProps = {
-      setArmColor: 'arm_default.png',
-      setBodyColor: 'body_default.png',
+      setArmColor: '/arm_default.png',
+      setBodyColor: '/body_default.png',
     }
   }
   
@@ -84,8 +84,8 @@ export default function EditCharacter() {
   function pickColor({char}) {
     return () => {
       setChar(char);
-      setArmColor('arm_'+char+'.png');
-      setBodyColor('body_'+char+'.png')
+      setArmColor('/arm_'+char+'.png');
+      setBodyColor('/body_'+char+'.png')
     }
   }
   
@@ -130,30 +130,30 @@ export default function EditCharacter() {
               {/* 해당 부분 코드에서 캐릭터의 값을 받아와 보여지도록 해야한다. */}
               {/* 등 위치 (날개) */}
               { acc === 2 &&
-              <Partition sx={{ mb:4, position:"absolute", height:70, width:250, zIndex:9 }} src="wings.png"/>}
+              <Partition sx={{ mb:4, position:"absolute", height:70, width:250, zIndex:9 }} src="/wings.png"/>}
               <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", position:"absolute"}}>         
                 <Partition sx={{ height:'auto', width:120, zIndex:10 }} src={bodyColor}/>
               </Box>
               {/* 팔, 머리 위치  (악보, 데스노트, 사과, 가발, 부츠) */}
               { acc === 1 &&
-              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="note.png"/>}
+              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/note.png"/>}
               { acc === 3 &&
-              <Partition sx={{ mb:24, position:"absolute", height:"auto", width:60, zIndex:12 }} src="boots.png"/>}
+              <Partition sx={{ mb:24, position:"absolute", height:"auto", width:60, zIndex:12 }} src="/boots.png"/>}
               { acc === 4 &&
-              <Partition sx={{ mb:13, position:"absolute", height:"auto", width:130, zIndex:12 }} src="hair.png"/>}
+              <Partition sx={{ mb:13, position:"absolute", height:"auto", width:130, zIndex:12 }} src="/hair.png"/>}
               { acc === 5 &&
-              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="paper.png"/>}
+              <Partition sx={{ mt:5, position:"absolute", height:"auto", width:35, zIndex:12 }} src="/paper.png"/>}
               { acc === 8 &&
-              <Partition sx={{ mt:4.5, position:"absolute", height:"auto", width:45, zIndex:12 }} src="apple.png"/>}
+              <Partition sx={{ mt:4.5, position:"absolute", height:"auto", width:45, zIndex:12 }} src="/apple.png"/>}
               <Box sx={{ position:"absolute", display:"flex", flexDirection:"column", alignItems:"center"}}>
               { char && 
                 <Partition sx={{ mt:2, width: 55, height:'', zIndex:13 }} src={armColor}/> }
               </Box>
               {/* 얼굴 위치 (가면, 웃는남자) */}
               { acc === 6 &&
-              <Partition sx={{ mr:6, mb:10, position:"absolute", height:"auto", width:50, zIndex:12 }} src="mask.png"/>}
+              <Partition sx={{ mr:6, mb:10, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/mask.png"/>}
               { acc === 7 &&
-              <Partition sx={{ mb:7.2, position:"absolute", height:"auto", width:50, zIndex:12 }} src="smile.png"/>}
+              <Partition sx={{ ml:0.2, mb:7.2, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/smile.png"/>}
             </Box>
           </Box>
         </Box>
