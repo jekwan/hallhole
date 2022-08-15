@@ -1,34 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { List } from "@mui/material";
 import { Box } from "@mui/system";
 
 import CategorySelectButton from "../molecule/CategorySelectButton";
 import ProfileReviewItem from "../molecule/ProfileReviewItem";
+import ProfileCommentItem from "../molecule/ProfileCommentItem";
 
-const activityCategory = ["후기", "댓글", "리액션"];
-const reviewList = [{}];
-const commentList = [{}];
-const reactionList = [{}];
+import { getUserReviewList } from "../../apis/review";
+import { getUserCommentList } from "../../apis/comment";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-export default function MyActivity(props) {
+const activityCategory = ["후기", "댓글"];
+
+export default function MyActivity() {
+  const user = useSelector(state => state.user.info);
   const [selectedCategory, setSelectedCategory] = useState(activityCategory[0]);
-  const [categoryList, setCategoryList] = useState(reviewList);
+  const [reviewList, setReviewList] = useState([]);
+  const [commentList, setCommentList] = useState([]);
+
+  useEffect(() => {
+    getUserCommentList(user?.idTag, 5, 0, getUserCommentListSuccess, getUserCommentListFail);
+    getUserReviewList(5, 0, user?.idTag, getUserReviewListSuccess, getUserReviewListFail);
+  }, [user]);
+
+  function getUserCommentListSuccess(res) {
+    setCommentList(res.data);
+  }
+
+  function getUserCommentListFail(err) {}
+
+  function getUserReviewListSuccess(res) {
+    setReviewList(res.data);
+  }
+
+  function getUserReviewListFail(err) {}
 
   function selectActivityCategory(e) {
     e.preventDefault();
     setSelectedCategory(e.target.innerText);
-    if (e.target.innerText === activityCategory[0]) {
-      setCategoryList(reviewList);
-    } else if (e.target.innerText === activityCategory[1]) {
-      setCategoryList(commentList);
-    } else {
-      setCategoryList(reactionList);
-    }
   }
 
   return (
-    <Box sx={{ width: "95%", marginY: 2, marginLeft: 2 }}>
+    <Box sx={{ width: "90%", marginY: 2, margin: "auto" }}>
       <Box sx={{ display: "flex" }}>
         {activityCategory.map((item, i) => (
           <CategorySelectButton
@@ -39,17 +54,27 @@ export default function MyActivity(props) {
           ></CategorySelectButton>
         ))}
       </Box>
-      <List>
-        {categoryList.map((item, i) => (
-          <ProfileReviewItem
-            key={i}
-            title={item.title}
-            date={item.date}
-            star_eval={item.star_eval}
-            performance_name={item.performance_name}
-          ></ProfileReviewItem>
-        ))}
-      </List>
+      {selectedCategory === activityCategory[0] ? (
+        <List>
+          {reviewList.map((item, i) => (
+            <ProfileReviewItem
+              key={i}
+              title={item.title}
+              date={item.date}
+              star_eval={item.star_eval}
+              performance_name={item.performance_name}
+            ></ProfileReviewItem>
+          ))}
+        </List>
+      ) : (
+        <List>
+          {commentList.map((item, i) => (
+            <Link to={`/reviewdetail/${item.reviewId}`} style={{ textDecoration: "none" }}>
+              <ProfileCommentItem key={i} contents={item.contents} date={item.writingTime}></ProfileCommentItem>
+            </Link>
+          ))}
+        </List>
+      )}
     </Box>
   );
 }

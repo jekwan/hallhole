@@ -79,7 +79,7 @@ export default function FollowList() {
           </Box>
 
           <Box sx={{ marginTop: 1, margin:"auto"}}>
-            {selectedTarget === target[0]
+            {selectedTarget !== target[0]
               ? followerList.map((profile, i) => (
                   <ProfileItem key={i} user={user?.idTag} name={profile.name} profileId={profile.idTag}></ProfileItem>
                 ))

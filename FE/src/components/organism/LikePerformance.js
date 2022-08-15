@@ -65,7 +65,7 @@ export default function LikePerformances({ id }) {
       {validateProfileUser ? (
         <Content>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Text size="medium" variant="primary">
+            <Text size="medium" variant="primary" weight="bold">
               좋아요 누른 공연
             </Text>
             <ArrowForwardIosIcon fontSize="medium" color="primary" />

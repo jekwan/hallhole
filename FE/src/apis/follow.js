@@ -11,7 +11,7 @@ function unfollowUser(followerTag, followingTag, success, fail) {
     .catch(fail);
 }
 
-function checkFollowStatus(followingTag, followerTag, success, fail) {
+function checkFollowStatus(followerTag, followingTag, success, fail) {
   api.post("follow/chk-follow", { followerTag: followerTag, followingTag: followingTag }).then(success).catch(fail);
 }
 

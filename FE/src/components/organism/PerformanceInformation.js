@@ -60,7 +60,6 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
 
   useEffect(() => {
     checkLikeStatus(id, user?.idTag, requestLikeStatusSuccess, requestLikeStatusFail);
-    console.log(performanceLike);
   }, [user]);
 
   function requestLikeStatusSuccess(res) {

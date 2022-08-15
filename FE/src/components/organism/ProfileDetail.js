@@ -39,10 +39,10 @@ export default function ProfileDetail({ id }) {
     if (user?.idTag !== id) {
       checkFollowStatus(user?.idTag, id, checkFollowStatusSuccess, checkFollowStatusFail);
     }
-  }, [user, id]);
+  }, [user, id, followStatus]);
 
   function checkFollowStatusSuccess(res) {
-    // console.log(res.data);
+    console.log(res.data);
     setFollowStatus(res.data);
   }
 
@@ -122,7 +122,7 @@ export default function ProfileDetail({ id }) {
             <br></br>
             <Link to={`/followlist/${id}`} style={{ textDecoration: "none" }}>
               <TextStyle size="medium">
-                팔로워 : {profileUser.followerCnt} | 팔로잉 : {profileUser.followingCnt}
+                팔로워 : {profileUser.followingCnt} | 팔로잉 : {profileUser.followerCnt}
               </TextStyle>
             </Link>
             <br></br>

@@ -4,11 +4,7 @@ import React, { useEffect, useState } from "react";
 import PerformanceInformation from "../organism/PerformanceInformation";
 import ReviewList from "../organism/ReviewList";
 
-import CategoryDivider from "../atom/CategoryDivider";
-import ButtonStyle from "../atom/Button";
-
 import { fetchPerformance } from "../../apis/performance";
-import { getPerformanceReviewList } from "../../apis/review";
 import { useParams } from "react-router-dom";
 
 const reviewListStyle = {
@@ -16,18 +12,9 @@ const reviewListStyle = {
   zIndex: 3,
   width: "90%",
   margin: "auto",
-  // marginY: 1,
 };
 
-const reviewButtonStyle = {
-  position: "sticky",
-  bottom: 0,
-  zIndex: 1000,
-  marginBottom: 1,
-  textAlign: "center",
-};
-
-function RightPerformance({ performanceInfo, performanceMoreInfo, id, performanceReviewList }) {
+function RightPerformance({ performanceInfo, performanceMoreInfo, id }) {
   return (
     <Box>
       <PerformanceInformation
@@ -36,7 +23,7 @@ function RightPerformance({ performanceInfo, performanceMoreInfo, id, performanc
         id={id}
       ></PerformanceInformation>
       <Box sx={reviewListStyle}>
-        <ReviewList performanceReviewList={performanceReviewList}></ReviewList>
+        <ReviewList id={id}></ReviewList>
       </Box>
     </Box>
   );
@@ -49,24 +36,15 @@ export default function PerformanceDetail() {
   const { id } = useParams();
   const [performanceInfo, setPerformanceInfo] = useState([]);
   const [performanceMoreInfo, setPerformanceMoreInfo] = useState([]);
-  const [performanceReviewList, setPerformanceReviewList] = useState([]);
+
   //공연 정보 설정
   useEffect(() => {
     fetchPerformance(id, requestPerformanceInfoSuccess, requestPerformanceInfoFail);
-    getPerformanceReviewList(id, 5, 1, getPerformanceReviewListSuccess, getPerformanceReviewListFail);
   }, [id]);
 
   function requestPerformanceInfoSuccess(res) {
     setPerformanceInfo(res.data.performance);
     setPerformanceMoreInfo(res.data);
-  }
-  function getPerformanceReviewListSuccess(res) {
-    setPerformanceReviewList(res.data);
-    console.log("성공", res.data);
-  }
-
-  function getPerformanceReviewListFail(err) {
-    console.log("실패", err);
   }
 
   function requestPerformanceInfoFail(err) {}
@@ -80,7 +58,6 @@ export default function PerformanceDetail() {
         performanceInfo={performanceInfo}
         performanceMoreInfo={performanceMoreInfo}
         id={id}
-        performanceReviewList={performanceReviewList}
       />
     );
   }

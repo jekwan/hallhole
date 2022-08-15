@@ -38,7 +38,7 @@ function getReviewCommentCnt(reviewId, success, fail) {
 
 function getUserReviewList(size, start, writerTag, success, fail) {
   api
-    .post("review/performance-review-list", { size: size, start: start, writerTag: writerTag })
+    .post("review/user-review-list", { size: size, start: start, writerTag: writerTag })
     .then(success)
     .catch(fail);
 }
