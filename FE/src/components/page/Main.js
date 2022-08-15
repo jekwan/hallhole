@@ -41,7 +41,7 @@ export default function Main() {
       </Box>
       <Box sx={backGroundPoster}></Box>
       <Box sx={posterPosition}>
-        <SlickBox />
+        <SlickBox id={user?.idTag} />
       </Box>
       <Box sx={bottomPosition}>
         <Box sx={buttonPosition}>
