@@ -93,10 +93,10 @@ const ResponsiveAppBar = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu} component={Link} to="/main">
-                <Typography textAlign="center">Main</Typography>
+                <Typography textAlign="center">홈</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu} component={Link} to="/performancechatlist">
-                <Typography textAlign="center">Performance</Typography>
+                <Typography textAlign="center">공연 리스트</Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -120,10 +120,10 @@ const ResponsiveAppBar = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <MenuItem onClick={handleCloseNavMenu} component={Link} to="/main">
-              <Typography textAlign="center">Main</Typography>
+              <Typography textAlign="center">홈</Typography>
             </MenuItem>
             <MenuItem onClick={handleCloseNavMenu} component={Link} to="/performancechatlist">
-              <Typography textAlign="center">Performance</Typography>
+              <Typography textAlign="center">공연 리스트</Typography>
             </MenuItem>
           </Box>
 
@@ -150,13 +150,13 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu} component={Link} to={`/profile/${user?.idTag}`}>
-                <Typography textAlign="center">Profile</Typography>
+                <Typography textAlign="center">프로필</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu} component={Link} to={`/profile/${user?.idTag}`}>
-                <Typography textAlign="center">Update</Typography>
+                <Typography textAlign="center">프로필 관리</Typography>
               </MenuItem>
               <MenuItem onClick={logout} component={Link} to="/">
-                <Typography textAlign="center">Logout</Typography>
+                <Typography textAlign="center">로그아웃</Typography>
               </MenuItem>
             </Menu>
           </Box>
