@@ -15,7 +15,7 @@ export default function BirthPicker() {
         onChange={(newBirth) => {
           setBirth(newBirth);
         }}
-        renderInput={(params) => <TextField {...params} sx={{ m:1, width: '70%' }} />}
+        renderInput={(params) => <TextField {...params} sx={{ mt:1, width: '100%' }} />}
       />
     </LocalizationProvider>
   );
