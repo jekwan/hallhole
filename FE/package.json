@@ -23,6 +23,7 @@
     "@stomp/stompjs": "^6.1.2",
     "axios": "^0.27.2",
     "date-fns": "^2.29.1",
+    "dayjs": "^1.11.5",
     "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

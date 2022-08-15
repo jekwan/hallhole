@@ -9,13 +9,14 @@ import { useSelector } from "react-redux";
 
 import { checkFollowStatus, followUser, unfollowUser } from "../../apis/follow";
 import { requestUserInfo } from "../../apis/user";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ProfileDetail({ id }) {
   const [followStatus, setFollowStatus] = useState("");
   const user = useSelector(state => state.user.info);
   const [profileUser, setProfileUser] = useState([]);
-
+  const movePage = useNavigate();
+  
   useEffect(() => {
     requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
   }, [followStatus]);
@@ -82,6 +83,8 @@ export default function ProfileDetail({ id }) {
   // 프로필 수정 페이지 이동
   function editProfile(e) {
     e.preventDefault();
+    movePage(`/editprofile`)
+    // location.reload();
   }
 
   // 프로필 수정, 팔로우, 언팔로우 버튼 설정
