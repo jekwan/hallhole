@@ -19,7 +19,7 @@ export default function UserActivity({ id }) {
 
   function getUserReviewListSuccess(res) {
     setReviewList(res.data);
-    console.log(res);
+    // console.log(res);
   }
 
   function getUserReviewListFail(err) {}
@@ -43,7 +43,7 @@ export default function UserActivity({ id }) {
             title={item.title}
             writing_time={item.writing_time}
             star_eval={item.star_eval}
-            performance_name={item.performance_name}
+            reviewId={item.id}
           ></ProfileReviewItem>
         ))}
       </List>

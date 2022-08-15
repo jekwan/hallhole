@@ -42,7 +42,6 @@ export default function ProfileDetail({ id }) {
   }, [user, id, followStatus]);
 
   function checkFollowStatusSuccess(res) {
-    console.log(res.data);
     setFollowStatus(res.data);
   }
 

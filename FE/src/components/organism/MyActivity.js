@@ -10,7 +10,6 @@ import ProfileCommentItem from "../molecule/ProfileCommentItem";
 import { getUserReviewList } from "../../apis/review";
 import { getUserCommentList } from "../../apis/comment";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 const activityCategory = ["후기", "댓글"];
 
@@ -69,9 +68,12 @@ export default function MyActivity() {
       ) : (
         <List>
           {commentList.map((item, i) => (
-            <Link to={`/reviewdetail/${item.reviewId}`} style={{ textDecoration: "none" }}>
-              <ProfileCommentItem key={i} contents={item.contents} date={item.writingTime}></ProfileCommentItem>
-            </Link>
+            <ProfileCommentItem
+              key={i}
+              contents={item.contents}
+              date={item.writingTime}
+              reviewId={item.reviewId}
+            ></ProfileCommentItem>
           ))}
         </List>
       )}
