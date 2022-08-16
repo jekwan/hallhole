@@ -59,9 +59,9 @@ export default function MyActivity() {
             <ProfileReviewItem
               key={i}
               title={item.title}
-              date={item.date}
+              writing_time={item.writing_time}
               star_eval={item.star_eval}
-              performance_name={item.performance_name}
+              reviewId={item.id}
             ></ProfileReviewItem>
           ))}
         </List>

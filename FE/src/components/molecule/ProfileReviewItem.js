@@ -12,7 +12,7 @@ export default function ProfileReviewItem(props) {
 
   return (
     <Link to={`/reviewdetail/${props.reviewId}`} style={{ textDecoration: "none" }}>
-      <Box sx={{ width: 1, marginY: 1 }}>
+      <Box sx={{ width: 1, marginY: 1.5 }}>
         <div>
           <TextStyle size="medium" variant="black" sx={{ fontWeight: "bold", mx: 5 }}>
             {props.title}
