@@ -39,7 +39,7 @@ export default function ProfileDetail({ id }) {
   //팔로우 여부 확인
   useEffect(() => {
     if (user?.idTag !== id) {
-      checkFollowStatus(user?.idTag, id, checkFollowStatusSuccess, checkFollowStatusFail);
+      checkFollowStatus(id, user?.idTag, checkFollowStatusSuccess, checkFollowStatusFail);
     }
   }, [user, id, followStatus]);
 
@@ -63,7 +63,7 @@ export default function ProfileDetail({ id }) {
 
   function follow(e) {
     e.preventDefault();
-    followUser(user.idTag, id, followSuccess, followFail);
+    followUser(id, user.idTag, followSuccess, followFail);
   }
 
   // 언팔로우
@@ -78,7 +78,7 @@ export default function ProfileDetail({ id }) {
 
   function unfollow(e) {
     e.preventDefault();
-    unfollowUser(user.idTag, id, unfollowSuccess, unfollowFail);
+    unfollowUser(id, user.idTag, unfollowSuccess, unfollowFail);
   }
 
   // 프로필 수정 페이지 이동
