@@ -27,4 +27,22 @@ function requestName(idTag, success, fail) {
   api.get("member/my-name", { params: { tag : idTag } }).then(success).catch(fail);
 }
 
-export { requestJoin, requestLogin, requestMyInfo, requestUserInfo, requestName };
+// 프로필 수정 api
+function userEditProfile(birth, email, gender, idTag, name, profile, success, fail) {
+  api.put("member", {
+    birth: birth,
+    email: email,
+    gender: gender,
+    idTag: idTag,
+    name: name,
+    profile: profile,
+  }).then(success).catch(fail);
+}
+
+// 탈퇴 api
+function deleteProfile(success, fail) {
+  api.put("member/out").then(success).catch(fail);
+}
+
+export { requestJoin, requestLogin, requestMyInfo, requestUserInfo, requestName, userEditProfile, deleteProfile };
+

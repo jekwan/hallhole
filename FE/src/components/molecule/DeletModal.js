@@ -27,7 +27,6 @@ export default function DeleteModal({ title, alertTitle }) {
   const movePage = useNavigate();
 
   function deleteDeleteSuccess(res) {
-    console.log("회원 삭제 완료 완료");
     alert("언제나 홀홀은 열려있습니다 ☺")
     // 로그인 전의 메인 페이지로 이동해야하는데, 이동하지 않음
     movePage(`/`)
@@ -35,7 +34,6 @@ export default function DeleteModal({ title, alertTitle }) {
   }
 
   function deleteDeleteFail(err) {
-    console.log(err);
   }
 
   function deleteThisProfile(e) {
