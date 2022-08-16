@@ -26,7 +26,7 @@ const charNum = {
   2: 'green',
   3: 'yellow',
   4: 'orange',
-  5: 'red',
+  5: 'skyblue',
   6: 'primary',
 }
 
@@ -60,7 +60,6 @@ export default function EditCharacter() {
   function characterLoadSuccess(res) {
     const nowColor = user.nowChar
     const nowAcc = user.nowAcc
-    const userId = user.idTag
     const colorName = charNum[nowColor]
     const accName = accNum[nowAcc]
     setBodyColor('/body_' + colorName + '.png');
@@ -105,8 +104,8 @@ export default function EditCharacter() {
     const pickedChar = char
 
     changeCharacter(userId, acc, char);
-    console.log(userId, pickedAcc, pickedChar)
-    movePage(`/profile/${userId}`)
+    movePage(`/editprofile`);
+    location.reload();
   }
 
 
@@ -162,9 +161,9 @@ export default function EditCharacter() {
               </Box>
               {/* 얼굴 위치 (가면, 웃는남자) */}
               { acc === 6 &&
-              <Partition sx={{ mr:6, mb:10, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/mask.png"/>}
+              <Partition sx={{ mr:6, mb:10.3, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/mask.png"/>}
               { acc === 7 &&
-              <Partition sx={{ ml:0.2, mb:7.2, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/smile.png"/>}
+              <Partition sx={{ ml:0.1, mb:7.2, position:"absolute", height:"auto", width:50, zIndex:12 }} src="/smile.png"/>}
             </Box>
           </Box>
         </Box>
@@ -189,7 +188,7 @@ export default function EditCharacter() {
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
               <CircleIcon sx={{ fontSize: 80, color: "#f8ea67" }} onClick={ pickColor({ char: 3 }) } />
               <CircleIcon sx={{ fontSize: 80, color: "#e0712c" }} onClick={ pickColor({ char: 4 }) } />
-              <CircleIcon sx={{ fontSize: 80, color: "#a63d36" }} onClick={ pickColor({ char: 5 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "#60bde7" }} onClick={ pickColor({ char: 5 }) } />
             </Box>
             <Box sx={{ ml: 0.5 }}>
               <CircleIcon sx={{ fontSize: 80, color: "#e37373" }} onClick={ pickColor({ char: 6 }) } />

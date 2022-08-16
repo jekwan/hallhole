@@ -6,3 +6,4 @@ BE/hallhole/src/main/resources/application.properties
 .DS_Store
 *.properties
 *.p12
+FE/package-lock.json
