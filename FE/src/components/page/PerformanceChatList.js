@@ -18,7 +18,7 @@ export default function Performance() {
       <Box sx={allPosition}>
         <Box sx={textQuestionDesign}>
           <Text variant="black" size="large">
-            Performance
+            오픈 공연방
           </Text>
         </Box>
       </Box>
