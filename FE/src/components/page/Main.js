@@ -62,16 +62,16 @@ export default function Main() {
             </Link>
           </Box>
         )}
-        <Box sx={{ marginTop: 10, marginBottom: 5 }}>
+        <Box sx={{ marginTop: 4, marginBottom: 5 }}>
           <LikePerformanceRank />
         </Box>
 
         <Box sx={TwitterBoxBackground}>
-          <Box sx={{ marginBottom: 4, paddingTop: 3, textAlign: "left", marginLeft: 4 }}>
+          <Box sx={{ marginBottom: 4, paddingTop: 3, textAlign: "left", marginLeft: 2 }}>
             <Text size="smallest">
-              Real-Time <br />
+              실시간 <br />
               <Text size="medium" weight="bold">
-                Ticket Information
+                티켓 정보
               </Text>
             </Text>
           </Box>
@@ -100,7 +100,7 @@ const userCheckText = {
 
 const userCheck = {
   marginTop: "15px",
-  marginLeft: "15%",
+  marginLeft: "10%",
 };
 
 const userCheckOpacity = {
@@ -112,8 +112,8 @@ const userCheckOpacity = {
 
 const backGroundPoster = {
   width: "100vw",
-  height: "520px",
-  backgroundImage: `url("https://cdnticket.melon.co.kr/resource/image/upload/product/2019/11/2019112812171593082da1-3771-458f-ab20-7777146d2066.jpg")`,
+  height: "480px",
+  backgroundColor: "black",
   backgroundAttachment: "fixed",
   backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
@@ -124,13 +124,13 @@ const backGroundPoster = {
 
 const posterPosition = {
   position: "relative",
-  top: "-350px",
+  top: "-850px",
   textAlign: "center",
 };
 
 const bottomPosition = {
   position: "relative",
-  top: "-300px",
+  top: "-770px",
   textAlign: "center",
 };
 
