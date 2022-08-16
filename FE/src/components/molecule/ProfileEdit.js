@@ -35,17 +35,13 @@ export default function ProfileEdit() {
   const [birth, setBirth] = React.useState('')
 
 
-  const profileUpdate = async (user) => {
-    await requestUserInfo(user?.idTag, getProfileUserSuccess, getProfileUserFail);
+  useEffect(() => {
+    requestUserInfo(user?.idTag, getProfileUserSuccess, getProfileUserFail);
     setName(user?.name)
     setProfile(user?.profile)
     setGender(user?.gender)
     setEmail(user?.email)
     setBirth(user?.birth)
-  }
-
-  useEffect(() => {
-    profileUpdate(user)
   }, [user]);
   
   function getProfileUserSuccess(res) {
@@ -91,8 +87,11 @@ export default function ProfileEdit() {
     justifyContent: "center",
     alignItems: 'center',
     flexDirection: 'column',}}>
-      <CategoryDivider type="thinDark"/>
-      <Box sx={{ mt:1, display: "flex", flexDirection: 'column' }}>
+      <Box sx={{my:1}}>
+        <TextStyle size="large">내 프로필 수정 ✍</TextStyle>
+      </Box>
+      <CategoryDivider type="dark"/>
+      <Box sx={{ mt: 1, display: "flex", flexDirection: 'column' }}>
       <TextStyle size="medium">{email}</TextStyle>
       <Button sx={{ mt: 1}} size="small" variant="text" onClick={ changePassword }>비밀번호 변경하기</Button>
       </Box>
@@ -114,7 +113,7 @@ export default function ProfileEdit() {
       <Box sx={{ width:"100%", display: "flex", flexDirection:"row", alignItems:"center", justifyContent:"space-around" }}>
         <Box sx={{ display: "flex", flexDirection:"column", alignItems:"start" }}>
           <TextStyle size="medium">성별</TextStyle>
-          <FormControl sx={{ minWidth: 120 }}>
+          <FormControl sx={{ minWidth: 310}}>
             <InputLabel id="gender">{genderName[gender]}</InputLabel>
               <Select
                 labelId="gender"
@@ -131,7 +130,8 @@ export default function ProfileEdit() {
               </Select>
           </FormControl>
         </Box>
-        <Box sx={{ ml: 1.5 }}>
+      </Box>
+        <Box sx={{ mt:2 }}>
           <TextStyle size="medium">생년월일</TextStyle>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
@@ -145,7 +145,6 @@ export default function ProfileEdit() {
             />
           </LocalizationProvider>
         </Box> 
-      </Box>
       <Box sx={{ mt: 2, width:"100%",display:"flex", justifyContent:"space-between", alignItems:"center" }}> 
         <ButtonStyle size="medium" variant="grey" onClick={ cancelEdit }>취소</ButtonStyle>
         <ButtonStyle size="medium" variant="primary" onClick={ changeConfirm }>저장</ButtonStyle>

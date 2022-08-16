@@ -5,6 +5,7 @@ import { Box } from "@mui/system";
 import ProfileImage from "../atom/ProfileImage";
 import TextStyle from "../atom/Text";
 import ButtonStyle from "../atom/Button";
+import CharacterProfile from "../molecule/CharacterProfile";
 import { useSelector } from "react-redux";
 
 import { checkFollowStatus, followUser, unfollowUser } from "../../apis/follow";
@@ -113,9 +114,10 @@ export default function ProfileDetail({ id }) {
     <Box>
       {validateProfileUser ? (
         <Box>
+          <CharacterProfile/>
           <CardHeader
             sx={{ padding: 0.5, width: "90vw", mx: "auto", my: 2 }}
-            avatar={<ProfileImage type="large" src=""></ProfileImage>}
+            // avatar={<ProfileImage type="large" src=""></ProfileImage>}
             title={ProfileButton}
           ></CardHeader>
           <Box sx={{ ml: 2 }}>

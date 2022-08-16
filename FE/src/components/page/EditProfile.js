@@ -7,7 +7,7 @@ export default function EditProfile(props) {
 
   return (
     <Box>
-      <CharacterProfile></CharacterProfile>
+      {/* <CharacterProfile></CharacterProfile> */}
       <ProfileEdit></ProfileEdit>
     </Box>  
   );

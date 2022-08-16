@@ -98,13 +98,14 @@ export default function EditCharacter() {
     const pickedAcc = acc
     const pickedChar = char
     changeCharacter(userId, pickedAcc, pickedChar);
-    movePage(`/editprofile`);
+    movePage(`/profile/${userId}`);
     location.reload();
   }
 
 
   function cancelEdit() {
-    movePage(`/editprofile`)
+    const userId = user.idTag
+    movePage(`/profile/${userId}`)
   }
     
   return (
