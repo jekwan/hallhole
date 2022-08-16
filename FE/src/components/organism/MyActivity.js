@@ -10,6 +10,8 @@ import ProfileCommentItem from "../molecule/ProfileCommentItem";
 import { getUserReviewList } from "../../apis/review";
 import { getUserCommentList } from "../../apis/comment";
 import { useSelector } from "react-redux";
+import UserActivityPagination from "../molecule/UserActivityPagination";
+import ProfileCommentPagination from "../molecule/ProfileCommentPagination";
 
 const activityCategory = ["후기", "댓글"];
 
@@ -20,8 +22,8 @@ export default function MyActivity() {
   const [commentList, setCommentList] = useState([]);
 
   useEffect(() => {
-    getUserCommentList(user?.idTag, 5, 0, getUserCommentListSuccess, getUserCommentListFail);
-    getUserReviewList(5, 0, user?.idTag, getUserReviewListSuccess, getUserReviewListFail);
+    getUserCommentList(user?.idTag, 100, 0, getUserCommentListSuccess, getUserCommentListFail);
+    getUserReviewList(100, 0, user?.idTag, getUserReviewListSuccess, getUserReviewListFail);
   }, [user]);
 
   function getUserCommentListSuccess(res) {
@@ -54,28 +56,9 @@ export default function MyActivity() {
         ))}
       </Box>
       {selectedCategory === activityCategory[0] ? (
-        <List>
-          {reviewList.map((item, i) => (
-            <ProfileReviewItem
-              key={i}
-              title={item.title}
-              writing_time={item.writing_time}
-              star_eval={item.star_eval}
-              reviewId={item.id}
-            ></ProfileReviewItem>
-          ))}
-        </List>
+        <UserActivityPagination reviewList={reviewList} />
       ) : (
-        <List>
-          {commentList.map((item, i) => (
-            <ProfileCommentItem
-              key={i}
-              contents={item.contents}
-              date={item.writingTime}
-              reviewId={item.reviewId}
-            ></ProfileCommentItem>
-          ))}
-        </List>
+        <ProfileCommentPagination commentList={commentList} />
       )}
     </Box>
   );

@@ -92,7 +92,7 @@ export default function ReviewDetail() {
       {/* 댓글작성 */}
       <CommentForm reviewId={reviewId}></CommentForm>
       {/* 댓글박스 */}
-      <CommentBox reviewId={reviewId} />
+      <CommentBox reviewId={reviewId} commentCnt={commentCnt} />
     </Box>
   );
 }

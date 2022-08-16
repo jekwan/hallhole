@@ -4,12 +4,12 @@ import { getReviewCommentList } from "../../apis/comment";
 
 import CommentItem from "../molecule/CommentItem";
 
-export default function CommentBox({ reviewId }) {
+export default function CommentBox({ reviewId, commentCnt }) {
   const [reviewCommentList, setReviewCommentList] = useState([]);
 
   useEffect(() => {
-    getReviewCommentList(reviewId, 10, 0, getReviewCommentListSuccess, getReviewCommentListFail);
-  }, [reviewId]);
+    getReviewCommentList(reviewId, commentCnt, 0, getReviewCommentListSuccess, getReviewCommentListFail);
+  }, [commentCnt]);
 
   function getReviewCommentListSuccess(res) {
     setReviewCommentList(res.data);

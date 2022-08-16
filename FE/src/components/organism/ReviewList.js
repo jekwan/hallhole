@@ -7,30 +7,54 @@ import TextStyle from "../atom/Text";
 import ButtonStyle from "../atom/Button";
 import { getPerformanceReviewList } from "../../apis/review";
 import { Link } from "react-router-dom";
+import ReviewPagination from "../molecule/ReviewPagination";
 
 export default function ReviewList({ id }) {
   const [performanceReviewList, setPerformanceReviewList] = useState([]);
+  
 
   useEffect(() => {
-    getPerformanceReviewList(id, 5, 0, getPerformanceReviewListSuccess, getPerformanceReviewListFail);
+    getPerformanceReviewList(id, 100, 0, getPerformanceReviewListSuccess, getPerformanceReviewListFail);
     checkReviewList();
-    console.log(performanceReviewList);
   }, [id]);
 
   function getPerformanceReviewListSuccess(res) {
     setPerformanceReviewList(res.data);
-    console.log("성공", res.data);
   }
 
-  function getPerformanceReviewListFail(err) {
-    console.log("실패", err);
-  }
+  function getPerformanceReviewListFail(err) {}
 
   function checkReviewList() {
-    if (performanceReviewList !== []) {
-      return true;
-    } else {
-      return false;
+    if (performanceReviewList !== [] && performanceReviewList.length === 0) {
+      return (
+        <Box sx={{ margin: "auto", width: "80%", mt: 3 }}>
+          <TextStyle variant="grey" size="medium">
+            {"아직 작성된 후기가 없어요 :)"}
+          </TextStyle>
+        </Box>
+      );
+    }
+    else if (performanceReviewList !== [] && performanceReviewList.length <= 5) {
+      return (
+        <Box>
+          {performanceReviewList.map((item, i) => (
+            <ReviewItem
+              key={i}
+              title={item.title}
+              written_date={item.writing_time}
+              star_eval={item.star_eval}
+              user={item.name}
+              writerTag={item.writerTag}
+              id={item.id}
+            ></ReviewItem>
+          ))}
+        </Box>
+      );
+    } 
+    else if (performanceReviewList !== [] && performanceReviewList.length > 5) {
+      return (
+        <ReviewPagination performanceReviewList={performanceReviewList}/>
+      );
     }
   }
 
@@ -45,29 +69,9 @@ export default function ReviewList({ id }) {
         </Link>
       </Box>
       <TextStyle size="medium" variant="primary">
-        관람 후기
+        관람 후기 {performanceReviewList.length}
       </TextStyle>
-      {checkReviewList() ? (
-        <Box>
-          {performanceReviewList.map((item, i) => (
-            <ReviewItem
-              key={i}
-              title={item.title}
-              written_date={item.writing_time}
-              star_eval={item.star_eval}
-              user={item.name}
-              writerTag={item.writerTag}
-              id={item.id}
-            ></ReviewItem>
-          ))}
-        </Box>
-      ) : (
-        <Box sx={{ margin: "auto", width: "75%", mt: 3 }}>
-          <TextStyle variant="grey" size="medium">
-            {"아직 작성된 후기가 없어요 :)"}
-          </TextStyle>
-        </Box>
-      )}
+      <Box>{checkReviewList()}</Box>
     </Box>
   );
 }
