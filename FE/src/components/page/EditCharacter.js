@@ -97,9 +97,7 @@ export default function EditCharacter() {
     const userId = user.idTag
     const pickedAcc = acc
     const pickedChar = char
-
-
-    changeCharacter(userId, acc, char);
+    changeCharacter(userId, pickedAcc, pickedChar);
     movePage(`/editprofile`);
     location.reload();
   }
@@ -166,7 +164,7 @@ export default function EditCharacter() {
       </Box>
       <ToggleBox>
         <ToggleButton
-          textLeft="　색상"
+          textLeft="　　색상"
           textRight="　　액세서리　 "
           onClickLeft={() => setChoose(true)}
           onClickRight={() => setChoose(false)}

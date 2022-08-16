@@ -87,8 +87,6 @@ export default function ProfileEdit() {
   }
 
   return (
-    // 프로필 설정에서 변경할 수 있는 모든 폼들이 모여있습니다.
-    // 마진 관련 재설정 필요(px외 단위로), 위치 설정
     <Box sx={{ mx:6.5, my:2, display: 'flex',
     justifyContent: "center",
     alignItems: 'center',
