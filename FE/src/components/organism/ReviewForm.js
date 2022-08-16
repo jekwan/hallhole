@@ -19,7 +19,6 @@ export default function ReviewForm({ id }) {
   const [contents, setContents] = useState("");
   const [performanceTime, setPerformanceTime] = useState(new Date());
   const [star, setStar] = useState(0);
-  const [moveTo, setMoveTo] = useState("");
   let navigate = useNavigate();
 
   function onChangeTitle(e) {
@@ -38,17 +37,13 @@ export default function ReviewForm({ id }) {
   }
 
   function writeReviewSuccess(res) {
-    setMoveTo(res.data);
-    // movePage(`/reviewdetail/${moveTo}`)
+    navigate(`/reviewdetail/${res.data}`);
   }
 
-  function writeReviewFail(err) {
-    console.log(err);
-  }
+  function writeReviewFail(err) {}
 
   return (
     <Box sx={{ width: "90%", margin: "auto", mt: 3 }}>
-      {/* 별점 */}
       <Box sx={{ my: 2 }}>
         <TextStyle>&nbsp;별점</TextStyle>
         <br></br>
@@ -62,7 +57,7 @@ export default function ReviewForm({ id }) {
           }}
         />
       </Box>
-      {/* 날짜 */}
+
       <Box sx={{ my: 2 }}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DateTimePicker
@@ -75,7 +70,9 @@ export default function ReviewForm({ id }) {
           />
         </LocalizationProvider>
       </Box>
+
       <Input value={title} size="large" variant="outlined" label="제목" onChange={onChangeTitle} />
+
       <TextField
         sx={{ width: "100%", mt: 2 }}
         value={contents}
@@ -85,6 +82,7 @@ export default function ReviewForm({ id }) {
         rows={8}
         onChange={onChangeContents}
       />
+
       <Box sx={{ width: "50%", mt: 1, marginX: "auto", display: "flex", justifyContent: "space-between" }}>
         <ButtonStyle
           variant="grey"
