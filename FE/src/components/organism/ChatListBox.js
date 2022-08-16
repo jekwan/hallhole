@@ -53,7 +53,7 @@ function getRoomsList(rooms) {
           <Input
             type="texy"
             size="large"
-            label="Search"
+            label="찾는 공연이 있으신가요?"
             placeholder="Search"
             onChange={e => {
               setSearchTerm(e.target.value);

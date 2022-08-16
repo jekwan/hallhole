@@ -19,6 +19,8 @@ function getSize(size) {
       return "22px";
     case "small":
       return "16px";
+    case "smaller":
+      return "14px";
     case "smallest":
       return "12px";
   }

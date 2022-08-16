@@ -152,11 +152,10 @@ const ResponsiveAppBar = () => {
               <MenuItem onClick={handleCloseUserMenu} component={Link} to={`/profile/${user?.idTag}`}>
                 <Typography textAlign="center">프로필</Typography>
               </MenuItem>
-              <MenuItem onClick={handleCloseUserMenu} component={Link} to={`/profile/${user?.idTag}`}>
-                <Typography textAlign="center">프로필 관리</Typography>
-              </MenuItem>
               <MenuItem onClick={logout} component={Link} to="/">
-                <Typography textAlign="center">로그아웃</Typography>
+                <Typography textAlign="center" color="primary">
+                  로그아웃
+                </Typography>
               </MenuItem>
             </Menu>
           </Box>
