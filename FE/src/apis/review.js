@@ -4,9 +4,9 @@ function getReviewInfo(reviewId, success, fail) {
   api.get(`review/${reviewId}`).then(success).catch(fail);
 }
 
-function editReview(contents, performanceId, performance_time, star, title, writerTag, success, fail) {
+function editReview(reviewId, contents, performanceId, performance_time, star, title, writerTag, success, fail) {
   api
-    .post("review/write", {
+    .post(`review/${reviewId}`, {
       contents: contents,
       performanceId: performanceId,
       performance_time: performance_time,
@@ -19,10 +19,7 @@ function editReview(contents, performanceId, performance_time, star, title, writ
 }
 
 function deleteReview(reviewId, writerTag, success, fail) {
-  api
-    .put(`review/${reviewId}`,  { writerTag: writerTag } )
-    .then(success)
-    .catch(fail);
+  api.put(`review/${reviewId}`, { writerTag: writerTag }).then(success).catch(fail);
 }
 
 function getPerformanceReviewList(performanceId, size, start, success, fail) {
@@ -33,14 +30,11 @@ function getPerformanceReviewList(performanceId, size, start, success, fail) {
 }
 
 function getReviewCommentCnt(reviewId, success, fail) {
-  api.get(`review/comment-cnt/${reviewId}`).then(success).catch(fail)
+  api.get(`review/comment-cnt/${reviewId}`).then(success).catch(fail);
 }
 
 function getUserReviewList(size, start, writerTag, success, fail) {
-  api
-    .post("review/user-review-list", { size: size, start: start, writerTag: writerTag })
-    .then(success)
-    .catch(fail);
+  api.post("review/user-review-list", { size: size, start: start, writerTag: writerTag }).then(success).catch(fail);
 }
 
 function writeReview(contents, performanceId, performance_time, star, title, writerTag, success, fail) {
@@ -57,4 +51,12 @@ function writeReview(contents, performanceId, performance_time, star, title, wri
     .catch(fail);
 }
 
-export { getReviewInfo, editReview, deleteReview, getPerformanceReviewList, getUserReviewList, writeReview, getReviewCommentCnt };
+export {
+  getReviewInfo,
+  editReview,
+  deleteReview,
+  getPerformanceReviewList,
+  getUserReviewList,
+  writeReview,
+  getReviewCommentCnt,
+};

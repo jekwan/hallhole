@@ -9,6 +9,8 @@ import ButtonStyle from "../atom/Button";
 
 import { deleteReview } from "../../apis/review";
 
+import { useNavigate } from "react-router-dom";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -25,9 +27,10 @@ export default function AlertModal({ title, alertTitle, reviewId }) {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
+
   function deleteReviewSuccess(res) {
-    console.log("리뷰 삭제 완료");
-    window.history.back()
+    navigate("/main");
   }
 
   function deleteReviewFail(err) {
