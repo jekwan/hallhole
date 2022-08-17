@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { checkFollowStatus, followUser, unfollowUser } from "../../apis/follow";
 import { requestUserInfo } from "../../apis/user";
 import { Link, useNavigate } from "react-router-dom";
+import UserCharacterProfile from "../molecule/UserCharacterProfile";
 
 export default function ProfileDetail({ id }) {
   const [followStatus, setFollowStatus] = useState("");
@@ -114,14 +115,14 @@ export default function ProfileDetail({ id }) {
     <Box>
       {validateProfileUser ? (
         <Box sx={{ mb: 4 }}>
-          <CharacterProfile/>
+          {user?.idTag === id ? (<CharacterProfile/>) : (<UserCharacterProfile nowAcc={profileUser.nowAcc} nowChar={profileUser.nowChar}/>)}
           <Box sx={{ mx: 2, my: 2, textAlign:"center" }}>
             <TextStyle size="medium" weight="bold">{profileUser.name} </TextStyle>
             <Box sx={{my:0.5}}>
               <TextStyle size="smallest" weight="lighter">#{profileUser.idTag}</TextStyle>
             </Box>
             <Box sx={{ border: 0.5, borderRadius:2, mx: 7}}>
-             <TextStyle size="small">{profileUser.profile}</TextStyle>
+              <TextStyle size="small">{profileUser.profile}</TextStyle>
             </Box>
           </Box>
           <CardHeader
