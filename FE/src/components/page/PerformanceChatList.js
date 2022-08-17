@@ -5,10 +5,14 @@ import TextStyle from "../atom/Text";
 import Box from "@mui/material/Box";
 // import PosterSize from "../atom/PosterSize";
 import CategoryDivider from "../atom/CategoryDivider";
-
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import ChatListBox from "../organism/ChatListBox";
 
 export default function Performance() {
+  function backHistory() {
+    window.history.back();
+  }
+
   return (
     <Box
       sx={{
@@ -16,6 +20,7 @@ export default function Performance() {
         height: "240vh",
       }}
     >
+      <KeyboardBackspaceIcon sx={{ ml:2, mt:2, fontSize:30 }} onClick={backHistory} />
       <Box sx={allPosition}>
         <Box sx={textQuestionDesign}>
           <TextStyle variant="black" size="large">

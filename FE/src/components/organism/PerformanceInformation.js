@@ -10,6 +10,7 @@ import ChatRoom from "../page/ChatRoom";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatIcon from "@mui/icons-material/Chat";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 import { checkLikeStatus, likePerformance, unlikePerformance } from "../../apis/performanceLike";
 import { setChatId, setChatToggle } from "../../stores/chat";
@@ -49,10 +50,12 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
   const user = useSelector(state => state.user.info);
   const dispatch = useDispatch();
 
+  function backHistory() {
+    window.history.back();
+  }
+
   function enterPerformanceChat(e) {
     e.preventDefault();
-    // chat 연결 코드 추가 예정
-    // Link to 해야함
     dispatch(setChatId(id));
     dispatch(setChatToggle("on"));
   }
@@ -69,11 +72,9 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
 
   function requestLikeStatusSuccess(res) {
     setPerformanceLike(res.data);
-    console.log("performance like >>> ", res.data);
   }
 
   function requestLikeStatusFail(err) {
-    console.log("좋아요 여부 요청 실패", err);
   }
 
   // 좋아요 상태확인
@@ -88,7 +89,6 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
 
   // 좋아요 해제 실패
   function unlikeFail(err) {
-    console.log("좋아요 해제 실패", err);
   }
 
   // 공연 좋아요 성공
@@ -98,7 +98,6 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
 
   // 좋아요 누르기 자체 실패
   function likeFail(err) {
-    console.log("좋아요 실패", err);
   }
 
   function changePerformanceLike(e) {
@@ -115,6 +114,7 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
       <Box sx={posterStyle}>
         <img src={performanceInfo.poster} style={imageStyle}></img>
       </Box>
+      <KeyboardBackspaceIcon sx={{ position:"absolute", ml:2, mt:2, color:"white", fontSize: 30 }} onClick={backHistory} />
       <Box sx={smallPosterStyle}>
         <PosterImage size="small" src={performanceInfo.poster}></PosterImage>
         <Box sx={{ mt: 6 }}>

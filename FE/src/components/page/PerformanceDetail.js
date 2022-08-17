@@ -7,6 +7,7 @@ import ReviewList from "../organism/ReviewList";
 import { fetchPerformance } from "../../apis/performance";
 import { useParams } from "react-router-dom";
 
+
 const reviewListStyle = {
   position: "relative",
   zIndex: 3,
@@ -14,7 +15,10 @@ const reviewListStyle = {
   margin: "auto",
 };
 
+
 function RightPerformance({ performanceInfo, performanceMoreInfo, id }) {
+  
+
   return (
     <Box>
       <PerformanceInformation

@@ -30,28 +30,23 @@ export default function FollowList() {
 
   function getProfileUserSuccess(res) {
     setProfileUser(res.data);
-    console.log("프로필 유저 정보 조회 성공", res);
   }
 
   function getProfileUserFail(err) {
-    console.log("프로필 유저 정보 조회 실패", err);
   }
+
   function getFollowerListSuccess(res) {
     setFollowerList(res.data);
-    console.log("팔로워리스트 조회", res)
-  }
+     }
   function getFollowerListFail(err) {
-    console.log("팔로워 리스트 조회 실패", err);
   }
 
   function getFollowingListSuccess(res) {
-    setFollowingList(res.data);
-    console.log("팔로잉 리스트 조회", res);
+    setFollowingList(res.data); 
   }
   function getFollowingListFail(err) {
-    console.log("팔로잉 리스트 조회 실패", err);
   }
-  // 유저 정보 불러왔는지 확인
+
   function validateProfileUser(profileUser) {
     return profileUser !== [];
   }
@@ -71,7 +66,7 @@ export default function FollowList() {
     <Box sx={{mt : 2}}>
       {validateProfileUser ? (
         <Box sx={{ width: "95%", margin: "auto"}}>
-          <KeyboardBackspaceIcon onClick={backProfile} />
+          <KeyboardBackspaceIcon sx={{ ml: 1, fontSize:30 }} onClick={backProfile} />
           <Box sx={{ display: "flex", margin:"auto", width: "97%" }}>
             {target.map((item, i) => (
               <CategorySelectButton

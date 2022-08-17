@@ -124,9 +124,6 @@ export default function ChatRoom(props) {
       borderRadius="15px"
     >
       <ChatModalHeader>
-        {/* <Button size="smallest" onClick={onClickBack}>
-          <KeyboardBackspaceIcon />
-        </Button> */}
         <Button size="smallest" onClick={onClickBack}>
           <ExitToAppIcon />
         </Button>
