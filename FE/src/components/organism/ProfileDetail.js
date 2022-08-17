@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { CardHeader } from "@mui/material";
 import { Box } from "@mui/system";
 
-import ProfileImage from "../atom/ProfileImage";
 import TextStyle from "../atom/Text";
 import ButtonStyle from "../atom/Button";
+import CategoryDivider from "../atom/CategoryDivider";
 import CharacterProfile from "../molecule/CharacterProfile";
 import { useSelector } from "react-redux";
 
@@ -115,26 +115,38 @@ export default function ProfileDetail({ id }) {
       {validateProfileUser ? (
         <Box>
           <CharacterProfile/>
+          <Box sx={{ mx: 2, my: 2, textAlign:"center" }}>
+            <TextStyle size="medium" weight="bold">{profileUser.name} </TextStyle>
+            <Box sx={{my:0.5}}>
+              <TextStyle size="smallest" weight="lighter">#{profileUser.idTag}</TextStyle>
+            </Box>
+            <Box sx={{ border: 0.5, borderRadius:2, mx: 7}}>
+             <TextStyle size="small">{profileUser.profile}</TextStyle>
+            </Box>
+          </Box>
           <CardHeader
-            sx={{ padding: 0.5, width: "90vw", mx: "auto", my: 2 }}
-            // avatar={<ProfileImage type="large" src=""></ProfileImage>}
+            sx={{ padding: 0.5, width: "90vw", mx: "auto" }}
             title={ProfileButton}
           ></CardHeader>
-          <Box sx={{ ml: 2 }}>
-            <TextStyle size="large">{profileUser.name} </TextStyle>
-            <TextStyle size="medium">{profileUser.idTag}</TextStyle>
-            <br></br>
-            <Link to={`/followlist/${id}`} style={{ textDecoration: "none" }}>
-              <TextStyle size="medium">
-                팔로워 : {profileUser.followerCnt} | 팔로잉 : {profileUser.followingCnt}
-              </TextStyle>
-            </Link>
-            <br></br>
-            <TextStyle size="small">{profileUser.profile}</TextStyle>
+          <Box sx={{ mx: 5, my:2, display:"flex", justifyContent:"space-evenly"}} >
+            <Box sx={{ textAlign:"center" }}>
+              <Link to={`/followlist/${id}`} style={{ textDecoration: "none" }}>
+                <TextStyle size="medium"> {profileUser.followerCnt} </TextStyle>
+                <br/>
+                <TextStyle size="small" weight="lighter"> 팔로워</TextStyle>
+              </Link>
+            </Box>
+            <Box sx={{ textAlign:"center" }}>
+              <Link to={`/followlist/${id}`} style={{ textDecoration: "none" }}>
+              <TextStyle size="medium"> {profileUser.followingCnt} </TextStyle>
+                <br/>
+                <TextStyle size="small" weight="lighter"> 팔로잉</TextStyle>
+              </Link>
+            </Box>
           </Box>
         </Box>
       ) : (
-        <Box>로딩중</Box>
+        <Box> 정보를 불러오고 있습니다 🙄</Box>
       )}
     </Box>
   );
