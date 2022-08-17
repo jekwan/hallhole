@@ -25,7 +25,6 @@ export default function LikePerformances({ id }) {
   const [startPoint, setStartPoint] = useState(0);
 
   useEffect(() => {
-    console.log(startPoint);
     if (startPoint === []) return;
     pickedPerformance(id, 10, startPoint, getLikePerformanceListSuccess, getLikePerformanceListFail);
   }, [startPoint]);
@@ -66,9 +65,11 @@ export default function LikePerformances({ id }) {
         <Content>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Text size="medium" variant="primary" weight="bold">
-              좋아요 누른 공연
+              좋아요 한 공연
             </Text>
+            <Link to={`/likedperformance/${id}`} style={{ textDecoration: "none" }}>
             <ArrowForwardIosIcon fontSize="medium" color="primary" />
+            </Link>
           </Box>
           <CategoryDivider type="primary" variant="middle" />
           <Box>
