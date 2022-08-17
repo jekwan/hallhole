@@ -4,16 +4,16 @@ import Box from "@mui/material/Box";
 
 import RoomItem from "../molecule/RoomItem";
 import ChatRoom from "../page/ChatRoom";
-
+import usePagination from "../molecule/SetPaginationData";
 import { fetchChatList } from "../../apis/chat";
 import Input from "../atom/Input";
+import { Pagination } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryDivider from "../atom/CategoryDivider";
 import TextStyle from "../atom/Text";
 
 export default function ChatListBox() {
   const [rooms, setRooms] = React.useState([]);
-
   function fetchChatListSuccess(res) {
     setRooms(res.data);
     console.log("룸 요청 성공", res);
@@ -42,6 +42,54 @@ const inputPosition = {
 
 function getRoomsList(rooms) {
   const [searchTerm, setSearchTerm] = React.useState("");
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 10;
+
+  const count = Math.ceil(rooms.length / PER_PAGE);
+  const _DATA = usePagination(rooms, PER_PAGE);
+
+  function getFilteredRoomList() {
+    return rooms
+      .filter(val => {
+        if (searchTerm == "") {
+          return val;
+        } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return val;
+        }
+      }).map(({ performance, name, openTime, closeTime, memberCnt }) => {
+        return (
+          <RoomItem
+            key={performance.id}
+            id={performance.id}
+            name={name}
+            openTime={openTime}
+            closeTime={closeTime}
+            memberCnt={memberCnt}
+            poster={performance.poster}
+          />)
+      })
+  }
+
+  function getUnFilteredRoomList() {
+    return _DATA.currentData().map(({ performance, name, openTime, closeTime, memberCnt }) => {
+      return (
+        <RoomItem
+          key={performance.id}
+          id={performance.id}
+          name={name}
+          openTime={openTime}
+          closeTime={closeTime}
+          memberCnt={memberCnt}
+          poster={performance.poster}
+        />)
+
+    })
+  }
+
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
   return (
     <div>
       <Box sx={inputPosition}>
@@ -67,27 +115,18 @@ function getRoomsList(rooms) {
         <TextStyle variant="primary" size="small">진행중인 공연</TextStyle>
         <CategoryDivider type="primary" />
       </Box>
-      {rooms
-        .filter(val => {
-          if (searchTerm == "") {
-            return val;
-          } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-            return val;
+
+      <Box>
+        <Box>
+          {searchTerm.length > 0 ?
+            getFilteredRoomList()
+            : <Box>{getUnFilteredRoomList()}
+              <Box sx={{ width: "100%", margin: "auto", my: 2 }}>
+                <Pagination sx={{ display: "flex", justifyContent: "center" }} size="small" color="primary" shape="rounded" page={page} count={count} onChange={handleChange} />
+              </Box></Box>
           }
-        })
-        .map(roomBox => {
-          return (
-            <RoomItem
-              key={roomBox.performance.id}
-              id={roomBox.performance.id}
-              name={roomBox.name}
-              openTime={roomBox.openTime}
-              closeTime={roomBox.closeTime}
-              memberCnt={roomBox.memberCnt}
-              poster={roomBox.performance.poster}
-            />
-          );
-        })}
+        </Box>
+      </Box>
     </div>
   );
 }
