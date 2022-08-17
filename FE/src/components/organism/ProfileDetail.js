@@ -113,7 +113,7 @@ export default function ProfileDetail({ id }) {
   return (
     <Box>
       {validateProfileUser ? (
-        <Box>
+        <Box sx={{ mb: 4 }}>
           <CharacterProfile/>
           <Box sx={{ mx: 2, my: 2, textAlign:"center" }}>
             <TextStyle size="medium" weight="bold">{profileUser.name} </TextStyle>

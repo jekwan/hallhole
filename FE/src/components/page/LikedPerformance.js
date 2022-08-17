@@ -25,7 +25,7 @@ export default function LikedPerformance() {
 
   return (
     <Box sx={{ width: "90%", margin: "auto", mt: 2 }}>
-      <TextStyle variant="primary" size="large" weight="bold">좋아요 한 공연</TextStyle>
+      <TextStyle variant="primary" size="large">👍 좋아요 한 공연</TextStyle>
       <CategoryDivider type="primary"></CategoryDivider>
       <LikePerfoPagination likePerformanceList={likePerformanceList} />
     </Box>

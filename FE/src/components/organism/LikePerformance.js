@@ -64,12 +64,16 @@ export default function LikePerformances({ id }) {
       {validateProfileUser ? (
         <Content>
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Text size="medium" variant="primary" weight="bold">
-              좋아요 한 공연
+            <Text size="large" variant="primary">
+              👍 좋아요 한 공연
             </Text>
-            <Link to={`/likedperformance/${id}`} style={{ textDecoration: "none" }}>
-            <ArrowForwardIosIcon fontSize="medium" color="primary" />
-            </Link>
+            <Box sx={{ mt: 2 }}>
+              <Link to={`/likedperformance/${id}`} style={{ textDecoration: "none" }}>
+                <Text size="smaller" variant="primary">
+                  더보기
+                </Text>
+              </Link>
+            </Box>
           </Box>
           <CategoryDivider type="primary" variant="middle" />
           <Box>
