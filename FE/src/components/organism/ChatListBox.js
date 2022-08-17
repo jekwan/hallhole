@@ -9,6 +9,7 @@ import { fetchChatList } from "../../apis/chat";
 import Input from "../atom/Input";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryDivider from "../atom/CategoryDivider";
+import TextStyle from "../atom/Text";
 
 export default function ChatListBox() {
   const [rooms, setRooms] = React.useState([]);
@@ -51,7 +52,7 @@ function getRoomsList(rooms) {
           <Input
             type="texy"
             size="large"
-            label="찾는 공연이 있으신가요?"
+            label="찾으시는 공연이 있으신가요?"
             placeholder="Search"
             onChange={e => {
               setSearchTerm(e.target.value);
@@ -63,6 +64,7 @@ function getRoomsList(rooms) {
         <Dropdown />
       </Box> */}
       <Box sx={{ width: "90vw", marginX: "auto", marginTop: "4vh" }}>
+        <TextStyle variant="primary" size="small">진행중인 공연</TextStyle>
         <CategoryDivider type="primary" />
       </Box>
       {rooms

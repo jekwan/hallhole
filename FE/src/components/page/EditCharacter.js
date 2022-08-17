@@ -121,7 +121,7 @@ export default function EditCharacter() {
         </Box>
         <Box>
           <TextStyle size="small" variant="black">
-            색상/소품 선택 후 저장을 누르세요
+            색상/소품 선택 후 저장 버튼을 누르세요
           </TextStyle>
         </Box>
       </Box>
