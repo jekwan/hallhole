@@ -70,11 +70,13 @@ export default function Main() {
         </Box>
 
         <Box sx={TwitterBoxBackground}>
-          <Box sx={{ mb: 2, paddingTop: 3, textAlign: "left", mx: 2 }}>
-            <Text size="large" weight="">
-              🎫 실시간 티켓 정보
-            </Text>
-            <CategoryDivider type="dark" />
+          <Box sx={{ mb:2, paddingTop: 3, textAlign: "left", mx:2}}>
+              <Text size="large" variant="primary">
+                🎫 실시간 티켓 정보
+              </Text>
+            <CategoryDivider type="primary"/>
+          <Box>
+          </Box>
           </Box>
 
           <TwitterBox />
@@ -97,6 +99,7 @@ const userCheckBox = {
 };
 
 const userCheckText = {
+  marginTop: 0.5,
   position: "absolute",
   zIndex: 1,
   width: "100vw",

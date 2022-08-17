@@ -37,17 +37,11 @@ export default function LikePerformances() {
             textAlign: "left",
           }}
         >
-          <Text size="medium" weight="bold">
-            Top 10
-          </Text>{" "}
-          <Text size="smallest">
-            공연 <br />
-            <Text size="smallest" variant="primary">
-              홀홀 유저가 선정한 순위
-            </Text>
+          <Text size="large" variant="black">
+          🔥 인기 공연
           </Text>
+        <CategoryDivider type="dark" variant="middle"/>
         </Box>
-        <CategoryDivider type="primary" variant="middle" />
         <Box>
           <ImageList style={flexContainer}>
             {famousPerformanceList.map(item => (

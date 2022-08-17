@@ -87,10 +87,10 @@ export default function ProfileEdit() {
     justifyContent: "center",
     alignItems: 'center',
     flexDirection: 'column',}}>
-      <Box sx={{my:1}}>
+      <Box sx={{my:1, textAlign: "left"}}>
         <TextStyle size="large">내 프로필 수정 ✍</TextStyle>
       </Box>
-      <CategoryDivider type="dark"/>
+      <CategoryDivider type="thinDark"/>
       <Box sx={{ mt: 1, display: "flex", flexDirection: 'column' }}>
       <TextStyle size="medium">{email}</TextStyle>
       <Button sx={{ mt: 1}} size="small" variant="text" onClick={ changePassword }>비밀번호 변경하기</Button>
