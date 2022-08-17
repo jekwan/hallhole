@@ -40,11 +40,11 @@ export default function Main() {
             <Box sx={userCheck}>
               <Text variant="white" size="medium">
                 <Text variant="primary" size="large">
-                  {user?.name}님
+                  {user?.name}
                 </Text>
-                　반가워요👋
+                {"님! 반가워요👋"}
                 <br />
-                {joinedChatRooms.length > 0 ? `이 채팅에 참여중이셨어요` : `아직 참여중인 채팅이 없어요!`}
+                {joinedChatRooms.length > 0 ? `참여중인 채팅방이 있어요` : `아직 참여중인 채팅이 없어요`}
               </Text>
             </Box>
           </Box>
@@ -60,12 +60,12 @@ export default function Main() {
           <Box sx={buttonPosition}>
             <Link to="/performancechatlist" style={{ textDecoration: "none" }}>
               <Button variant="primary" size="large" color="white">
-                공연/채팅방 리스트
+                공연/채팅 리스트
               </Button>
             </Link>
           </Box>
         )}
-        <Box sx={{ marginTop: 4, marginBottom: 5 }}>
+        <Box sx={{ marginTop: 2, marginBottom: 4}}>
           <LikePerformanceRank />
         </Box>
 
@@ -81,10 +81,11 @@ export default function Main() {
 
           <TwitterBox />
         </Box>
-        <Box sx={{ my: 2 }}>
-          <Text size="smaller">(주)HALLHOLE</Text> <br />
-          <Text size="smaller"> A401 - 김제관/강승리/백경원/이재웅/임상빈/임효정</Text> <br />
-          <Text size="smaller">서울 강남구 테헤란로 212 멀티캠퍼스 12층</Text> <br />
+        <Box sx={{ my: 2, backgroundColor: '#e37373', }}>
+          <br/>
+          <Text size="smaller" variant="white">(주)HALLHOLE</Text> <br />
+          <Text size="smaller" variant="white"> A401 - 김제관/강승리/백경원/이재웅/임상빈/임효정</Text> <br />
+          <Text size="smaller" variant="white">서울 강남구 테헤란로 212 멀티캠퍼스 12층</Text> <br />
           <br />
         </Box>
       </Box>

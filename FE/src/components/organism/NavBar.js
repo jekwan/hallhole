@@ -96,7 +96,7 @@ const ResponsiveAppBar = () => {
                 <Typography textAlign="center">홈</Typography>
               </MenuItem>
               <MenuItem onClick={handleCloseNavMenu} component={Link} to="/performancechatlist">
-                <Typography textAlign="center">공연 리스트</Typography>
+                <Typography textAlign="center">공연/채팅</Typography>
               </MenuItem>
             </Menu>
           </Box>
@@ -150,7 +150,7 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu} component={Link} to={`/profile/${user?.idTag}`}>
-                <Typography textAlign="center">프로필</Typography>
+                <Typography textAlign="center">내 프로필</Typography>
               </MenuItem>
               <MenuItem onClick={logout} component={Link} to="/">
                 <Typography textAlign="center" color="primary">
