@@ -29,7 +29,7 @@ export default function ReviewList({ id }) {
       return (
         <Box sx={{ margin: "auto", width: "80%", mt: 3 }}>
           <TextStyle variant="grey" size="medium">
-            {"아직 작성된 후기가 없어요 :)"}
+            {"아직 작성된 후기가 없어요 😥"}
           </TextStyle>
         </Box>
       );
@@ -60,16 +60,20 @@ export default function ReviewList({ id }) {
 
   return (
     <Box>
-      <CategoryDivider type="negative" />
-      <Box sx={{ my: 2 }}>
+      <CategoryDivider type="thinDark" />
+      <Box sx={{ mx: 4, my: 2 }}>
         <Link to={`/writereview/${id}`} style={{ textDecoration: "none" }}>
-          <ButtonStyle size="large" variant="primary">
-            후기 작성
+          <ButtonStyle size="medium" variant="primary">
+            후기 작성하기
           </ButtonStyle>
         </Link>
       </Box>
-      <TextStyle size="medium" variant="primary">
-        관람 후기 {performanceReviewList.length}
+      <TextStyle size="large" variant="primary">
+      👓 관람 후기
+      </TextStyle>
+      <CategoryDivider type="primary"/>
+      <TextStyle size="smaller" variant="primary">
+      {`${performanceReviewList.length} 개의 후기가 있습니다`}
       </TextStyle>
       <Box>{checkReviewList()}</Box>
     </Box>

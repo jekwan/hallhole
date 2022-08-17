@@ -21,7 +21,7 @@ function RightPerformance({ performanceInfo, performanceMoreInfo, id }) {
         performanceInfo={performanceInfo}
         performanceMoreInfo={performanceMoreInfo}
         id={id}
-      ></PerformanceInformation>
+      />
       <Box sx={reviewListStyle}>
         <ReviewList id={id}></ReviewList>
       </Box>

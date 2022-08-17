@@ -129,23 +129,23 @@ export default function PerformanceInformation({ performanceInfo, performanceMor
       <Box bgcolor="white" sx={performanceDetailStyle}>
         <Box sx={{ height: "15vh" }}></Box>
         <Box sx={{ mx: 2, mb: 1 }}>
-          <TextStyle size="large" variant="black">
+          <TextStyle size="medium" variant="black" weight="bold">
             {performanceInfo.name}
           </TextStyle>
-          <br></br>
-          <TextStyle size="small" variant="black">
+          <br/>
+          <TextStyle size="smaller" variant="black" weight="lighter">
             {performanceInfo.genre} · {performanceMoreInfo.runtime}
           </TextStyle>
-          <br></br>
-          <TextStyle size="small" variant="black">
+          <br/>
+          <TextStyle size="smaller" variant="black">
             📍 {performanceInfo.facility_name}
           </TextStyle>
-          <br></br>
-          <TextStyle size="small" variant="black">
+          <br/>
+          <TextStyle size="smaller" variant="black">
             🗓 {changeStrToDate(performanceInfo.startDate)} - {changeStrToDate(performanceInfo.endDate)}
           </TextStyle>
-          <br></br>
-          <TextStyle size="small" variant="black">
+          <br/>
+          <TextStyle size="smaller" variant="black">
             👫 출연진 :{performanceMoreInfo.actor}
           </TextStyle>
         </Box>
