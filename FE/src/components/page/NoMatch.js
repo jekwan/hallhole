@@ -1,26 +1,26 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
 import storage from "../../helper/storage";
 
 import Button from "../atom/Button";
 import Box from "@mui/material/Box";
-import Text from "../atom/Text";
+import Partition from "../atom/CharacterPart"
 
 export default function NoMatch() {
   function logout() {
     storage.remove("token");
   }
+
+  function backPage() {
+    window.history.back();
+  }
+
   return (
     <Box sx={{ textAlign: "center" }}>
       <Box sx={{ marginY: 5 }}>
-        <Text size="large">잘못 된 경로입니다.</Text>
+        <Partition sx={{ mt:3, width:"80%" }} src="/404notfound.png"/>
       </Box>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <Button variant="grey">돌아가기</Button>
-        <Button onClick={logout}>로그 아웃</Button>
-      </Link>
+      <Button variant="grey" onClick={backPage}>돌아가기</Button>
     </Box>
   );
 }
