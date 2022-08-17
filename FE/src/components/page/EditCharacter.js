@@ -113,15 +113,15 @@ export default function EditCharacter() {
       <Box sx={{ ml: 2 }}>
         <Box sx={{ mt: 2 }}>
           <TextStyle size="large" variant="black">
-            캐릭터 꾸미기
+          👕 캐릭터 꾸미기
           </TextStyle>
         </Box>
         <Box sx={{ my: 0.5, mr: 2 }}>
           <CategoryDivider type="dark"/>
         </Box>
         <Box>
-          <TextStyle size="small" variant="black">
-            색상/소품 선택 후 저장 버튼을 누르세요
+          <TextStyle size="smaller" variant="black" weight="lighter">
+            색상/액세서리 선택 후 저장 버튼을 누르세요
           </TextStyle>
         </Box>
       </Box>

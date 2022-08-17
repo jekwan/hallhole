@@ -1,6 +1,8 @@
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import TextStyle from "../atom/Text";
 import ProfileItem from "../molecule/ProfileItem";
 import CategorySelectButton from "../molecule/CategorySelectButton";
@@ -58,15 +60,18 @@ export default function FollowList() {
     e.preventDefault();
     setSelectedTarget(e.target.innerText);
   }
+  const movePage = useNavigate();
+
+  function backProfile() {
+    const userId = user.idTag
+    movePage(`/profile/${userId}`)
+  }
 
   return (
     <Box sx={{mt : 2}}>
       {validateProfileUser ? (
         <Box sx={{ width: "95%", margin: "auto"}}>
-          <TextStyle size="large" variant="black">
-            {profileUser.name}
-          </TextStyle>
-
+          <KeyboardBackspaceIcon onClick={backProfile} />
           <Box sx={{ display: "flex", margin:"auto", width: "97%" }}>
             {target.map((item, i) => (
               <CategorySelectButton
