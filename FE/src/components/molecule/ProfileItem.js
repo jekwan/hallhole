@@ -6,6 +6,7 @@ import { Box, CardHeader } from "@mui/material";
 import ButtonStyle from "../atom/Button";
 
 import { checkFollowStatus, followUser, unfollowUser } from "../../apis/follow";
+import { Link } from "react-router-dom";
 
 // props로 이미지 url과 username을 넘기면 됩니다
 // 클릭 이벤트는 추후에 달면 됩니다!
@@ -59,15 +60,17 @@ export default function ProfileItem({ user, profileId, name, char, acc }) {
         marginX: "auto",
       }}
     >
-      <CardHeader
-        sx={{ padding: 0.5 }}
-        avatar={<ProfileImage type="small" char={char} acc={acc} />}
-        title={
-          <TextStyle size="medium" variant="black">
-            {name}
-          </TextStyle>
-        }
-      ></CardHeader>
+      <Link to={`/profile/${profileId}`} style={{ textDecoration: "none" }}>
+        <CardHeader
+          sx={{ padding: 0.5 }}
+          avatar={<ProfileImage type="small" char={char} acc={acc} />}
+          title={
+            <TextStyle size="medium" variant="black">
+              {name}
+            </TextStyle>
+          }
+        ></CardHeader>
+      </Link>
       {followStatus ? (
         <ButtonStyle size="none" variant="grey" onClick={unfollow}>
           <span style={{ width: "unset" }}>언팔로우</span>

@@ -24,8 +24,8 @@ export default function FollowList() {
 
   useEffect(() => {
     requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
-    requestfollowerList(id, 10, 0, getFollowerListSuccess, getFollowerListFail);
-    requestfollowingList(id, 10, 0, getFollowingListSuccess, getFollowingListFail);
+    requestfollowerList(id, 100, 0, getFollowerListSuccess, getFollowerListFail);
+    requestfollowingList(id, 100, 0, getFollowingListSuccess, getFollowingListFail);
   }, [id]);
 
   function getProfileUserSuccess(res) {}
