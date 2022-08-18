@@ -1,0 +1,49 @@
+{
+  "name": "hallhole",
+  "version": "1.0.0",
+  "description": "연극 뮤지컬에 관심있는 사람들을 위해 공연에 대한 실시간 채팅방을 제공하는 서비스",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://lab.ssafy.com/s07-webmobile2-sub2/S07P12A401.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@date-io/date-fns": "^2.14.0",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.2",
+    "@mui/x-date-pickers": "^5.0.0-beta.3",
+    "@stomp/stompjs": "^6.1.2",
+    "axios": "^0.27.2",
+    "date-fns": "^2.29.1",
+    "html-webpack-plugin": "^5.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "react-slick": "^0.29.0",
+    "redux": "^4.2.0",
+    "slick-carousel": "^1.8.1",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
+    "use-detect-keyboard-open": "^0.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
