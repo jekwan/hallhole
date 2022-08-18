@@ -100,12 +100,12 @@ export default function ReviewDetail() {
       ) : (
         <Box />
       )}
-      <Box sx={{ width: "90%", mx: 2, mt: 3 }}>
+      <Box sx={{ width: "90%", mx: 2.5, mt: 3 }}>
         <TextStyle size="medium" variant="black" weight="bold">
           댓글
         </TextStyle>
       </Box>
-      <Box sx={{ width: "90%", mx: 2, my: 2 }}>
+      <Box sx={{ width: "90%", mx: 2.5, my: 2 }}>
       <CategoryDivider type="thinDark"/>
         <TextStyle size="smaller" variant="black" weight="lighter">
           현재 {commentCnt}개의 댓글이 달려있습니다.
