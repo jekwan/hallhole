@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box } from "@mui/system";
 import { styled } from "@mui/system";
 import { useNavigate } from "react-router";
+import { setUserInfoToStore } from "../../stores/user";
 
 import ToggleButton from "../molecule/ToggleButton";
 import CategoryDivider from "../atom/CategoryDivider";
@@ -11,9 +12,10 @@ import CircleIcon from '@mui/icons-material/Circle';
 import Accessory from "../atom/Accessory";
 import Partition from "../atom/CharacterPart";
 
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 import { changeCharacter, customedCharacter } from "../../apis/item";
+import { requestMyInfo } from "../../apis/user";
 
 const ToggleBox = styled(Box)`
   margin-top: 5%;
@@ -21,7 +23,7 @@ const ToggleBox = styled(Box)`
 `;
 
 const charNum = {
-  0: 'default',
+  10: 'default',
   1: 'black',
   2: 'green',
   3: 'yellow',
@@ -31,7 +33,7 @@ const charNum = {
 }
 
 const accNum = {
-    0: 'nothing',
+    10: 'nothing',
     1: 'note',
     2: 'wings',
     3: 'boots',
@@ -45,18 +47,17 @@ const accNum = {
 export default function EditCharacter() {
   const user = useSelector(state => state.user.info);
   const [choose, setChoose] = React.useState(true);
-  const [char, setChar] = React.useState(0);
+  const [char, setChar] = React.useState(10);
   const [bodyColor, setBodyColor] = React.useState('');
   const [armColor, setArmColor] = React.useState('');
-  const [acc, setAcc] = React.useState(0);
+  const [acc, setAcc] = React.useState(10);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-
-  // 기존 캐릭터 정보 가져오기
   useEffect(() => {
     customedCharacter(user?.idTag, characterLoadSuccess, characterLoadFail);
   }, [user])
-  
-  // 캐릭터 정보 불러오기 성공 시 - 색상 가져오기, 악세사리 정보 가져오기
+
   function characterLoadSuccess(res) {
     const nowColor = user.nowChar
     const nowAcc = user.nowAcc
@@ -67,12 +68,10 @@ export default function EditCharacter() {
   } 
   
   function characterLoadFail(err) {
-    // 불러오기 실패 후 가장 기본 캐릭터 모습으로 보여주기
-    // 기본 캐릭터 정보 캐릭터 색상 하양, 아무것도 액세서리 착용하지 않음 
     characterLoadFail.defaultProps = {
       setBodyColor: '/body_default.png',
       setArmColor: '/arm_default.png',
-      setAcc: 0,
+      setAcc: 10,
     }
   }
   
@@ -97,11 +96,19 @@ export default function EditCharacter() {
     const userId = user.idTag
     const pickedAcc = acc
     const pickedChar = char
-    changeCharacter(userId, pickedAcc, pickedChar);
+    changeCharacter(userId, pickedAcc, pickedChar, (res) => {
+      requestMyInfo(
+        res => {
+          dispatch(setUserInfoToStore(res.data));
+        },
+        err => {
+          storage.remove("token");
+          navigate(`/profile/${userId}`);
+        },
+      );
+    });
     movePage(`/profile/${userId}`);
-    location.reload();
   }
-
 
   function cancelEdit() {
     const userId = user.idTag
@@ -176,7 +183,7 @@ export default function EditCharacter() {
         {choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char: 0 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char: 10 }) } />
               <CircleIcon sx={{ fontSize: 80, color: "black" }} onClick={ pickColor({ char: 1 }) } />
               <CircleIcon sx={{ fontSize: 80, color: "#aece2d" }} onClick={ pickColor({ char: 2 }) } />
             </Box>
@@ -195,7 +202,7 @@ export default function EditCharacter() {
         {!choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={ pickAcc({acc: 0}) } />
+              <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={ pickAcc({acc: 10}) } />
               <Accessory src="/note.png" onClick={ pickAcc({acc: 1}) } />
               <Accessory src="/wings.png" onClick={ pickAcc({acc: 2}) } />
             </Box>

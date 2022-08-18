@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { requestUserInfo, userEditProfile } from "../../apis/user";
+import { requestMyInfo ,requestUserInfo, userEditProfile } from "../../apis/user";
 
 import TextStyle from "../atom/Text";
 import Input from "../atom/Input"
@@ -16,7 +16,7 @@ import { MenuItem, FormControl, Select, InputLabel, Button } from "@mui/material
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
+import { setUserInfoToStore } from "../../stores/user";
 
 
 const genderName = {
@@ -33,7 +33,8 @@ export default function ProfileEdit() {
   const [profile, setProfile] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [birth, setBirth] = React.useState('')
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     requestUserInfo(user?.idTag, getProfileUserSuccess, getProfileUserFail);
@@ -76,7 +77,17 @@ export default function ProfileEdit() {
 
   function changeConfirm() {
     const userId = user.idTag
-    userEditProfile(birth, email, gender, userId, name, profile)
+    userEditProfile(birth, email, gender, userId, name, profile, (res) => {
+      requestMyInfo(
+        res => {
+          dispatch(setUserInfoToStore(res.data));
+        },
+        err => {
+          storage.remove("token");
+          navigate(`/profile/${userId}`);
+        },
+      );
+    })
     alert("프로필 변경이 완료되었습니다.");
     movePage(`/profile/${userId}`)
     location.reload();
