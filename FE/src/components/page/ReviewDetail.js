@@ -40,27 +40,20 @@ export default function ReviewDetail() {
   function getReviewCommentCntFail(err) {}
 
   function getReviewInfoSuccess(res) {
-    console.log("리뷰 요청 성공");
     const reviewInfo = res.data;
     setReviewInformation(reviewInfo);
-    console.log(reviewInfo);
     if (reviewInfo.performanceId) {
       fetchPerformance(reviewInfo?.performanceId, getPerfoInfoSuccess, getPerfoInfoFail);
     }
   }
 
-  function getReviewInfoFail(err) {
-    console.log("리뷰 요청 실패", err);
-  }
+  function getReviewInfoFail(err) {}
 
   function getPerfoInfoSuccess(res) {
-    console.log("리뷰 공연 정보 요청 성공");
     setReviewPerfoInfo(res.data);
   }
 
-  function getPerfoInfoFail(err) {
-    console.log("리뷰 공연 정보 요청 실패", err);
-  }
+  function getPerfoInfoFail(err) {}
 
   function checkUser() {
     return user?.idTag === reviewInformation?.writerTag;
@@ -72,10 +65,10 @@ export default function ReviewDetail() {
 
   return (
     <Box>
-      <Box sx={{position:"absolute", zIndex:13}}>
-        <KeyboardBackspaceIcon sx={{ ml:2, mt:2, fontSize: 30, color:"white" }}  onClick={backHistory} />
+      <Box sx={{ position: "absolute", zIndex: 13 }}>
+        <KeyboardBackspaceIcon sx={{ ml: 2, mt: 2, fontSize: 30, color: "white" }} onClick={backHistory} />
       </Box>
-      <Box sx={{position:"relative", zIndex:10}}>
+      <Box sx={{ position: "relative", zIndex: 10 }}>
         <PerformanceMiniPoster
           img={reviewPerfoInfo?.performance?.poster}
           title={reviewPerfoInfo?.performance?.name}
@@ -93,7 +86,6 @@ export default function ReviewDetail() {
           <Link to={`/editreview/${reviewId}`} style={{ textDecoration: "none" }}>
             <ButtonStyle size="smaller" variant="primary">
               수정
-              {console.log(reviewId)}
             </ButtonStyle>
           </Link>
         </Box>
@@ -106,7 +98,7 @@ export default function ReviewDetail() {
         </TextStyle>
       </Box>
       <Box sx={{ width: "90%", mx: 2.5, my: 2 }}>
-      <CategoryDivider type="thinDark"/>
+        <CategoryDivider type="thinDark" />
         <TextStyle size="smaller" variant="black" weight="lighter">
           현재 {commentCnt}개의 댓글이 달려있습니다.
         </TextStyle>

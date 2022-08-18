@@ -15,7 +15,6 @@ import { editReview } from "../../apis/review";
 import { getReviewInfo } from "../../apis/review";
 
 export default function EditForm({ id }) {
-  console.log(1, id);
   const user = useSelector(state => state.user.info);
   const [title, setTitle] = useState("");
   const [performanceId, setPerformanceId] = useState("");
@@ -25,13 +24,10 @@ export default function EditForm({ id }) {
   let navigate = useNavigate();
 
   useEffect(() => {
-    console.log(2, id);
     getReviewInfo(id, getReviewInfoSuccess, getReviewInfoFail);
   }, [id]);
 
   function getReviewInfoSuccess(res) {
-    console.log("성공성공");
-    console.log(res.data);
     setTitle(res.data.title);
     setContents(res.data.contents);
     setStar(res.data.starEval);
@@ -40,7 +36,6 @@ export default function EditForm({ id }) {
   }
 
   function getReviewInfoFail(err) {
-    console.log("실패");
     console.log(err);
   }
 
