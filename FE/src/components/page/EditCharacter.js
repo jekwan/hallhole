@@ -23,17 +23,17 @@ const ToggleBox = styled(Box)`
 `;
 
 const charNum = {
-  10: 'default',
   1: 'black',
   2: 'green',
   3: 'yellow',
   4: 'orange',
   5: 'skyblue',
   6: 'primary',
+  7: 'default',
 }
 
 const accNum = {
-    10: 'nothing',
+    9: 'nothing',
     1: 'note',
     2: 'wings',
     3: 'boots',
@@ -47,10 +47,10 @@ const accNum = {
 export default function EditCharacter() {
   const user = useSelector(state => state.user.info);
   const [choose, setChoose] = React.useState(true);
-  const [char, setChar] = React.useState(10);
+  const [char, setChar] = React.useState(7);
   const [bodyColor, setBodyColor] = React.useState('');
   const [armColor, setArmColor] = React.useState('');
-  const [acc, setAcc] = React.useState(10);
+  const [acc, setAcc] = React.useState(9);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -62,6 +62,7 @@ export default function EditCharacter() {
     const nowColor = user.nowChar
     const nowAcc = user.nowAcc
     const colorName = charNum[nowColor]
+    console.log(user)
     setBodyColor('/body_' + colorName + '.png');
     setArmColor('/arm_' + colorName + '.png');
     setAcc(nowAcc)
@@ -183,7 +184,7 @@ export default function EditCharacter() {
         {choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char: 10 }) } />
+              <CircleIcon sx={{ fontSize: 80, color: "white" }} onClick={ pickColor({ char: 7 }) } />
               <CircleIcon sx={{ fontSize: 80, color: "black" }} onClick={ pickColor({ char: 1 }) } />
               <CircleIcon sx={{ fontSize: 80, color: "#aece2d" }} onClick={ pickColor({ char: 2 }) } />
             </Box>
@@ -202,7 +203,7 @@ export default function EditCharacter() {
         {!choose && (
           <Box sx={{ width: 250, height: 250, backgroundColor: "skyblue", p: 2, borderRadius: 5 }}>
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-              <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={ pickAcc({acc: 10}) } />
+              <Box sx={{ width:60, height:60, border: '1px dashed grey', borderRadius: 2, mr: 1 }} onClick={ pickAcc({acc: 9}) } />
               <Accessory src="/note.png" onClick={ pickAcc({acc: 1}) } />
               <Accessory src="/wings.png" onClick={ pickAcc({acc: 2}) } />
             </Box>
