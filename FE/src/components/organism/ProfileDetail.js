@@ -22,7 +22,7 @@ export default function ProfileDetail({ id }) {
 
   useEffect(() => {
     requestUserInfo(id, getProfileUserSuccess, getProfileUserFail);
-  }, [followStatus]);
+  }, [followStatus, id]);
 
   function getProfileUserSuccess(res) {
     setProfileUser(res.data);
