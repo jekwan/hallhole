@@ -16,12 +16,9 @@ export default function ChatListBox() {
   const [rooms, setRooms] = React.useState([]);
   function fetchChatListSuccess(res) {
     setRooms(res.data);
-    console.log("룸 요청 성공", res);
   }
 
-  function fetchChatListFail(err) {
-    console.log("룸 요청 실패", err);
-  }
+  function fetchChatListFail(err) {}
 
   useEffect(() => {
     fetchChatList(fetchChatListSuccess, fetchChatListFail);
@@ -56,7 +53,8 @@ function getRoomsList(rooms) {
         } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val;
         }
-      }).map(({ performance, name, openTime, closeTime, memberCnt }) => {
+      })
+      .map(({ performance, name, openTime, closeTime, memberCnt }) => {
         return (
           <RoomItem
             key={performance.id}
@@ -66,8 +64,9 @@ function getRoomsList(rooms) {
             closeTime={closeTime}
             memberCnt={memberCnt}
             poster={performance.poster}
-          />)
-      })
+          />
+        );
+      });
   }
 
   function getUnFilteredRoomList() {
@@ -81,9 +80,9 @@ function getRoomsList(rooms) {
           closeTime={closeTime}
           memberCnt={memberCnt}
           poster={performance.poster}
-        />)
-
-    })
+        />
+      );
+    });
   }
 
   const handleChange = (e, p) => {
@@ -112,19 +111,32 @@ function getRoomsList(rooms) {
         <Dropdown />
       </Box> */}
       <Box sx={{ width: "90vw", marginX: "auto", marginTop: "4vh" }}>
-        <TextStyle variant="primary" size="small">진행중인 공연</TextStyle>
+        <TextStyle variant="primary" size="small">
+          진행중인 공연
+        </TextStyle>
         <CategoryDivider type="primary" />
       </Box>
 
       <Box>
         <Box>
-          {searchTerm.length > 0 ?
+          {searchTerm.length > 0 ? (
             getFilteredRoomList()
-            : <Box>{getUnFilteredRoomList()}
+          ) : (
+            <Box>
+              {getUnFilteredRoomList()}
               <Box sx={{ width: "100%", margin: "auto", my: 2 }}>
-                <Pagination sx={{ display: "flex", justifyContent: "center" }} size="small" color="primary" shape="rounded" page={page} count={count} onChange={handleChange} />
-              </Box></Box>
-          }
+                <Pagination
+                  sx={{ display: "flex", justifyContent: "center" }}
+                  size="small"
+                  color="primary"
+                  shape="rounded"
+                  page={page}
+                  count={count}
+                  onChange={handleChange}
+                />
+              </Box>
+            </Box>
+          )}
         </Box>
       </Box>
     </div>

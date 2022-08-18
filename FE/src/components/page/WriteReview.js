@@ -17,13 +17,10 @@ export default function WriteReview() {
   }, [id]);
 
   function getPerfoInfoSuccess(res) {
-    console.log("리뷰 공연 정보 요청 성공");
     setPerfoInfo(res.data);
   }
 
-  function getPerfoInfoFail(err) {
-    console.log("리뷰 공연 정보 요청 실패", err);
-  }
+  function getPerfoInfoFail(err) {}
 
   return (
     <Box>

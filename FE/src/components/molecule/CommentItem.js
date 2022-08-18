@@ -27,12 +27,9 @@ export default function CommentItem({ idTag, commentId, memberAcc, memberBg, mem
 
   function getWriterNameSuccess(res) {
     setCommentWriterName(res.data);
-    // console.log("닉네임 조회 성공", res.data);
   }
 
-  function getWriterNameFail(err) {
-    // console.log("닉네임 조회 실패", err);
-  }
+  function getWriterNameFail(err) {}
   // 댓글 유저의 프로필로 이동하는 함수
   function moveToCommentProfile(e) {
     e.preventDefault();
@@ -40,7 +37,6 @@ export default function CommentItem({ idTag, commentId, memberAcc, memberBg, mem
 
   function deleteThisComment(e) {
     e.preventDefault();
-    console.log("눌리고있음");
     deleteComment(commentId, user?.idTag, deleteCommentSuccess, deleteCommentFail);
   }
 
@@ -48,9 +44,7 @@ export default function CommentItem({ idTag, commentId, memberAcc, memberBg, mem
     window.location.reload();
   }
 
-  function deleteCommentFail(err) {
-    console.log(err);
-  }
+  function deleteCommentFail(err) {}
 
   function changeStrToDate(str) {
     if (str) {
