@@ -21,22 +21,22 @@ export default function ReviewInfo({ data }) {
 
   function getWriterNameSuccess(res) {
     setWriterName(res.data);
-    // console.log("닉네임 조회 성공", res.data);
   }
 
   function getWriterNameFail(err) {
-    // console.log("닉네임 조회 실패", err);
   }
 
   return (
     <Box sx={{ width: "90%", margin: "auto", mt: 2 }}>
-      <TextStyle variant="black" size="medium" weight="bold">
-        {data.title}
-      </TextStyle>
+      <Box sx={{ mt:2, mb:0.5 }}>
+        <TextStyle variant="black" size="large" weight="">
+          {data.title}
+        </TextStyle>
+      </Box>
       <CategoryDivider type="dark" />
       <br />
       <TextStyle variant="black" size="small" weight="bold">
-        작성자&nbsp;&nbsp;
+        작성자&nbsp;&nbsp;| &nbsp;&nbsp;
       </TextStyle>
       <Link to={`/profile/${data?.writerTag}`} style={{ textDecoration: "none" }}>
         <TextStyle variant="black" size="small" weight="normal">
@@ -46,7 +46,7 @@ export default function ReviewInfo({ data }) {
       <br />
       <br />
       <TextStyle variant="black" size="small" weight="bold">
-        작성일&nbsp;&nbsp;
+        작성일&nbsp;&nbsp;| &nbsp;&nbsp;
       </TextStyle>
       <TextStyle variant="black" size="small" weight="normal">
         {changeStrToDate(data.updateTime)}
@@ -54,7 +54,7 @@ export default function ReviewInfo({ data }) {
       <br />
       <br />
       <TextStyle variant="black" size="small" weight="bold">
-        별점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        별　점&nbsp;&nbsp;| &nbsp;&nbsp;
       </TextStyle>
       <TextStyle variant="black" size="small" weight="normal">
         {data.starEval}
@@ -62,7 +62,7 @@ export default function ReviewInfo({ data }) {
       <br />
       <br />
       <TextStyle variant="black" size="small" weight="normal">
-        {data.contents}
+        📢 {data.contents}
       </TextStyle>
       <br />
       <br />

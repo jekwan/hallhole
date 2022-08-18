@@ -12,12 +12,12 @@ export default function EditReview() {
   return (
     <Box sx={{ marginTop: 8 }}>
       <Box sx={{ width: "90%", margin: "auto", mt: 3 }}>
-        <TextStyle variant="black" size="medium" weight="bold">
+        <TextStyle variant="black" size="medium" weight="">
           ✍🏼 후기 수정
         </TextStyle>
         <CategoryDivider type="dark"></CategoryDivider>
         <TextStyle variant="black" size="small">
-          {"관람한 공연에 대한 후기를 공유해볼까요? :)"}
+          {"관람한 공연에 대한 후기를 공유해주세요"}
         </TextStyle>
       </Box>
       {/* 리뷰 폼 */}

@@ -29,7 +29,7 @@ export default function ForgotPassword() {
         </Box>
         <Box sx={resetpasswordBox}>
           <Text variant="white" size="small">
-            SUCESS!
+            메일이 전송되었습니다!
           </Text>
         </Box>
         <Box sx={logoStyle}>
@@ -38,7 +38,7 @@ export default function ForgotPassword() {
       </Box>
       <Box sx={resetpasswordBox}>
         <Text variant="white" size="small">
-          Check your email to <br /> reset your passWord
+          작성하신 이메일을 확인하여 <br/> 비밀번호를 변경해주세요!
         </Text>
       </Box>
     </Box>

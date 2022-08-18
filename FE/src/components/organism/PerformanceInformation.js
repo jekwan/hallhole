@@ -33,7 +33,7 @@ const posterStyle = {
   width: "100vw",
   height: "20vh",
   display: "flex",
-  filter: "blur(2px)",
+  filter: "blur(1px)",
   position: "absolute",
 };
 

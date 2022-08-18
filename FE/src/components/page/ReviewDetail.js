@@ -17,6 +17,7 @@ import CommentForm from "../molecule/CommentForm";
 import CommentBox from "../organism/CommentBox";
 import TextStyle from "../atom/Text";
 import { Link } from "react-router-dom";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const INITIAL_REVIEW_INFORMATION = [];
 export default function ReviewDetail() {
@@ -65,13 +66,22 @@ export default function ReviewDetail() {
     return user?.idTag === reviewInformation?.writerTag;
   }
 
+  function backHistory() {
+    window.history.back();
+  }
+
   return (
     <Box>
-      <PerformanceMiniPoster
-        img={reviewPerfoInfo?.performance?.poster}
-        title={reviewPerfoInfo?.performance?.name}
-        date={reviewPerfoInfo?.performance?.endDate}
-      />
+      <Box sx={{position:"absolute", zIndex:13}}>
+        <KeyboardBackspaceIcon sx={{ ml:2, mt:2, fontSize: 30, color:"white" }}  onClick={backHistory} />
+      </Box>
+      <Box sx={{position:"relative", zIndex:10}}>
+        <PerformanceMiniPoster
+          img={reviewPerfoInfo?.performance?.poster}
+          title={reviewPerfoInfo?.performance?.name}
+          date={reviewPerfoInfo?.performance?.endDate}
+        />
+      </Box>
       <ReviewInfo data={reviewInformation} />
       <Box sx={{ width: "90%", margin: "auto", mt: 2 }}>
         <CategoryDivider type="negative" />
@@ -90,11 +100,18 @@ export default function ReviewDetail() {
       ) : (
         <Box />
       )}
-      <Box sx={{ width: "90%", margin: "auto", my: 2 }}>
+      <Box sx={{ width: "90%", mx: 6, mt: 3 }}>
         <TextStyle size="medium" variant="black" weight="bold">
-          댓글 {commentCnt}
+          댓글
         </TextStyle>
       </Box>
+      <Box sx={{ width: "90%", mx: 6, my: 2 }}>
+      <CategoryDivider type="thinDark"/>
+        <TextStyle size="smaller" variant="black" weight="lighter">
+          현재 {commentCnt}개의 댓글이 달려있습니다.
+        </TextStyle>
+      </Box>
+
       {/* 댓글작성 */}
       <CommentForm reviewId={reviewId}></CommentForm>
       {/* 댓글박스 */}

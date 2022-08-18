@@ -8,7 +8,7 @@ const posterStyle = {
   width: "100vw",
   height: "20vh",
   display: "flex",
-  filter: "blur(2px)",
+  filter: "blur(1px)",
   position: "absolute",
 };
 
@@ -38,6 +38,13 @@ const posterTextStyle = {
 
 export default function PerformanceMiniPoster(props) {
   // props로 넘어오는 것 : img url , 공연 title, 공연 기간
+  
+  
+  function changeStrToDate(str) {
+    if (str) {
+      return str.slice(0, 10);
+    }
+  }
 
   return (
     <Box sx={{ position: "relative", height: "20vh" }}>
@@ -46,9 +53,9 @@ export default function PerformanceMiniPoster(props) {
       </Box>
       <Box sx={coverStyle} />
       <Box sx={posterTextStyle}>
-        <TextStyle size="medium" variant="white">{props.title}</TextStyle>
-        <br></br>
-        <TextStyle size="small" variant="white">{props.date}</TextStyle>
+        <TextStyle size="large" variant="white">{props.title}</TextStyle>
+        {/* <br></br>
+        <TextStyle size="small" variant="white">{props.date}</TextStyle> */}
       </Box>
     </Box>
   );

@@ -58,18 +58,18 @@ export default function ReviewForm({ id }) {
         />
       </Box>
 
-      <Box sx={{ my: 2 }}>
+      {/* <Box sx={{ my: 2 }}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DateTimePicker
             renderInput={props => <TextField {...props} />}
-            label="날짜"
+            label="관람일자"
             value={performanceTime}
             onChange={newValue => {
               setPerformanceTime(newValue);
             }}
           />
         </LocalizationProvider>
-      </Box>
+      </Box> */}
 
       <Input value={title} size="large" variant="outlined" label="제목" onChange={onChangeTitle} />
 

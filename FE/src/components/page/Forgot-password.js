@@ -30,7 +30,7 @@ export default function ForgotPassword() {
       </Box>
       <Box sx={resetpasswordBox}>
         <Text variant="white" size="small">
-          RESET PASSWORD
+          비밀번호 변경
         </Text>
       </Box>
       <Box sx={passwordBox}>
@@ -39,12 +39,12 @@ export default function ForgotPassword() {
         </Box>
         <Box sx={{ marginTop: 6 }}>
           <Button variant="primary" size="large" color="black">
-            RESET PASSWORD
+            비밀번호 변경
           </Button>
         </Box>
         <Box sx={{ marginTop: 1 }}>
           <Button variant="primary" size="large" color="black">
-            CANCEL
+            돌아가기
           </Button>
         </Box>
       </Box>
