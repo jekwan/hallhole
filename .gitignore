@@ -7,3 +7,4 @@ BE/hallhole/src/main/resources/application.properties
 *.properties
 *.p12
 FE/package-lock.json
+.idea
