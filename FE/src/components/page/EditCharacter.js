@@ -14,6 +14,7 @@ import Partition from "../atom/CharacterPart";
 
 import { useSelector,useDispatch } from "react-redux";
 
+import storage from "../../helper/storage";
 import { changeCharacter, customedCharacter } from "../../apis/item";
 import { requestMyInfo } from "../../apis/user";
 
@@ -55,6 +56,8 @@ export default function EditCharacter() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    setChar(user.nowChar);
+    setAcc(user.nowAcc);
     customedCharacter(user?.idTag, characterLoadSuccess, characterLoadFail);
   }, [user])
 
@@ -62,7 +65,6 @@ export default function EditCharacter() {
     const nowColor = user.nowChar
     const nowAcc = user.nowAcc
     const colorName = charNum[nowColor]
-    console.log(user)
     setBodyColor('/body_' + colorName + '.png');
     setArmColor('/arm_' + colorName + '.png');
     setAcc(nowAcc)
@@ -72,7 +74,7 @@ export default function EditCharacter() {
     characterLoadFail.defaultProps = {
       setBodyColor: '/body_default.png',
       setArmColor: '/arm_default.png',
-      setAcc: 10,
+      setAcc: 9,
     }
   }
   

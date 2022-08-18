@@ -17,7 +17,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { setUserInfoToStore } from "../../stores/user";
-
+import storage from "../../helper/storage";
 
 const genderName = {
   'F' : '여자',
@@ -90,7 +90,6 @@ export default function ProfileEdit() {
     })
     alert("프로필 변경이 완료되었습니다.");
     movePage(`/profile/${userId}`)
-    location.reload();
   }
 
   return (
